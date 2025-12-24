@@ -36,7 +36,7 @@
                 @empty
                     <div class="col-span-full text-center py-8">
                         <p class="text-gray-500">You haven't joined any groups yet.</p>
-                        <a href="{{ route('groups.list') }}" class="text-blue-500 hover:text-blue-700 font-semibold mt-2 inline-block">
+                        <a href="{{ route('admin.groups.index') }}" class="text-blue-500 hover:text-blue-700 font-semibold mt-2 inline-block">
                             Browse Groups →
                         </a>
                     </div>
