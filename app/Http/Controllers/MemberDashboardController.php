@@ -18,7 +18,7 @@ class MemberDashboardController extends Controller
         $user = Auth::user();
 
         // Get user's groups
-        $groups = $user->groups()->where('status', 'active')->get();
+        $groups = $user->groups()->where('groups.status', 'active')->get();
 
         // Get user's loans (only their own)
         $loans = Loan::where('user_id', $user->id)
@@ -40,9 +40,9 @@ class MemberDashboardController extends Controller
 
         // Calculate loan statistics
         $loan_stats = [
-            'total_loaned' => $loans->sum('amount'),
-            'total_paid' => $loans->sum('paid_amount'),
-            'outstanding' => $loans->sum('amount') - $loans->sum('paid_amount'),
+            'total_loaned' => $loans->sum('principal_amount') ?? 0,
+            'total_paid' => $loans->sum('total_principal_paid') ?? 0,
+            'outstanding' => ($loans->sum('principal_amount') ?? 0) - ($loans->sum('total_principal_paid') ?? 0),
         ];
 
         return view('dashboards.member', compact(
@@ -68,9 +68,9 @@ class MemberDashboardController extends Controller
             ->paginate(10);
 
         $stats = [
-            'total_loaned' => $loans->sum('amount'),
-            'total_paid' => $loans->sum('paid_amount'),
-            'outstanding' => $loans->sum('amount') - $loans->sum('paid_amount'),
+            'total_loaned' => $loans->sum('principal_amount') ?? 0,
+            'total_paid' => $loans->sum('total_principal_paid') ?? 0,
+            'outstanding' => ($loans->sum('principal_amount') ?? 0) - ($loans->sum('total_principal_paid') ?? 0),
             'active_count' => $loans->where('status', 'active')->count(),
         ];
 
@@ -91,8 +91,8 @@ class MemberDashboardController extends Controller
             ->paginate(10);
 
         $stats = [
-            'total_balance' => $savings->sum('balance'),
-            'total_saved' => $savings->sum('total_saved'),
+            'total_balance' => $savings->sum('current_balance') ?? 0,
+            'total_saved' => $savings->sum('total_deposits') ?? 0,
             'account_count' => $savings->count(),
         ];
 
@@ -124,7 +124,7 @@ class MemberDashboardController extends Controller
         $user = Auth::user();
 
         $groups = $user->groups()
-            ->where('status', 'active')
+            ->where('groups.status', 'active')
             ->withPivot('role', 'status', 'created_at')
             ->paginate(10);
 
