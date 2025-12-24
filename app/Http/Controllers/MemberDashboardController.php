@@ -34,7 +34,7 @@ class MemberDashboardController extends Controller
             ->get();
 
         // Get user's transactions (only their own)
-        $transactions = Transaction::where('user_id', $user->id)
+        $transactions = Transaction::whereIn('member_id', $userMembers)
             ->with('group')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -110,7 +110,8 @@ class MemberDashboardController extends Controller
     {
         $user = Auth::user();
 
-        $transactions = Transaction::where('user_id', $user->id)
+        $userMembers = $user->groupMembers()->pluck('id');
+        $transactions = Transaction::whereIn('member_id', $userMembers)
             ->with('group')
             ->orderBy('created_at', 'desc')
             ->paginate(20);
