@@ -172,7 +172,7 @@ class AdminDashboardController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        $groups = Group::with('admin')->paginate(20);
+        $groups = Group::with('creator')->paginate(20);
         return view('admin.groups.index', compact('groups'));
     }
 
@@ -201,7 +201,6 @@ class AdminDashboardController extends Controller
         $validated = request()->validate([
             'name' => 'required|string|max:255|unique:groups',
             'description' => 'nullable|string',
-            'admin_id' => 'nullable|exists:users,id',
             'status' => 'required|in:active,inactive,suspended',
         ]);
 
@@ -252,7 +251,6 @@ class AdminDashboardController extends Controller
         $validated = request()->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'admin_id' => 'nullable|exists:users,id',
             'status' => 'required|in:active,inactive,suspended',
         ]);
 

@@ -38,7 +38,7 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 text-sm font-semibold text-gray-900">#{{ $group->id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ $group->name }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{ $group->admin?->name ?? 'Not Assigned' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{ $group->creator?->name ?? 'Not Assigned' }}</td>
                         <td class="px-6 py-4 text-sm">
                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">
                                 {{ $group->members_count ?? 0 }}
