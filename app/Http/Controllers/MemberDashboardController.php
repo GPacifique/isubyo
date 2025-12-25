@@ -17,8 +17,11 @@ class MemberDashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Get user's groups
-        $groups = $user->groups()->where('groups.status', 'active')->get();
+        // Get user's groups with member counts
+        $groups = $user->groups()
+            ->where('groups.status', 'active')
+            ->withCount('groupMembers')
+            ->get();
 
         // Get user's loans through group members
         $userMembers = $user->groupMembers()->pluck('id');
