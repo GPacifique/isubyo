@@ -21,6 +21,8 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     // Groups Management
     Route::prefix('groups')->name('groups.')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'groups'])->name('index');
+        Route::get('/create', [AdminDashboardController::class, 'createGroup'])->name('create');
+        Route::post('/', [AdminDashboardController::class, 'storeGroup'])->name('store');
         Route::get('/{group}', [AdminDashboardController::class, 'showGroup'])->name('show');
         Route::get('/{group}/edit', [AdminDashboardController::class, 'editGroup'])->name('edit');
         Route::put('/{group}', [AdminDashboardController::class, 'updateGroup'])->name('update');

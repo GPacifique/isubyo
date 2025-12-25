@@ -139,6 +139,41 @@ class AdminDashboardController extends Controller
     }
 
     /**
+     * Show create group form
+     */
+    public function createGroup(): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $admins = User::where('is_admin', false)->get();
+        return view('admin.groups.create', compact('admins'));
+    }
+
+    /**
+     * Store new group
+     */
+    public function storeGroup()
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $validated = request()->validate([
+            'name' => 'required|string|max:255|unique:groups',
+            'description' => 'nullable|string',
+            'admin_id' => 'nullable|exists:users,id',
+            'status' => 'required|in:active,inactive,suspended',
+        ]);
+
+        Group::create($validated);
+
+        return redirect()->route('admin.groups.index')
+            ->with('success', 'Group created successfully.');
+    }
+
+    /**
      * Show group details and members
      */
     public function showGroup(Group $group): View
