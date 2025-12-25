@@ -7,6 +7,9 @@
     <div class="flex items-center justify-between mb-8">
         <h1 class="text-3xl font-bold text-gray-900">Group: {{ $group->name }}</h1>
         <div class="space-x-4">
+            <a href="{{ route('admin.groups.members.index', $group) }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                Manage Members
+            </a>
             <a href="{{ route('admin.groups.edit', $group) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                 Edit Group
             </a>

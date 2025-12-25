@@ -28,6 +28,16 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
         Route::get('/{group}', [AdminDashboardController::class, 'showGroup'])->name('show');
         Route::get('/{group}/edit', [AdminDashboardController::class, 'editGroup'])->name('edit');
         Route::put('/{group}', [AdminDashboardController::class, 'updateGroup'])->name('update');
+
+        // Group Members Management
+        Route::prefix('{group}/members')->name('members.')->group(function () {
+            Route::get('/', [AdminDashboardController::class, 'groupMembers'])->name('index');
+            Route::get('/create', [AdminDashboardController::class, 'createGroupMember'])->name('create');
+            Route::post('/', [AdminDashboardController::class, 'storeGroupMember'])->name('store');
+            Route::get('/{member}/edit', [AdminDashboardController::class, 'editGroupMember'])->name('edit');
+            Route::put('/{member}', [AdminDashboardController::class, 'updateGroupMember'])->name('update');
+            Route::delete('/{member}', [AdminDashboardController::class, 'deleteGroupMember'])->name('destroy');
+        });
     });
 
     // Loans Management
@@ -57,11 +67,7 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     });
 
     // Transactions Log
-    Route::prefix('transactions')->name('transactions.')->group(function () {
-        Route::get('/', [AdminDashboardController::class, 'transactions'])->name('index');
-        Route::get('/create', [AdminDashboardController::class, 'createTransaction'])->name('create');
-        Route::post('/', [AdminDashboardController::class, 'storeTransaction'])->name('store');
-    });
+    Route::get('/transactions', [AdminDashboardController::class, 'transactions'])->name('transactions');
 
     // Reports
     Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');

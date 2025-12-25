@@ -639,4 +639,125 @@ class AdminDashboardController extends Controller
         return redirect()->route('admin.loans.repayments.index', $loan)
             ->with('success', 'Repayment deleted successfully');
     }
+
+    /**
+     * Show group members management page
+     */
+    public function groupMembers(Group $group): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $members = $group->members()->with('user')->paginate(15);
+        return view('admin.groups.members.index', compact('group', 'members'));
+    }
+
+    /**
+     * Show add member to group form
+     */
+    public function createGroupMember(Group $group): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        // Get users not already in the group
+        $existingUserIds = $group->members()->pluck('user_id')->toArray();
+        $availableUsers = User::whereNotIn('id', $existingUserIds)->get();
+
+        return view('admin.groups.members.create', compact('group', 'availableUsers'));
+    }
+
+    /**
+     * Add member to group
+     */
+    public function storeGroupMember(Group $group)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $validated = request()->validate([
+            'user_id' => 'required|exists:users,id',
+            'role' => 'required|in:admin,treasurer,member',
+            'status' => 'required|in:active,inactive,suspended',
+        ]);
+
+        // Check if user already in group
+        if ($group->members()->where('user_id', $validated['user_id'])->exists()) {
+            return redirect()->back()->with('error', 'User is already a member of this group');
+        }
+
+        GroupMember::create([
+            'group_id' => $group->id,
+            'user_id' => $validated['user_id'],
+            'role' => $validated['role'],
+            'status' => $validated['status'],
+            'joined_at' => now()->toDateString(),
+        ]);
+
+        return redirect()->route('admin.groups.members.index', $group)
+            ->with('success', 'Member added to group successfully');
+    }
+
+    /**
+     * Show edit member role form
+     */
+    public function editGroupMember(Group $group, GroupMember $member): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        if ($member->group_id !== $group->id) {
+            abort(404, 'Member not found in this group');
+        }
+
+        return view('admin.groups.members.edit', compact('group', 'member'));
+    }
+
+    /**
+     * Update member role and status
+     */
+    public function updateGroupMember(Group $group, GroupMember $member)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        if ($member->group_id !== $group->id) {
+            abort(404, 'Member not found in this group');
+        }
+
+        $validated = request()->validate([
+            'role' => 'required|in:admin,treasurer,member',
+            'status' => 'required|in:active,inactive,suspended',
+        ]);
+
+        $member->update($validated);
+
+        return redirect()->route('admin.groups.members.index', $group)
+            ->with('success', 'Member role updated successfully');
+    }
+
+    /**
+     * Remove member from group
+     */
+    public function deleteGroupMember(Group $group, GroupMember $member)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        if ($member->group_id !== $group->id) {
+            abort(404, 'Member not found in this group');
+        }
+
+        $memberName = $member->user->name;
+        $member->delete();
+
+        return redirect()->route('admin.groups.members.index', $group)
+            ->with('success', "Member '$memberName' removed from group");
+    }
 }
