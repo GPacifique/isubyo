@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Middleware\AdminMiddleware;
 
 // Admin routes - only for system admins
@@ -45,4 +46,33 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
 
     // Settings
     Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
+
+    // Roles Management
+    Route::prefix('roles')->name('roles.')->group(function () {
+        Route::get('/', [RolePermissionController::class, 'roles'])->name('index');
+        Route::get('/create', [RolePermissionController::class, 'createRole'])->name('create');
+        Route::post('/', [RolePermissionController::class, 'storeRole'])->name('store');
+        Route::get('/{role}/edit', [RolePermissionController::class, 'editRole'])->name('edit');
+        Route::put('/{role}', [RolePermissionController::class, 'updateRole'])->name('update');
+        Route::delete('/{role}', [RolePermissionController::class, 'deleteRole'])->name('destroy');
+        Route::get('/{role}/assignments', [RolePermissionController::class, 'roleAssignments'])->name('assignments');
+    });
+
+    // Permissions Management
+    Route::prefix('permissions')->name('permissions.')->group(function () {
+        Route::get('/', [RolePermissionController::class, 'permissions'])->name('index');
+        Route::get('/create', [RolePermissionController::class, 'createPermission'])->name('create');
+        Route::post('/', [RolePermissionController::class, 'storePermission'])->name('store');
+        Route::get('/{permission}/edit', [RolePermissionController::class, 'editPermission'])->name('edit');
+        Route::put('/{permission}', [RolePermissionController::class, 'updatePermission'])->name('update');
+        Route::delete('/{permission}', [RolePermissionController::class, 'deletePermission'])->name('destroy');
+    });
+
+    // User Roles Management
+    Route::prefix('user-roles')->name('user-roles.')->group(function () {
+        Route::get('/', [RolePermissionController::class, 'userRoles'])->name('index');
+        Route::get('/{user}/edit', [RolePermissionController::class, 'editUserRoles'])->name('edit');
+        Route::put('/{user}', [RolePermissionController::class, 'updateUserRoles'])->name('update');
+        Route::delete('/{user}/{role}', [RolePermissionController::class, 'revokeUserRole'])->name('revoke');
+    });
 });

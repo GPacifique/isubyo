@@ -155,4 +155,58 @@ class User extends Authenticatable implements MustVerifyEmail
             session(['current_group_id' => $groupId]);
         }
     }
+
+    /**
+     * Get user's system roles
+     */
+    public function userRoles()
+    {
+        return $this->hasMany(UserRole::class);
+    }
+
+    /**
+     * Get user's roles through user roles
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    /**
+     * Check if user has a specific role
+     */
+    public function hasRole(string|array $roles): bool
+    {
+        if (is_string($roles)) {
+            return $this->roles()->where('name', $roles)->exists();
+        }
+
+        return $this->roles()->whereIn('name', $roles)->exists();
+    }
+
+    /**
+     * Check if user has a specific permission through roles
+     */
+    public function hasPermission(string $permission): bool
+    {
+        return $this->roles()
+            ->whereHas('permissions', function ($query) use ($permission) {
+                $query->where('name', $permission);
+            })
+            ->exists();
+    }
+
+    /**
+     * Get all permissions for user through roles
+     */
+    public function getPermissions()
+    {
+        return $this->roles()
+            ->with('permissions')
+            ->get()
+            ->flatMap(function ($role) {
+                return $role->permissions;
+            })
+            ->unique('id');
+    }
 }

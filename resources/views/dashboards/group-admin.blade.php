@@ -159,7 +159,10 @@
                 <div class="bg-white rounded-lg shadow-sm">
                     <div class="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
                         <h2 class="text-xl font-bold text-gray-900">👥 Members Overview</h2>
-                        <a href="{{ route('group-admin.members', $group) }}" class="text-blue-500 hover:text-blue-700 font-semibold text-sm">View All</a>
+                        <div class="flex gap-3">
+                            <a href="{{ route('group-admin.record-savings', $group) }}" class="inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold text-sm rounded-lg transition">+ Record Savings</a>
+                            <a href="{{ route('group-admin.members', $group) }}" class="text-blue-500 hover:text-blue-700 font-semibold text-sm">View All</a>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
