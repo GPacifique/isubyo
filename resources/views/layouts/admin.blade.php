@@ -35,7 +35,7 @@
                     <a href="{{ route('admin.savings.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.savings.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
                         Savings
                     </a>
-                    <a href="{{ route('admin.transactions') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.transactions') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.transactions.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.transactions.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
                         Transactions
                     </a>
                     <a href="{{ route('admin.reports') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.reports') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
