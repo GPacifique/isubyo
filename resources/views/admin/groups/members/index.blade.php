@@ -7,8 +7,9 @@
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">Members of {{ $group->name }}</h1>
-            <p class="text-gray-500 mt-1">Manage group members, roles, and permissions</p>
+            <p class="text-sm text-gray-500 mb-1">Group:</p>
+            <h1 class="text-3xl font-bold text-gray-900">{{ $group->name }} - Members</h1>
+            <p class="text-gray-500 mt-2">Manage group members, roles, and permissions</p>
         </div>
         <div class="flex gap-3">
             <a href="{{ route('admin.groups.permissions', $group) }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">

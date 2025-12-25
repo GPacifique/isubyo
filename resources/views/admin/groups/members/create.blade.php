@@ -11,6 +11,20 @@
         </a>
     </div>
 
+    <!-- Group Info Card -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-600 mb-1">Adding member to group:</p>
+                <p class="text-lg font-bold text-blue-900">{{ $group->name }}</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm text-gray-600 mb-1">Current Members:</p>
+                <p class="text-2xl font-bold text-blue-600">{{ $group->members()->count() }}</p>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-white rounded-lg shadow p-6">
         <form method="POST" action="{{ route('admin.groups.members.store', $group) }}">
             @csrf
