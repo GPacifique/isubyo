@@ -367,7 +367,15 @@ class AdminDashboardController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        Saving::create($validated);
+        // Get the GroupMember to extract group_id
+        $groupMember = GroupMember::findOrFail($validated['group_member_id']);
+
+        // Create saving with correct field mappings
+        Saving::create([
+            'group_id' => $groupMember->group_id,
+            'member_id' => $validated['group_member_id'],
+            'current_balance' => $validated['current_balance'],
+        ]);
 
         return redirect()->route('admin.savings.index')
             ->with('success', 'Saving created successfully');
