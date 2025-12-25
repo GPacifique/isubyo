@@ -57,7 +57,11 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     });
 
     // Transactions Log
-    Route::get('/transactions', [AdminDashboardController::class, 'transactions'])->name('transactions');
+    Route::prefix('transactions')->name('transactions.')->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'transactions'])->name('index');
+        Route::get('/create', [AdminDashboardController::class, 'createTransaction'])->name('create');
+        Route::post('/', [AdminDashboardController::class, 'storeTransaction'])->name('store');
+    });
 
     // Reports
     Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');

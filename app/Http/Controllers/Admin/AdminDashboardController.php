@@ -403,6 +403,49 @@ class AdminDashboardController extends Controller
     }
 
     /**
+     * Show create transaction form
+     */
+    public function createTransaction(): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $groups = Group::all();
+        $members = GroupMember::with('user', 'group')->get();
+        return view('admin.transactions.create', compact('groups', 'members'));
+    }
+
+    /**
+     * Store new transaction
+     */
+    public function storeTransaction()
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $validated = request()->validate([
+            'group_id' => 'required|exists:groups,id',
+            'member_id' => 'nullable|exists:group_members,id',
+            'type' => 'required|in:deposit,withdrawal,transfer,loan_disbursement,loan_repayment,charge,interest,adjustment',
+            'amount' => 'required|numeric|min:0.01',
+            'balance_after' => 'nullable|numeric|min:0',
+            'description' => 'nullable|string|max:500',
+            'reference' => 'nullable|string|max:100',
+            'transaction_date' => 'required|date',
+        ]);
+
+        // Add creator info
+        $validated['created_by'] = auth()->id();
+
+        Transaction::create($validated);
+
+        return redirect()->route('admin.transactions.index')
+            ->with('success', 'Transaction recorded successfully');
+    }
+
+    /**
      * Show system reports
      */
     public function reports(): View

@@ -239,7 +239,7 @@
                         </svg>
                         <span>View Savings</span>
                     </a>
-                    <a href="{{ route('admin.transactions') }}" class="flex items-center px-4 py-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition font-medium text-gray-700">
+                    <a href="{{ route('admin.transactions.index') }}" class="flex items-center px-4 py-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition font-medium text-gray-700">
                         <svg class="w-5 h-5 text-indigo-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M5.5 13a3 3 0 01-.369-5.98 5 5 0 1111.753.102A4.5 4.5 0 2815.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"></path>
                         </svg>
