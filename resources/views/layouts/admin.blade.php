@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Dashboard') - ItSinda</title>
+    <title>@yield('title', 'Admin Dashboard') - Ihango</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100">
@@ -13,8 +13,9 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
+                    <img src="{{ asset('images/ihango-logo.svg') }}" alt="Ihango Logo" class="h-12 w-12">
                     <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold text-green-100">
-                        ItSinda Admin
+                        Ihango Admin
                     </a>
                 </div>
 
@@ -106,7 +107,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white text-center py-6 mt-12">
-        <p>&copy; {{ date('Y') }} ItSinda. All rights reserved. | Admin Dashboard v1.0</p>
+        <p>&copy; {{ date('Y') }} Ihango. All rights reserved. | Admin Dashboard v1.0</p>
     </footer>
 
     <!-- User Menu Toggle Script -->

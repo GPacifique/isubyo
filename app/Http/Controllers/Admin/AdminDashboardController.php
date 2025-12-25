@@ -435,8 +435,7 @@ class AdminDashboardController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        $transactions = Transaction::with('user', 'loggable')
-            ->latest()
+        $transactions = Transaction::latest()
             ->paginate(30);
 
         return view('admin.transactions.index', compact('transactions'));

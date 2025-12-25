@@ -26,10 +26,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="gradient-primary w-10 h-10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-piggy-bank text-white text-lg"></i>
-                    </div>
-                    <span class="text-xl font-bold text-gray-900">ItsindaFin</span>
+                    <img src="{{ asset('images/ihango-logo.svg') }}" alt="Ihango Logo" class="h-10 w-10">
+                    <span class="text-xl font-bold text-gray-900">Ihango</span>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-8">

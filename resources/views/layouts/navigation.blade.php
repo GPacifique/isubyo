@@ -4,9 +4,10 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                <div class="shrink-0 flex items-center space-x-2">
+                    <img src="{{ asset('images/ihango-logo.svg') }}" alt="Ihango Logo" class="h-9 w-auto">
+                    <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">
+                        Ihango
                     </a>
                 </div>
 
