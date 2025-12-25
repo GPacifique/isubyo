@@ -12,12 +12,6 @@ use Illuminate\Http\Request;
 
 class RolePermissionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
-
     /**
      * Show roles management page
      */
