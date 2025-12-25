@@ -254,6 +254,38 @@
                 </div>
             </div>
 
+            <!-- System Management Section -->
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="border-b border-gray-200 px-6 py-4">
+                    <h3 class="text-lg font-bold text-gray-900 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        </svg>
+                        System Management
+                    </h3>
+                </div>
+                <div class="p-6 space-y-2">
+                    <a href="{{ route('admin.roles.index') }}" class="flex items-center px-4 py-3 bg-orange-50 hover:bg-orange-100 rounded-lg transition font-medium text-gray-700">
+                        <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5 3a2 2 0 00-2 2v6h6V5a2 2 0 00-2-2H5zm6 0a2 2 0 00-2 2v6h6V5a2 2 0 00-2-2h-2zm0 10a2 2 0 00-2 2v2h2v-2zm-6 2a2 2 0 00-2 2v2h6v-2a2 2 0 00-2-2H5z"></path>
+                        </svg>
+                        <span>Manage Roles</span>
+                    </a>
+                    <a href="{{ route('admin.permissions.index') }}" class="flex items-center px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg transition font-medium text-gray-700">
+                        <svg class="w-5 h-5 text-pink-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Manage Permissions</span>
+                    </a>
+                    <a href="{{ route('admin.user-roles.index') }}" class="flex items-center px-4 py-3 bg-teal-50 hover:bg-teal-100 rounded-lg transition font-medium text-gray-700">
+                        <svg class="w-5 h-5 text-teal-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                        </svg>
+                        <span>Assign User Roles</span>
+                    </a>
+                </div>
+            </div>
+
             <!-- System Statistics -->
             <div class="bg-white rounded-lg shadow-sm">
                 <div class="border-b border-gray-200 px-6 py-4">
@@ -284,6 +316,14 @@
                     <div class="flex items-center justify-between py-3">
                         <span class="text-gray-600 font-medium">Total Savings</span>
                         <span class="text-lg font-bold text-gray-900">{{ number_format($stats['savings_amount_total'] ?? 0, 2) }}</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-t border-gray-100 pt-4 mt-4">
+                        <span class="text-gray-600 font-medium">System Roles</span>
+                        <span class="text-2xl font-bold text-gray-900">{{ $stats['total_roles'] ?? 0 }}</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                        <span class="text-gray-600 font-medium">Total Permissions</span>
+                        <span class="text-2xl font-bold text-gray-900">{{ $stats['total_permissions'] ?? 0 }}</span>
                     </div>
                 </div>
             </div>

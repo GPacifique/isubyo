@@ -9,6 +9,8 @@ use App\Models\Loan;
 use App\Models\Saving;
 use App\Models\Transaction;
 use App\Models\GroupMember;
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\View\View;
 
 class AdminDashboardController extends Controller
@@ -34,6 +36,8 @@ class AdminDashboardController extends Controller
             'total_transactions' => Transaction::count(),
             'loan_amount_total' => Loan::sum('principal_amount') ?? 0,
             'savings_amount_total' => Saving::sum('current_balance') ?? 0,
+            'total_roles' => Role::count(),
+            'total_permissions' => Permission::count(),
         ];
 
         $recent_users = User::latest()->take(5)->get();
