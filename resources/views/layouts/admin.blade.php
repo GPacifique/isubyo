@@ -45,14 +45,14 @@
 
                 <!-- User Menu -->
                 <div class="flex items-center space-x-4">
-                    <div class="relative group">
-                        <button class="flex items-center space-x-2 hover:text-green-200 transition text-white">
+                    <div class="relative">
+                        <button id="user-menu-button" class="flex items-center space-x-2 hover:text-green-200 transition text-white">
                             <span class="font-medium">{{ auth()->user()->name }}</span>
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
-                        <div class="absolute right-0 w-56 bg-white text-gray-900 rounded-lg shadow-lg hidden group-hover:block z-50">
+                        <div id="user-menu-dropdown" class="absolute right-0 w-56 bg-white text-gray-900 rounded-lg shadow-lg hidden z-50">
                             <!-- Dashboard Links -->
                             <div class="border-b px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Switch Dashboard</div>
                             @if(auth()->user()->is_admin)
@@ -108,5 +108,46 @@
     <footer class="bg-gray-900 text-white text-center py-6 mt-12">
         <p>&copy; {{ date('Y') }} ItSinda. All rights reserved. | Admin Dashboard v1.0</p>
     </footer>
+
+    <!-- User Menu Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenuButton = document.getElementById('user-menu-button');
+            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+
+            if (userMenuButton && userMenuDropdown) {
+                // Toggle menu on button click
+                userMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    userMenuDropdown.classList.toggle('hidden');
+                });
+
+                // Close menu when clicking on menu items
+                const menuLinks = userMenuDropdown.querySelectorAll('a, button[type="submit"]');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        userMenuDropdown.classList.add('hidden');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    const isClickInsideMenu = userMenuDropdown.contains(event.target);
+                    const isClickInsideButton = userMenuButton.contains(event.target);
+
+                    if (!isClickInsideMenu && !isClickInsideButton) {
+                        userMenuDropdown.classList.add('hidden');
+                    }
+                });
+
+                // Close menu with Escape key
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape') {
+                        userMenuDropdown.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
