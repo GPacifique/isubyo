@@ -36,9 +36,16 @@ class AdminDashboardController extends Controller
             'total_transactions' => Transaction::count(),
             'loan_amount_total' => Loan::sum('principal_amount') ?? 0,
             'savings_amount_total' => Saving::sum('current_balance') ?? 0,
-            'total_roles' => Role::count(),
-            'total_permissions' => Permission::count(),
         ];
+
+        // Safely get roles and permissions counts (handle if tables don't exist)
+        try {
+            $stats['total_roles'] = Role::count();
+            $stats['total_permissions'] = Permission::count();
+        } catch (\Exception $e) {
+            $stats['total_roles'] = 0;
+            $stats['total_permissions'] = 0;
+        }
 
         $recent_users = User::latest()->take(5)->get();
         $recent_groups = Group::latest()->take(5)->get();
