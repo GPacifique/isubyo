@@ -254,12 +254,12 @@ class AdminDashboardController extends Controller
         }
 
         $report_data = [
-            'total_loan_amount' => Loan::sum('amount') ?? 0,
-            'total_loan_paid' => Loan::where('status', 'paid')->sum('amount') ?? 0,
-            'total_loan_pending' => Loan::where('status', '!=', 'paid')->sum('amount') ?? 0,
-            'total_savings_amount' => Saving::sum('balance') ?? 0,
-            'avg_loan_amount' => Loan::avg('amount') ?? 0,
-            'avg_saving_balance' => Saving::avg('balance') ?? 0,
+            'total_loan_amount' => Loan::sum('principal_amount') ?? 0,
+            'total_loan_paid' => Loan::where('status', 'completed')->sum('principal_amount') ?? 0,
+            'total_loan_pending' => Loan::where('status', '!=', 'completed')->sum('principal_amount') ?? 0,
+            'total_savings_amount' => Saving::sum('current_balance') ?? 0,
+            'avg_loan_amount' => Loan::avg('principal_amount') ?? 0,
+            'avg_saving_balance' => Saving::avg('current_balance') ?? 0,
             'loans_by_status' => Loan::selectRaw('status, COUNT(*) as count')
                 ->groupBy('status')
                 ->get(),
