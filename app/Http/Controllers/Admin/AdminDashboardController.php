@@ -304,7 +304,19 @@ class AdminDashboardController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        Loan::create($validated);
+        // Get the GroupMember to extract group_id
+        $groupMember = GroupMember::findOrFail($validated['group_member_id']);
+
+        // Create loan with correct field mappings
+        Loan::create([
+            'group_id' => $groupMember->group_id,
+            'member_id' => $validated['group_member_id'],
+            'principal_amount' => $validated['principal_amount'],
+            'interest_rate' => $validated['interest_rate'],
+            'loan_term_months' => $validated['loan_term_months'],
+            'status' => $validated['status'],
+            'description' => $validated['description'] ?? null,
+        ]);
 
         return redirect()->route('admin.loans.index')
             ->with('success', 'Loan created successfully');
