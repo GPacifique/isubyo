@@ -38,6 +38,20 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <!-- Admin Links -->
+                        @if(auth()->user()->is_admin || auth()->user()->hasRole('system_admin'))
+                            <div class="border-t border-gray-100"></div>
+                            <x-dropdown-link :href="route('admin.roles.index')">
+                                {{ __('Manage Roles') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.permissions.index')">
+                                {{ __('Manage Permissions') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.user-roles.index')">
+                                {{ __('User Roles') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -83,6 +97,19 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+
+                <!-- Admin Links -->
+                @if(auth()->user()->is_admin || auth()->user()->hasRole('system_admin'))
+                    <x-responsive-nav-link :href="route('admin.roles.index')">
+                        {{ __('Manage Roles') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.permissions.index')">
+                        {{ __('Manage Permissions') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.user-roles.index')">
+                        {{ __('User Roles') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
