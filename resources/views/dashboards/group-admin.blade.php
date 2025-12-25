@@ -225,7 +225,7 @@
             <!-- Sidebar (Right 1/3) -->
             <div class="space-y-6">
                 <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="bg-white rounded-lg shadow-sm p-6 border-t-4 border-indigo-500">
                     <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M5.5 13a3 3 0 01-.369-5.98 5 5 0 1111.753.102A4.5 4.5 0 2815.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" clip-rule="evenodd"></path>
@@ -247,6 +247,9 @@
                         </a>
                         <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm">
                             📈 View Reports
+                        </a>
+                        <a href="{{ route('admin.groups.edit', $group) }}" class="block px-4 py-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-orange-600 font-medium transition text-sm">
+                            ⚙️ Manage Group Settings
                         </a>
                     </div>
                 </div>
@@ -299,7 +302,15 @@
 
                 <!-- Group Info -->
                 <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Group Details</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-gray-900">Group Details</h3>
+                        <a href="{{ route('admin.groups.edit', $group) }}" class="text-orange-500 hover:text-orange-700 font-semibold text-sm">
+                            <svg class="w-4 h-4 inline" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                            </svg>
+                            Edit
+                        </a>
+                    </div>
                     <div class="space-y-3 text-sm">
                         <div>
                             <p class="text-xs text-gray-500 uppercase font-semibold">Name</p>
