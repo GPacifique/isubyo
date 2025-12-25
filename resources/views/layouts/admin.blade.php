@@ -8,37 +8,37 @@
 </head>
 <body class="bg-gray-100">
     <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-lg">
+    <nav class="bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold">
+                    <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold text-green-100">
                         ItSinda Admin
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="flex items-center space-x-6">
-                    <a href="{{ route('admin.dashboard') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.dashboard') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.dashboard') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Dashboard
                     </a>
-                    <a href="{{ route('admin.users.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.users.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.users.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.users.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Users
                     </a>
-                    <a href="{{ route('admin.groups.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.groups.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.groups.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.groups.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Groups
                     </a>
-                    <a href="{{ route('admin.loans.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.loans.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.loans.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.loans.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Loans
                     </a>
-                    <a href="{{ route('admin.savings.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.savings.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.savings.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.savings.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Savings
                     </a>
-                    <a href="{{ route('admin.transactions.index') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.transactions.*') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.transactions.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.transactions.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Transactions
                     </a>
-                    <a href="{{ route('admin.reports') }}" class="hover:text-blue-300 transition {{ request()->routeIs('admin.reports') ? 'text-blue-300 border-b-2 border-blue-300' : '' }}">
+                    <a href="{{ route('admin.reports') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.reports') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Reports
                     </a>
                 </div>

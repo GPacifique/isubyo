@@ -5,15 +5,18 @@
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Welcome Banner -->
-    <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white px-6 py-12">
+    <div class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-12">
         <div class="container mx-auto max-w-7xl">
             <div class="flex items-center justify-between">
                 <div>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <span class="inline-block bg-green-400 text-green-900 px-4 py-1 rounded-full text-sm font-bold">System Administrator</span>
+                    </div>
                     <h1 class="text-4xl font-bold mb-2">System Administration Dashboard</h1>
-                    <p class="text-indigo-100 text-lg">Welcome back, <span class="font-semibold">{{ auth()->user()->name }}</span></p>
-                    <p class="text-indigo-200 text-sm mt-1">You have full system access and control</p>
+                    <p class="text-green-100 text-lg">Welcome back, <span class="font-semibold">{{ auth()->user()->name }}</span></p>
+                    <p class="text-green-200 text-sm mt-1">You have full system access and control</p>
                 </div>
-                <div class="text-indigo-300 opacity-20">
+                <div class="text-green-300 opacity-20">
                     <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 17v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd"></path>
                     </svg>
