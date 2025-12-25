@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Loan;
+use App\Models\LoanPayment;
 use App\Models\Saving;
 use App\Models\Transaction;
 use App\Models\GroupMember;
@@ -444,5 +445,157 @@ class AdminDashboardController extends Controller
         }
 
         return view('admin.settings.index');
+    }
+
+    /**
+     * Show loan repayments
+     */
+    public function loanRepayments(Loan $loan): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $repayments = $loan->payments()->paginate(20);
+        return view('admin.loans.repayments.index', compact('loan', 'repayments'));
+    }
+
+    /**
+     * Show create repayment form
+     */
+    public function createRepayment(Loan $loan): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        return view('admin.loans.repayments.create', compact('loan'));
+    }
+
+    /**
+     * Store new repayment
+     */
+    public function storeRepayment(Loan $loan)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $validated = request()->validate([
+            'principal_paid' => 'required|numeric|min:0.01',
+            'charges_paid' => 'required|numeric|min:0',
+            'total_paid' => 'required|numeric|min:0.01',
+            'payment_date' => 'required|date',
+            'payment_method' => 'nullable|string|max:100',
+            'notes' => 'nullable|string',
+        ]);
+
+        // Add loan_id and recorded_by
+        $validated['loan_id'] = $loan->id;
+        $validated['recorded_by'] = auth()->id();
+
+        \App\Models\LoanPayment::create($validated);
+
+        // Update loan balances
+        $loan->total_principal_paid += $validated['principal_paid'];
+        $loan->total_charged += $validated['charges_paid'];
+        $loan->remaining_balance = max(0, $loan->remaining_balance - $validated['principal_paid']);
+        $loan->months_paid = (int)($loan->total_principal_paid / ($loan->principal_amount / $loan->duration_months));
+
+        if ($loan->remaining_balance <= 0) {
+            $loan->status = 'completed';
+            $loan->paid_off_at = now();
+        }
+
+        $loan->save();
+
+        return redirect()->route('admin.loans.repayments.index', $loan)
+            ->with('success', 'Repayment recorded successfully');
+    }
+
+    /**
+     * Show edit repayment form
+     */
+    public function editRepayment(Loan $loan, $repayment): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $payment = \App\Models\LoanPayment::findOrFail($repayment);
+        return view('admin.loans.repayments.edit', compact('loan', 'payment'));
+    }
+
+    /**
+     * Update repayment
+     */
+    public function updateRepayment(Loan $loan, $repayment)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $payment = \App\Models\LoanPayment::findOrFail($repayment);
+
+        $validated = request()->validate([
+            'principal_paid' => 'required|numeric|min:0.01',
+            'charges_paid' => 'required|numeric|min:0',
+            'total_paid' => 'required|numeric|min:0.01',
+            'payment_date' => 'required|date',
+            'payment_method' => 'nullable|string|max:100',
+            'notes' => 'nullable|string',
+        ]);
+
+        // Calculate the difference for balance adjustment
+        $principal_difference = $validated['principal_paid'] - $payment->principal_paid;
+        $charges_difference = $validated['charges_paid'] - $payment->charges_paid;
+
+        $payment->update($validated);
+
+        // Update loan balances
+        $loan->total_principal_paid += $principal_difference;
+        $loan->total_charged += $charges_difference;
+        $loan->remaining_balance = max(0, $loan->remaining_balance - $principal_difference);
+        $loan->months_paid = (int)($loan->total_principal_paid / ($loan->principal_amount / $loan->duration_months));
+
+        if ($loan->remaining_balance <= 0) {
+            $loan->status = 'completed';
+            $loan->paid_off_at = now();
+        }
+
+        $loan->save();
+
+        return redirect()->route('admin.loans.repayments.index', $loan)
+            ->with('success', 'Repayment updated successfully');
+    }
+
+    /**
+     * Delete repayment
+     */
+    public function deleteRepayment(Loan $loan, $repayment)
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $payment = \App\Models\LoanPayment::findOrFail($repayment);
+
+        // Reverse the loan balance
+        $loan->total_principal_paid -= $payment->principal_paid;
+        $loan->total_charged -= $payment->charges_paid;
+        $loan->remaining_balance += $payment->principal_paid;
+        $loan->months_paid = (int)($loan->total_principal_paid / ($loan->principal_amount / $loan->duration_months));
+
+        if ($loan->status === 'completed') {
+            $loan->status = 'active';
+            $loan->paid_off_at = null;
+        }
+
+        $loan->save();
+
+        $payment->delete();
+
+        return redirect()->route('admin.loans.repayments.index', $loan)
+            ->with('success', 'Repayment deleted successfully');
     }
 }

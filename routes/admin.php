@@ -36,6 +36,16 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
         Route::get('/create', [AdminDashboardController::class, 'createLoan'])->name('create');
         Route::post('/', [AdminDashboardController::class, 'storeLoan'])->name('store');
         Route::get('/{loan}', [AdminDashboardController::class, 'showLoan'])->name('show');
+
+        // Loan Repayment Routes
+        Route::prefix('{loan}/repayments')->name('repayments.')->group(function () {
+            Route::get('/', [AdminDashboardController::class, 'loanRepayments'])->name('index');
+            Route::get('/create', [AdminDashboardController::class, 'createRepayment'])->name('create');
+            Route::post('/', [AdminDashboardController::class, 'storeRepayment'])->name('store');
+            Route::get('/{repayment}/edit', [AdminDashboardController::class, 'editRepayment'])->name('edit');
+            Route::put('/{repayment}', [AdminDashboardController::class, 'updateRepayment'])->name('update');
+            Route::delete('/{repayment}', [AdminDashboardController::class, 'deleteRepayment'])->name('destroy');
+        });
     });
 
     // Savings Management
