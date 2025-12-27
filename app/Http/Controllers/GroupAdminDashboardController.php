@@ -50,6 +50,18 @@ class GroupAdminDashboardController extends Controller
             ->sum('amount');
         $supportFundAvailable = $totalPenalties + $totalInterests - $totalDisbursed;
 
+        // Daily and Monthly Savings
+        $todaySavings = Transaction::where('group_id', $group->id)
+            ->where('type', 'deposit')
+            ->whereDate('transaction_date', today())
+            ->sum('amount');
+
+        $monthSavings = Transaction::where('group_id', $group->id)
+            ->where('type', 'deposit')
+            ->whereYear('transaction_date', now()->year)
+            ->whereMonth('transaction_date', now()->month)
+            ->sum('amount');
+
         $stats = [
             'total_members' => $members->count(),
             'active_loans' => $group->loans()->where('status', 'active')->count(),
@@ -57,6 +69,8 @@ class GroupAdminDashboardController extends Controller
             'total_loan_amount' => $group->loans()->sum('principal_amount'),
             'total_savings_balance' => $group->savings()->get()->sum('current_balance'),
             'total_member_shares' => $group->savings()->sum('current_balance'),
+            'daily_savings' => $todaySavings,
+            'monthly_savings' => $monthSavings,
             'total_penalties' => $totalPenalties,
             'total_interests' => $totalInterests,
             'total_support_disbursed' => $totalDisbursed,

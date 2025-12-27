@@ -42,6 +42,21 @@
             </div>
         </div>
 
+        <!-- Daily & Monthly Savings -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-cyan-500">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Today's Savings</p>
+                <p class="text-2xl font-bold text-cyan-600 mt-3">{{ number_format($stats['daily_savings'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">{{ now()->format('M d, Y') }}</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-indigo-500">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">This Month Savings</p>
+                <p class="text-2xl font-bold text-indigo-600 mt-3">{{ number_format($stats['monthly_savings'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">{{ now()->format('F Y') }}</p>
+            </div>
+        </div>
+
         <!-- Financial Pool Stats -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-red-500">
