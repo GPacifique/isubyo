@@ -20,19 +20,19 @@
                 @endphp
 
                 @if($canAccessSystemAdmin || $canAccessGroupAdmin)
-                    <div class="ml-6" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition font-medium text-sm">
+                    <div class="ml-6 relative">
+                        <button id="member-switcher-btn" class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition font-medium text-sm">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
                                 <path d="M6.5 10.5h7M6.5 14h4"></path>
                             </svg>
                             Switch
-                            <svg class="w-4 h-4 transition" :class="{ 'rotate-180': open }" fill="currentColor" viewBox="0 0 20 20">
+                            <svg id="member-switcher-chevron" class="w-4 h-4 transition" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
 
-                        <div @click.away="open = false" class="absolute right-4 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50" :class="{ 'hidden': !open }">
+                        <div id="member-switcher-menu" class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
                             <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
                                 <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
                             </div>
