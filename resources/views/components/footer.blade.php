@@ -7,7 +7,7 @@
             <!-- Column 1: Brand & Company Info -->
             <div class="space-y-4">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ asset('images/isubyo-logo-modern.png') }}" alt="isubyo" class="h-10 w-10">
+                    <img src="{{ asset('images/isubyo.png') }}" alt="isubyo" class="h-10 w-10">
                     <span class="text-2xl font-bold text-white">isubyo</span>
                 </div>
                 <p class="text-sm text-gray-400">
