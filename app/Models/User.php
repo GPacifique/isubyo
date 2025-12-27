@@ -61,7 +61,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function adminGroups()
     {
-        return $this->belongsToMany(Group::class, 'group_admins', 'user_id', 'group_id')
+        return $this->belongsToMany(Group::class, 'group_members', 'user_id', 'group_id')
+                    ->wherePivot('role', 'admin')
+                    ->wherePivot('status', 'active')
                     ->withTimestamps();
     }
 
