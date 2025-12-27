@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center space-x-2">
-                    <img src="{{ asset('images/isubyo.png') }}" alt="isubyo Logo" class="h-9 w-auto">
+                    <img src="{{ asset('images/isubyo.svg') }}" alt="isubyo Logo" class="h-9 w-auto">
                     <a href="{{ route('dashboard') }}" class="text-lg font-bold text-gray-800">
                         isubyo
                     </a>
