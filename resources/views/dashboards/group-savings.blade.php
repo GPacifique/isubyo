@@ -13,13 +13,19 @@
     </div>
 
     <div class="max-w-6xl mx-auto py-12 px-4">
-        <!-- Back Link -->
-        <div class="mb-6">
+        <!-- Back Link and Action Buttons -->
+        <div class="mb-6 flex justify-between items-center">
             <a href="{{ route('group-admin.dashboard') }}" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
                 Back to Dashboard
+            </a>
+            <a href="{{ route('group-admin.record-savings', $group) }}" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Record Savings
             </a>
         </div>
 
