@@ -7,6 +7,7 @@ use App\Models\Penalty;
 use App\Models\Saving;
 use App\Models\Transaction;
 use App\Models\SocialSupport;
+use App\Notifications\LoanPaymentRecordedNotification;
 use Illuminate\Support\Facades\Auth;
 
 class MemberDashboardController extends Controller
@@ -335,6 +336,14 @@ class MemberDashboardController extends Controller
                 paymentMethod: $validated['payment_method'],
                 notes: $validated['notes'] ?? null
             );
+
+            // Get the payment record that was just created
+            $payment = $loan->payments()->latest()->first();
+
+            // Send notification to member
+            if ($payment && $loan->member->user) {
+                $loan->member->user->notify(new LoanPaymentRecordedNotification($payment));
+            }
 
             return redirect()->route('member.loans')
                 ->with('success', 'Loan payment recorded successfully!');

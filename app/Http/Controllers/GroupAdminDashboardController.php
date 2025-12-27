@@ -10,6 +10,7 @@ use App\Models\Saving;
 use App\Models\SocialSupport;
 use App\Models\Transaction;
 use App\Services\LoanService;
+use App\Notifications\SavingsTransactionNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -401,6 +402,11 @@ class GroupAdminDashboardController extends Controller
             'created_by' => Auth::id(),
             'transaction_date' => $validated['transaction_date'] ?? now(),
         ]);
+
+        // Send notification to member
+        if ($member->user) {
+            $member->user->notify(new SavingsTransactionNotification($saving, 'deposit', $validated['amount']));
+        }
 
         return redirect()->route('group-admin.savings', $group)
             ->with('success', 'Savings recorded successfully.');
