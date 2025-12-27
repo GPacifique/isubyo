@@ -59,11 +59,6 @@ class LoanRequestController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Get current member record
-        $member = GroupMember::where('user_id', auth()->id())
-            ->where('status', 'active')
-            ->firstOrFail();
-
         $validated = $request->validate([
             'group_id' => 'required|exists:groups,id',
             'requested_amount' => 'required|numeric|min:100|max:999999.99',
@@ -71,10 +66,11 @@ class LoanRequestController extends Controller
             'reason' => 'nullable|string|max:500',
         ]);
 
-        // Verify member belongs to this group
-        if ($member->group_id != $validated['group_id']) {
-            abort(403, 'Unauthorized');
-        }
+        // Verify user is a member of this group
+        $member = GroupMember::where('user_id', auth()->id())
+            ->where('group_id', $validated['group_id'])
+            ->where('status', 'active')
+            ->firstOrFail();
 
         // Check if member already has pending request for this group
         $existingRequest = LoanRequest::where('group_id', $validated['group_id'])
@@ -217,17 +213,15 @@ class LoanRequestController extends Controller
      */
     public function myRequests(): View
     {
-        $member = GroupMember::where('user_id', auth()->id())
+        // Get all member records for this user (may belong to multiple groups)
+        $memberIds = GroupMember::where('user_id', auth()->id())
             ->where('status', 'active')
-            ->first();
+            ->pluck('id');
 
-        $requests = [];
-        if ($member) {
-            $requests = LoanRequest::where('member_id', $member->id)
-                ->with(['group', 'reviewer'])
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
+        $requests = LoanRequest::whereIn('member_id', $memberIds)
+            ->with(['group', 'reviewer'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('loan-requests.my-requests', compact('requests'));
     }
