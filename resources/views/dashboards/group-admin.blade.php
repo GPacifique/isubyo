@@ -16,8 +16,80 @@
                     <h1 class="text-4xl font-bold">{{ $group->name }} - Group Admin Dashboard</h1>
                     <p class="text-indigo-100 mt-2">Manage members, loans, savings, and financial records</p>
                 </div>
-                <!-- Group Switcher -->
-                @if($adminGroups && count($adminGroups) > 0)
+
+                <!-- Dashboard Switcher -->
+                @php
+                    $canAccessSystemAdmin = auth()->user()->is_admin;
+                    $canAccessMember = auth()->user()->isMemberOfGroup();
+                @endphp
+
+                @if($canAccessSystemAdmin || $canAccessMember)
+                    <div class="ml-6 flex items-center gap-4">
+                        @if($adminGroups && count($adminGroups) > 0)
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Group:</label>
+                                    <select
+                                        id="groupSelect"
+                                        class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium cursor-pointer"
+                                        onchange="switchGroup(this.value)"
+                                    >
+                                        @foreach($adminGroups as $availableGroup)
+                                            <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
+                                                {{ $availableGroup->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="border-l border-indigo-400 pl-4" x-data="{ open: false }">
+                            <button @click="open = !open" class="flex items-center gap-2 hover:text-indigo-200 transition text-sm font-medium">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
+                                    <path d="M6.5 10.5h7M6.5 14h4"></path>
+                                </svg>
+                                Switch
+                                <svg class="w-4 h-4 transition" :class="{ 'rotate-180': open }" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <div @click.away="open = false" class="absolute right-4 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50" :class="{ 'hidden': !open }">
+                                <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
+                                    <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
+                                </div>
+
+                                @if($canAccessSystemAdmin)
+                                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 border-b transition">
+                                        <div class="flex-1">
+                                            <div class="font-semibold text-blue-600">System Admin</div>
+                                            <p class="text-xs text-gray-500">System-wide management</p>
+                                        </div>
+                                    </a>
+                                @endif
+
+                                <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 border-b transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-green-600">Group Admin</div>
+                                        <p class="text-xs text-gray-500">Currently active</p>
+                                    </div>
+                                    <span class="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
+                                </a>
+
+                                @if($canAccessMember)
+                                    <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 transition">
+                                        <div class="flex-1">
+                                            <div class="font-semibold text-purple-600">Member</div>
+                                            <p class="text-xs text-gray-500">View your account</p>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @elseif($adminGroups && count($adminGroups) > 0)
                     <div class="ml-6">
                         <div class="flex items-center gap-2">
                             <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Group:</label>

@@ -74,21 +74,69 @@
                     <a href="{{ route('admin.chats.index') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.chats.*') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Chat
                     </a>
+                    <a href="{{ route('admin.activity-logs') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.activity-logs') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
+                        Logs
+                    </a>
 
-                    <!-- View Switcher for Admin-Group Admins -->
+                    <!-- Dashboard Switcher Dropdown -->
                     @php
-                        $isGroupAdmin = auth()->user() && auth()->check() &&
-                            \App\Models\GroupMember::where('user_id', auth()->id())
-                                ->where('role', 'admin')
-                                ->where('status', 'active')
-                                ->exists();
+                        $canAccessGroupAdmin = auth()->user()->isGroupAdminOfAny();
+                        $canAccessMember = auth()->user()->isMemberOfGroup();
                     @endphp
 
-                    @if(auth()->user()->is_admin && $isGroupAdmin)
-                        <div class="border-l border-green-500 pl-6 ml-6">
-                            <a href="{{ route('group-admin.dashboard') }}" class="hover:text-green-200 transition font-medium text-sm">
-                                🏢 Group Admin
-                            </a>
+                    @if($canAccessGroupAdmin || $canAccessMember)
+                        <div class="relative ml-6 border-l border-green-500 pl-6" x-data="{ open: false }">
+                            <button @click="open = !open" class="hover:text-green-200 transition font-medium flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
+                                    <path d="M6.5 10.5h7M6.5 14h4"></path>
+                                </svg>
+                                Switch
+                                <svg class="w-4 h-4 transition" :class="{ 'rotate-180': open }" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div @click.away="open = false" class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50" :class="{ 'hidden': !open }">
+                                <div class="px-4 py-3 border-b border-gray-200">
+                                    <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
+                                </div>
+
+                                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 border-b transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-blue-600">System Admin</div>
+                                        <p class="text-xs text-gray-500">System-wide management</p>
+                                    </div>
+                                    @if(request()->routeIs('admin.*'))
+                                        <span class="inline-block w-3 h-3 bg-blue-600 rounded-full"></span>
+                                    @endif
+                                </a>
+
+                                @if($canAccessGroupAdmin)
+                                    <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 border-b transition">
+                                        <div class="flex-1">
+                                            <div class="font-semibold text-green-600">Group Admin</div>
+                                            <p class="text-xs text-gray-500">Manage assigned groups</p>
+                                        </div>
+                                        @if(request()->routeIs('group-admin.*'))
+                                            <span class="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
+                                        @endif
+                                    </a>
+                                @endif
+
+                                @if($canAccessMember)
+                                    <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 transition">
+                                        <div class="flex-1">
+                                            <div class="font-semibold text-purple-600">Member</div>
+                                            <p class="text-xs text-gray-500">View your account</p>
+                                        </div>
+                                        @if(request()->routeIs('member.*'))
+                                            <span class="inline-block w-3 h-3 bg-purple-600 rounded-full"></span>
+                                        @endif
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -121,33 +169,68 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
-                        <div id="user-menu-dropdown" class="absolute right-0 w-56 bg-white text-gray-900 rounded-lg shadow-lg hidden z-50">
+                        <div id="user-menu-dropdown" class="absolute right-0 w-64 bg-white text-gray-900 rounded-lg shadow-xl hidden z-50 overflow-hidden">
                             <!-- Dashboard Links -->
-                            <div class="border-b px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Switch Dashboard</div>
+                            <div class="border-b px-4 py-3 bg-gray-50">
+                                <p class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Available Dashboards</p>
+                            </div>
+
                             @if(auth()->user()->is_admin)
-                                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 hover:bg-blue-50 text-blue-600 font-medium border-b">
-                                    <span class="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span>System Admin
-                                </a>
-                            @endif
-                            @if(auth()->user()->isGroupAdminOfAny())
-                                <a href="{{ route('group-admin.dashboard') }}" class="block px-4 py-2 hover:bg-green-50 text-green-600 font-medium border-b">
-                                    <span class="inline-block w-2 h-2 bg-green-600 rounded-full mr-2"></span>Group Admin
-                                </a>
-                            @endif
-                            @if(auth()->user()->isMemberOfGroup())
-                                <a href="{{ route('member.dashboard') }}" class="block px-4 py-2 hover:bg-purple-50 text-purple-600 font-medium border-b">
-                                    <span class="inline-block w-2 h-2 bg-purple-600 rounded-full mr-2"></span>Member
+                                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-blue-50 border-b transition group">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-blue-600">System Admin</div>
+                                        <p class="text-xs text-gray-500">System-wide management</p>
+                                    </div>
+                                    @if(request()->routeIs('admin.*') && !request()->routeIs('admin.dashboard'))
+                                        <span class="inline-block w-3 h-3 bg-blue-600 rounded-full ml-2"></span>
+                                    @elseif(request()->routeIs('admin.dashboard'))
+                                        <span class="inline-block w-3 h-3 bg-blue-600 rounded-full ml-2"></span>
+                                    @endif
                                 </a>
                             @endif
 
+                            @if(auth()->user()->isGroupAdminOfAny())
+                                <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-green-50 border-b transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-green-600">Group Admin</div>
+                                        <p class="text-xs text-gray-500">Manage assigned groups</p>
+                                    </div>
+                                    @if(request()->routeIs('group-admin.*'))
+                                        <span class="inline-block w-3 h-3 bg-green-600 rounded-full ml-2"></span>
+                                    @endif
+                                </a>
+                            @endif
+
+                            @if(auth()->user()->isMemberOfGroup())
+                                <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-purple-50 border-b transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-purple-600">Member</div>
+                                        <p class="text-xs text-gray-500">View your account</p>
+                                    </div>
+                                    @if(request()->routeIs('member.*'))
+                                        <span class="inline-block w-3 h-3 bg-purple-600 rounded-full ml-2"></span>
+                                    @endif
+                                </a>
+                            @endif
+
+                            <!-- Divider -->
+                            <div class="border-t border-gray-200"></div>
+
                             <!-- Other Options -->
-                            <a href="{{ route('admin.settings') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-700 border-b">Settings</a>
-                            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100 text-gray-700 border-b">Profile</a>
+                            <a href="{{ route('profile.edit') }}" class="block px-4 py-3 hover:bg-gray-100 text-gray-700 border-b transition">
+                                <div class="font-medium">My Profile</div>
+                                <p class="text-xs text-gray-500">Account settings</p>
+                            </a>
 
                             <!-- Logout -->
                             <form method="POST" action="{{ route('logout') }}" class="block">
                                 @csrf
-                                <button type="submit" class="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600 font-semibold transition">Logout</button>
+                                <button type="submit" class="w-full text-left px-4 py-3 hover:bg-red-50 text-red-600 font-semibold transition flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 100-2H4V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Logout
+                                </button>
                             </form>
                         </div>
                     </div>
