@@ -70,12 +70,12 @@ if (!is_dir($logoDir)) {
     mkdir($logoDir, 0755, true);
 }
 
-// Create the modern logo PNG
-$modernPath = $logoDir . '/isubyo-logo-modern.png';
-file_put_contents($modernPath, $pngData);
-chmod($modernPath, 0644);
+// Create the isubyo logo PNG
+$logoPath = $logoDir . '/isubyo.png';
+file_put_contents($logoPath, $pngData);
+chmod($logoPath, 0644);
 
-echo "✓ Generated: isubyo-logo-modern.png\n";
+echo "✓ Generated: isubyo.png\n";
 
 // For favicon, use the same PNG
 $faviconPath = __DIR__ . '/public/favicon.png';
@@ -86,6 +86,6 @@ echo "✓ Generated: favicon.png\n";
 
 echo "\nPNG logos generated successfully!\n";
 echo "Files created:\n";
-echo "  - public/images/isubyo-logo-modern.png\n";
+echo "  - public/images/isubyo.png\n";
 echo "  - public/favicon.png\n";
 ?>
