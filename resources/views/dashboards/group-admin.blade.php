@@ -249,6 +249,12 @@
                         <a href="{{ route('group-admin.transactions', $group) }}" class="block px-4 py-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg text-indigo-600 font-medium transition text-sm">
                             📋 View Transactions
                         </a>
+                        <a href="{{ route('group-admin.penalties', $group) }}" class="block px-4 py-3 bg-red-50 hover:bg-red-100 rounded-lg text-red-600 font-medium transition text-sm">
+                            ⚖️ Manage Penalties
+                        </a>
+                        <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-600 font-medium transition text-sm">
+                            ❤️ Social Support Requests
+                        </a>
                         <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm">
                             📈 View Reports
                         </a>

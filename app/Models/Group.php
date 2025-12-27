@@ -74,6 +74,11 @@ class Group extends Model
         return $this->hasMany(Penalty::class);
     }
 
+    public function socialSupports(): HasMany
+    {
+        return $this->hasMany(SocialSupport::class);
+    }
+
     public function activeLoanCount(): int
     {
         return $this->loans()->whereIn('status', ['active', 'pending', 'approved'])->count();

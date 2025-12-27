@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupMember;
 use App\Models\Loan;
+use App\Models\Penalty;
 use App\Models\Saving;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
@@ -464,6 +465,41 @@ class GroupAdminDashboardController extends Controller
         ]);
 
         return back()->with('success', 'Member removed from group.');
+    }
+
+    /**
+     * Show group penalties management
+     */
+    public function penalties(Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $query = $group->penalties()->with(['member.user', 'loan', 'waivedByUser']);
+
+        // Search functionality
+        if (request('search')) {
+            $search = request('search');
+            $query->whereHas('member.user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by status
+        if (request('status') === 'waived') {
+            $query->where('waived', true);
+        } elseif (request('status') === 'active') {
+            $query->where('waived', false);
+        }
+
+        // Filter by type
+        if (request('type')) {
+            $query->where('type', request('type'));
+        }
+
+        $penalties = $query->paginate(15);
+
+        return view('dashboards.group-penalties', compact('group', 'penalties'));
     }
 
     /**

@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupAdminDashboardController;
 use App\Http\Controllers\MemberDashboardController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\PenaltyController;
+use App\Http\Controllers\SocialSupportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,6 +37,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/groups/{group}/savings', [GroupAdminDashboardController::class, 'savings'])->name('savings');
         Route::get('/groups/{group}/members', [GroupAdminDashboardController::class, 'members'])->name('members');
         Route::get('/groups/{group}/transactions', [GroupAdminDashboardController::class, 'transactions'])->name('transactions');
+        Route::get('/groups/{group}/penalties', [GroupAdminDashboardController::class, 'penalties'])->name('penalties');
+        Route::post('/groups/{group}/penalties', [PenaltyController::class, 'storeForGroup'])->name('penalties.store');
+        Route::put('/penalties/{penalty}', [PenaltyController::class, 'updateForGroup'])->name('penalties.update');
+        Route::delete('/penalties/{penalty}', [PenaltyController::class, 'destroyForGroup'])->name('penalties.destroy');
+        Route::post('/penalties/{penalty}/waive', [PenaltyController::class, 'waiveForGroup'])->name('penalties.waive');
+        Route::get('/groups/{group}/social-supports', [SocialSupportController::class, 'index'])->name('social-supports');
+        Route::post('/groups/{group}/social-supports', [SocialSupportController::class, 'store'])->name('social-supports.store');
+        Route::post('/groups/{group}/social-supports/{support}/approve', [SocialSupportController::class, 'approve'])->name('social-supports.approve');
+        Route::post('/groups/{group}/social-supports/{support}/reject', [SocialSupportController::class, 'reject'])->name('social-supports.reject');
+        Route::post('/groups/{group}/social-supports/{support}/disburse', [SocialSupportController::class, 'disburse'])->name('social-supports.disburse');
+        Route::delete('/groups/{group}/social-supports/{support}', [SocialSupportController::class, 'destroy'])->name('social-supports.destroy');
         Route::get('/groups/{group}/reports', [GroupAdminDashboardController::class, 'reports'])->name('reports');
         Route::get('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'recordSavings'])->name('record-savings');
         Route::post('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'storeSavings'])->name('store-savings');

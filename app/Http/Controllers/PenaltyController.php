@@ -8,6 +8,7 @@ use App\Models\Penalty;
 use App\Models\Loan;
 use App\Services\PenaltyService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenaltyController extends Controller
 {
@@ -183,5 +184,143 @@ class PenaltyController extends Controller
         $penalty->delete();
 
         return response()->json(['message' => 'Penalty deleted successfully']);
+    }
+
+    /**
+     * Store penalty for group-admin dashboard
+     */
+    public function storeForGroup(Request $request, Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $validated = $request->validate([
+            'member_id' => 'required|exists:group_members,id',
+            'type' => 'required|in:late_payment,violation,default,other',
+            'amount' => 'required|numeric|min:0.01',
+            'reason' => 'required|string|max:500',
+            'loan_id' => 'nullable|exists:loans,id',
+        ]);
+
+        // Verify member belongs to group
+        $member = GroupMember::findOrFail($validated['member_id']);
+        if ($member->group_id !== $group->id) {
+            return back()->with('error', 'Member does not belong to this group.');
+        }
+
+        try {
+            $loan = null;
+            if ($validated['loan_id'] ?? null) {
+                $loan = Loan::findOrFail($validated['loan_id']);
+                if ($loan->group_id !== $group->id) {
+                    return back()->with('error', 'Loan does not belong to this group.');
+                }
+            }
+
+            $penalty = $this->penaltyService->applyPenalty(
+                member: $member,
+                type: $validated['type'],
+                amount: (float)$validated['amount'],
+                reason: $validated['reason'],
+                loan: $loan
+            );
+
+            return back()->with('success', 'Penalty applied successfully to ' . $member->user->name . '.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error applying penalty: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Update penalty for group-admin dashboard
+     */
+    public function updateForGroup(Request $request, Penalty $penalty)
+    {
+        $group = $penalty->group;
+        $this->authorizeGroupAdmin($group);
+
+        if ($penalty->waived) {
+            return back()->with('error', 'Cannot edit waived penalties.');
+        }
+
+        $validated = $request->validate([
+            'type' => 'required|in:late_payment,violation,default,other',
+            'amount' => 'required|numeric|min:0.01',
+            'reason' => 'required|string|max:500',
+        ]);
+
+        $penalty->update($validated);
+
+        return back()->with('success', 'Penalty updated successfully.');
+    }
+
+    /**
+     * Destroy penalty for group-admin dashboard
+     */
+    public function destroyForGroup(Penalty $penalty)
+    {
+        $group = $penalty->group;
+        $this->authorizeGroupAdmin($group);
+
+        if ($penalty->waived) {
+            return back()->with('error', 'Cannot delete waived penalties.');
+        }
+
+        // Allow deletion within 7 days for group admins
+        if ($penalty->created_at->diffInDays(now()) > 7) {
+            return back()->with('error', 'Can only delete penalties within 7 days of creation.');
+        }
+
+        $memberName = $penalty->member->user->name;
+        $penalty->delete();
+
+        return back()->with('success', "Penalty for $memberName deleted successfully.");
+    }
+
+    /**
+     * Waive penalty for group-admin dashboard
+     */
+    public function waiveForGroup(Request $request, Penalty $penalty)
+    {
+        $group = $penalty->group;
+        $this->authorizeGroupAdmin($group);
+
+        if ($penalty->waived) {
+            return back()->with('error', 'This penalty has already been waived.');
+        }
+
+        $validated = $request->validate([
+            'waived_reason' => 'required|string|max:500',
+        ]);
+
+        try {
+            $this->penaltyService->waivePenalty(
+                penalty: $penalty,
+                reason: $validated['waived_reason'],
+                waivedByUserId: auth()->id()
+            );
+
+            $memberName = $penalty->member->user->name;
+            return back()->with('success', "Penalty for $memberName waived successfully.");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error waiving penalty: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Authorize that user is admin of the group
+     */
+    private function authorizeGroupAdmin(Group $group)
+    {
+        $user = auth()->user();
+
+        $isAdmin = GroupMember::where('user_id', $user->id)
+            ->where('group_id', $group->id)
+            ->where('role', 'admin')
+            ->where('status', 'active')
+            ->exists();
+
+        if (!$isAdmin) {
+            abort(403, 'You are not authorized to manage this group.');
+        }
     }
 }
