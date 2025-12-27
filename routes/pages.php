@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 // Static Pages Routes
@@ -25,9 +26,8 @@ Route::middleware('web')->group(function () {
         return view('pages.blog');
     })->name('pages.blog');
 
-    Route::get('/contact', function () {
-        return view('pages.contact');
-    })->name('pages.contact');
+    Route::get('/contact', [ContactController::class, 'show'])->name('pages.contact');
+    Route::post('/contact', [ContactController::class, 'store'])->name('pages.contact.store');
 
     // Products
     Route::prefix('products')->name('pages.products.')->group(function () {

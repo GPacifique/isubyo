@@ -54,7 +54,23 @@
             <!-- Contact Form -->
             <div class="md:col-span-2">
                 <div class="bg-white rounded-lg shadow p-8">
-                    <form action="#" method="POST" class="space-y-6">
+                    @if (session('success'))
+                        <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <p class="text-green-800">{{ session('success') }}</p>
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <ul class="text-red-800 list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('pages.contact.store') }}" method="POST" class="space-y-6">
                         @csrf
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
