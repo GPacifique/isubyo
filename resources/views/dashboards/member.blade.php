@@ -137,11 +137,11 @@
                                     <div class="flex justify-between items-start mb-2">
                                         <div>
                                             <h4 class="font-semibold text-gray-900">{{ $saving->group->name }}</h4>
-                                            <p class="text-xs text-gray-500">Weekly: {{ number_format($saving->current_balance, 0) }}</p>
+                                            <p class="text-xs text-gray-500">Current Balance: {{ number_format($saving->balance, 0) }}</p>
                                         </div>
                                         <span class="px-2 py-1 rounded text-xs font-bold bg-green-100 text-green-800">Active</span>
                                     </div>
-                                    <p class="text-xs text-gray-600">Total Saved: {{ number_format($saving->total_deposits ?? 0, 0) }}</p>
+                                    <p class="text-xs text-gray-600">Total Deposited: {{ number_format($saving->total_deposits ?? 0, 0) }} | Weekly: {{ number_format($saving->current_balance, 0) }}</p>
                                 </div>
                             @endforeach
                         </div>
