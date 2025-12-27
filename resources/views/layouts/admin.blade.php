@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard') - isubyo</title>
 
+    <!-- Meta Description -->
+    <meta name="description" content="@yield('description', 'isubyo Admin Dashboard - Manage users, groups, loans, savings, and transactions')">
+    <meta name="keywords" content="admin, dashboard, group management, loans, savings">
+    <meta name="author" content="isubyo">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Admin Dashboard') - isubyo">
+    <meta property="og:description" content="@yield('description', 'isubyo Admin Dashboard - Manage users, groups, loans, savings, and transactions')">
+    <meta property="og:image" content="{{ asset('images/isubyo.svg') }}">
+    <meta property="og:site_name" content="isubyo">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'Admin Dashboard') - isubyo">
+    <meta property="twitter:description" content="@yield('description', 'isubyo Admin Dashboard - Manage users, groups, loans, savings, and transactions')">
+    <meta property="twitter:image" content="{{ asset('images/isubyo.svg') }}">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}">

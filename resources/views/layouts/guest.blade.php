@@ -5,7 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title', 'Welcome') - {{ config('app.name', 'isubyo') }}</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="@yield('description', 'isubyo - Transparent financial management and group savings solutions')">
+        <meta name="keywords" content="group savings, loans, financial management, community, cooperative">
+        <meta name="author" content="isubyo">
+
+        <!-- Open Graph / Social Media -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="@yield('title', 'Welcome') - {{ config('app.name', 'isubyo') }}">
+        <meta property="og:description" content="@yield('description', 'isubyo - Transparent financial management and group savings solutions')">
+        <meta property="og:image" content="{{ asset('images/isubyo.svg') }}">
+        <meta property="og:site_name" content="{{ config('app.name', 'isubyo') }}">
+
+        <!-- Twitter Card -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url()->current() }}">
+        <meta property="twitter:title" content="@yield('title', 'Welcome') - {{ config('app.name', 'isubyo') }}">
+        <meta property="twitter:description" content="@yield('description', 'isubyo - Transparent financial management and group savings solutions')">
+        <meta property="twitter:image" content="{{ asset('images/isubyo.svg') }}">
 
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
