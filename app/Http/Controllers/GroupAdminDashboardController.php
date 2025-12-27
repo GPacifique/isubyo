@@ -28,7 +28,8 @@ class GroupAdminDashboardController extends Controller
             ->where('status', 'active')
             ->with('group')
             ->get()
-            ->pluck('group');
+            ->pluck('group')
+            ->unique('id');
 
         if ($adminGroups->isEmpty()) {
             return redirect()->route('dashboard')

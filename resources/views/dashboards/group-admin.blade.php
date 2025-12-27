@@ -16,25 +16,23 @@
                     <h1 class="text-4xl font-bold">{{ $group->name }} - Group Admin Dashboard</h1>
                     <p class="text-indigo-100 mt-2">Manage members, loans, savings, and financial records</p>
                 </div>
-                <!-- Group Switcher (show only if user manages multiple groups) -->
-                @if($adminGroups->count() > 1)
+                <!-- Group Switcher -->
+                @if($adminGroups && count($adminGroups) > 0)
                     <div class="ml-6">
-                        <form action="#" id="groupSwitchForm" class="inline">
-                            <div class="flex items-center gap-2">
-                                <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Switch Group:</label>
-                                <select
-                                    id="groupSelect"
-                                    class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium"
-                                    onchange="switchGroup(this.value)"
-                                >
-                                    @foreach($adminGroups as $availableGroup)
-                                        <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
-                                            {{ $availableGroup->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </form>
+                        <div class="flex items-center gap-2">
+                            <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Group:</label>
+                            <select
+                                id="groupSelect"
+                                class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium cursor-pointer"
+                                onchange="switchGroup(this.value)"
+                            >
+                                @foreach($adminGroups as $availableGroup)
+                                    <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
+                                        {{ $availableGroup->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 @endif
             </div>
