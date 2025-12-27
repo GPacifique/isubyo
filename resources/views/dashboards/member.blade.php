@@ -116,7 +116,15 @@
                 <div class="bg-white rounded-lg shadow p-6 mb-6">
                     <div class="flex items-center justify-between mb-4">
                         <h2 class="text-lg font-bold text-gray-900">My Loans</h2>
-                        <span class="text-2xl font-bold text-blue-600">{{ $loan_stats['active_count'] ?? 0 }}</span>
+                        <div class="flex gap-2">
+                            <a href="{{ route('member.loan-requests') }}" class="inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 text-sm font-semibold rounded transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                Request Loan
+                            </a>
+                            <span class="text-2xl font-bold text-blue-600">{{ $loan_stats['active_count'] ?? 0 }}</span>
+                        </div>
                     </div>
 
                     @if($loans->count() > 0)
@@ -392,6 +400,7 @@
                     <h3 class="font-semibold text-blue-900 mb-3">Quick Links</h3>
                     <div class="space-y-2">
                         <a href="{{ route('member.loans') }}" class="block text-blue-600 hover:text-blue-800 text-sm font-semibold">→ My Loans</a>
+                        <a href="{{ route('member.loan-requests') }}" class="block text-yellow-600 hover:text-yellow-800 text-sm font-semibold">→ Loan Requests</a>
                         <a href="{{ route('member.savings') }}" class="block text-green-600 hover:text-green-800 text-sm font-semibold">→ My Savings</a>
                         <a href="{{ route('member.transactions') }}" class="block text-purple-600 hover:text-purple-800 text-sm font-semibold">→ Transactions</a>
                         <a href="{{ route('member.groups') }}" class="block text-blue-600 hover:text-blue-800 text-sm font-semibold">→ My Groups</a>

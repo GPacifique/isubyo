@@ -383,6 +383,9 @@
                         Management
                     </h3>
                     <div class="space-y-2">
+                        <a href="{{ route('group-admin.loan-requests', $group->id) }}" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm">
+                            ✉️ Loan Requests (Pending)
+                        </a>
                         <a href="{{ route('group-admin.loans', $group) }}" class="block px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-600 font-medium transition text-sm">
                             📊 View All Loans
                         </a>
@@ -401,7 +404,7 @@
                         <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-600 font-medium transition text-sm">
                             ❤️ Manage Social Support
                         </a>
-                        <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm">
+                        <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-600 font-medium transition text-sm">
                             📈 View Reports
                         </a>
                         <a href="{{ route('admin.groups.edit', $group) }}" class="block px-4 py-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-orange-600 font-medium transition text-sm">
