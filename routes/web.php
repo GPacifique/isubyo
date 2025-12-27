@@ -60,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [MemberDashboardController::class, 'index'])->name('dashboard');
         Route::get('/loans', [MemberDashboardController::class, 'myLoans'])->name('loans');
         Route::get('/savings', [MemberDashboardController::class, 'mySavings'])->name('savings');
+        Route::get('/savings/{saving}/history', [MemberDashboardController::class, 'savingsHistory'])->name('savings.history');
         Route::get('/transactions', [MemberDashboardController::class, 'myTransactions'])->name('transactions');
         Route::get('/groups', [MemberDashboardController::class, 'myGroups'])->name('groups');
     });

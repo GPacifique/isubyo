@@ -62,7 +62,7 @@
                         </thead>
                         <tbody class="divide-y">
                             @foreach($savings as $saving)
-                                <tr class="hover:bg-gray-50">
+                                <tr class="hover:bg-blue-50 cursor-pointer transition" onclick="window.location.href='{{ route('member.savings.history', $saving->id) }}'">
                                     <td class="px-6 py-4 text-sm text-gray-900 font-medium">{{ $saving->group->name }}</td>
                                     <td class="px-6 py-4 text-sm text-blue-600 font-semibold">{{ number_format($saving->current_balance ?? 0, 0) }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600">{{ number_format($saving->total_deposits ?? 0, 0) }}</td>

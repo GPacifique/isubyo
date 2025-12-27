@@ -176,6 +176,45 @@ class MemberDashboardController extends Controller
     }
 
     /**
+     * Show detailed savings history for a specific savings account
+     */
+    public function savingsHistory(Saving $saving)
+    {
+        $user = Auth::user();
+
+        // Verify the saving belongs to one of the user's member records
+        $userMembers = $user->groupMembers()->pluck('id');
+        if (!$userMembers->contains($saving->member_id)) {
+            abort(403, 'You are not authorized to view this record.');
+        }
+
+        // Get transaction history for this savings account
+        $transactions = Transaction::where('member_id', $saving->member_id)
+            ->where('reference', $saving->id)
+            ->with('group')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
+        // Get summary stats
+        $stats = [
+            'total_deposited' => $saving->total_deposits ?? 0,
+            'total_withdrawn' => $saving->total_withdrawals ?? 0,
+            'interest_earned' => $saving->interest_earned ?? 0,
+            'current_balance' => $saving->balance ?? 0,
+            'deposit_count' => Transaction::where('member_id', $saving->member_id)
+                ->where('reference', $saving->id)
+                ->where('type', 'deposit')
+                ->count(),
+            'withdrawal_count' => Transaction::where('member_id', $saving->member_id)
+                ->where('reference', $saving->id)
+                ->where('type', 'withdrawal')
+                ->count(),
+        ];
+
+        return view('dashboards.member-savings-history', compact('saving', 'transactions', 'stats'));
+    }
+
+    /**
      * Show user's transactions detail page
      * View-only access - cannot edit or delete
      */
