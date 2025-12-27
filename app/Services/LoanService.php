@@ -108,9 +108,6 @@ class LoanService
         Notification::send($loan->member->user, new TransactionRecorded($transaction, 'loan_disbursement'));
     }
 
-        $loan->update(['status' => 'active']);
-    }
-
     /**
      * Record a loan payment
      */
