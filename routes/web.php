@@ -61,6 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/loans', [MemberDashboardController::class, 'myLoans'])->name('loans');
         Route::get('/savings', [MemberDashboardController::class, 'mySavings'])->name('savings');
         Route::get('/transactions', [MemberDashboardController::class, 'myTransactions'])->name('transactions');
+        Route::get('/groups', [MemberDashboardController::class, 'myGroups'])->name('groups');
     });
 
     // Profile Routes
