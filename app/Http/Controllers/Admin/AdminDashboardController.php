@@ -35,7 +35,7 @@ class AdminDashboardController extends Controller
             'total_members' => GroupMember::count(),
             'total_loans' => Loan::count(),
             'active_loans' => Loan::where('status', 'active')->count(),
-            'total_savings' => Saving::count(),
+            'total_savings' => Saving::sum('current_balance') ?? 0,
             'total_transactions' => Transaction::count(),
             'loan_amount_total' => Loan::sum('principal_amount') ?? 0,
             'savings_amount_total' => Saving::sum('current_balance') ?? 0,
