@@ -150,7 +150,7 @@ class LoanRequestController extends Controller
                 'total_charged' => 0,
                 'total_principal_paid' => 0,
                 'issued_at' => now(),
-                'maturity_date' => now()->addMonths($loanRequest->requested_duration_months),
+                'maturity_date' => now()->addMonths((int) $loanRequest->requested_duration_months),
                 'status' => 'active',
                 'notes' => 'Created from approved loan request #' . $loanRequest->id,
             ]);
