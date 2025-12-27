@@ -36,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/groups/{group}/loans', [GroupAdminDashboardController::class, 'loans'])->name('loans');
         Route::get('/groups/{group}/savings', [GroupAdminDashboardController::class, 'savings'])->name('savings');
         Route::get('/groups/{group}/members', [GroupAdminDashboardController::class, 'members'])->name('members');
+        Route::get('/groups/{group}/record-member-loan', [GroupAdminDashboardController::class, 'recordMemberLoan'])->name('record-member-loan');
+        Route::post('/groups/{group}/record-member-loan', [GroupAdminDashboardController::class, 'storeMemberLoan'])->name('store-member-loan');
         Route::get('/groups/{group}/transactions', [GroupAdminDashboardController::class, 'transactions'])->name('transactions');
         Route::get('/groups/{group}/penalties', [GroupAdminDashboardController::class, 'penalties'])->name('penalties');
         Route::post('/groups/{group}/penalties', [PenaltyController::class, 'storeForGroup'])->name('penalties.store');

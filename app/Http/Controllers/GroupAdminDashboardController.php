@@ -9,6 +9,7 @@ use App\Models\Penalty;
 use App\Models\Saving;
 use App\Models\SocialSupport;
 use App\Models\Transaction;
+use App\Services\LoanService;
 use Illuminate\Support\Facades\Auth;
 
 class GroupAdminDashboardController extends Controller
@@ -614,6 +615,62 @@ class GroupAdminDashboardController extends Controller
 
         if (!$isAdmin) {
             abort(403, 'You are not authorized to manage this group.');
+        }
+    }
+
+    /**
+     * Show form to record a new loan for a member
+     */
+    public function recordMemberLoan(Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $members = $group->members()
+            ->where('status', 'active')
+            ->with('user')
+            ->get();
+
+        return view('dashboards.group-admin-record-loan', compact('group', 'members'));
+    }
+
+    /**
+     * Store a new loan for a member
+     */
+    public function storeMemberLoan(Request $request, Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $validated = $request->validate([
+            'member_id' => 'required|exists:group_members,id',
+            'principal_amount' => 'required|numeric|min:100',
+            'monthly_charge' => 'required|numeric|min:0',
+            'duration_months' => 'required|integer|min:1|max:60',
+            'notes' => 'nullable|string|max:500',
+        ]);
+
+        $member = GroupMember::findOrFail($validated['member_id']);
+
+        if ($member->group_id !== $group->id) {
+            return redirect()->back()
+                ->with('error', 'Member does not belong to this group.');
+        }
+
+        $loanService = app(LoanService::class);
+
+        try {
+            $loan = $loanService->createLoan(
+                member: $member,
+                principal: (float)$validated['principal_amount'],
+                monthlyCharge: (float)$validated['monthly_charge'],
+                durationMonths: (int)$validated['duration_months'],
+                notes: $validated['notes'] ?? null
+            );
+
+            return redirect()->route('group-admin.loans', $group)
+                ->with('success', "Loan of {$loan->principal_amount} created successfully for {$member->user->name}");
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Failed to create loan: ' . $e->getMessage());
         }
     }
 }
