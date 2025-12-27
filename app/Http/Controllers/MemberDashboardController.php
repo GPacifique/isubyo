@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\Penalty;
 use App\Models\Saving;
 use App\Models\Transaction;
+use App\Models\SocialSupport;
 use Illuminate\Support\Facades\Auth;
 
 class MemberDashboardController extends Controller
@@ -36,6 +38,18 @@ class MemberDashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // Get user's penalties through group members
+        $penalties = Penalty::whereIn('member_id', $userMembers)
+            ->with('group', 'loan')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Get user's social support requests through group members
+        $socialSupport = SocialSupport::whereIn('member_id', $userMembers)
+            ->with('group')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         // Get user's transactions (only their own)
         $transactions = Transaction::whereIn('member_id', $userMembers)
             ->with('group')
@@ -62,6 +76,25 @@ class MemberDashboardController extends Controller
             'total_balance' => $savings->sum('balance') ?? 0, // Using balance accessor
         ];
 
+        // Calculate penalties statistics
+        $penalties_stats = [
+            'total_count' => $penalties->count(),
+            'total_amount' => $penalties->sum('amount') ?? 0,
+            'paid_amount' => $penalties->sum('amount_paid') ?? 0,
+            'outstanding' => ($penalties->sum('amount') ?? 0) - ($penalties->sum('amount_paid') ?? 0),
+            'pending_count' => $penalties->where('status', 'pending')->count(),
+            'resolved_count' => $penalties->where('status', 'resolved')->count(),
+        ];
+
+        // Calculate social support statistics
+        $support_stats = [
+            'total_requested' => $socialSupport->count(),
+            'total_amount_requested' => $socialSupport->sum('requested_amount') ?? 0,
+            'total_amount_disbursed' => $socialSupport->where('status', 'approved')->sum('approved_amount') ?? 0,
+            'pending_count' => $socialSupport->where('status', 'pending')->count(),
+            'approved_count' => $socialSupport->where('status', 'approved')->count(),
+        ];
+
         // Calculate overall account stats
         $account_stats = [
             'groups_count' => $groups->count(),
@@ -69,15 +102,21 @@ class MemberDashboardController extends Controller
             'total_loans' => $loans->count(),
             'total_savings_accounts' => $savings_stats['total_accounts'],
             'net_worth' => ($savings_stats['total_balance'] ?? 0) - ($loan_stats['outstanding'] ?? 0),
+            'total_penalties' => $penalties_stats['total_count'],
+            'total_support_requests' => $support_stats['total_requested'],
         ];
 
         return view('dashboards.member', compact(
             'groups',
             'loans',
             'savings',
+            'penalties',
+            'socialSupport',
             'transactions',
             'loan_stats',
             'savings_stats',
+            'penalties_stats',
+            'support_stats',
             'account_stats'
         ));
     }
