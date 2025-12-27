@@ -18,71 +18,81 @@
 
     <div class="max-w-7xl mx-auto py-12 px-4">
         <!-- All Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-blue-500">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-blue-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Members</p>
-                <p class="text-3xl font-bold text-blue-600 mt-3">{{ $stats['total_members'] }}</p>
+                <p class="text-2xl font-bold text-blue-600">{{ $stats['total_members'] }}</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-green-500">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Active Loans</p>
-                <p class="text-3xl font-bold text-green-600 mt-3">{{ $stats['active_loans'] }}</p>
-                <p class="text-xs text-gray-500 mt-1">of {{ $stats['total_loans'] }} total</p>
+                <div>
+                    <p class="text-2xl font-bold text-green-600">{{ $stats['active_loans'] }}</p>
+                    <p class="text-xs text-gray-500">of {{ $stats['total_loans'] }} total</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-yellow-500">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-yellow-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Loaned</p>
-                <p class="text-2xl font-bold text-yellow-600 mt-3">{{ number_format($stats['total_loan_amount'], 2) }}</p>
+                <p class="text-xl font-bold text-yellow-600">{{ number_format($stats['total_loan_amount'], 2) }}</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-purple-500">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Member Shares</p>
-                <p class="text-2xl font-bold text-purple-600 mt-3">{{ number_format($stats['total_member_shares'], 2) }}</p>
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-purple-500 flex flex-col justify-between h-32">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Member Shares</p>
+                <p class="text-xl font-bold text-purple-600">{{ number_format($stats['total_member_shares'], 2) }}</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-cyan-500">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-cyan-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Today's Savings</p>
-                <p class="text-2xl font-bold text-cyan-600 mt-3">{{ number_format($stats['daily_savings'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">{{ now()->format('M d, Y') }}</p>
+                <div>
+                    <p class="text-xl font-bold text-cyan-600">{{ number_format($stats['daily_savings'], 2) }}</p>
+                    <p class="text-xs text-gray-500">{{ now()->format('M d') }}</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-indigo-500">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">This Month Savings</p>
-                <p class="text-2xl font-bold text-indigo-600 mt-3">{{ number_format($stats['monthly_savings'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">{{ now()->format('F Y') }}</p>
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-indigo-500 flex flex-col justify-between h-32">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Month Savings</p>
+                <div>
+                    <p class="text-xl font-bold text-indigo-600">{{ number_format($stats['monthly_savings'], 2) }}</p>
+                    <p class="text-xs text-gray-500">{{ now()->format('F') }}</p>
+                </div>
             </div>
         </div>
 
         <!-- Financial Pool & Alerts Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-red-500">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-red-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Penalties</p>
-                <p class="text-2xl font-bold text-red-600 mt-3">{{ number_format($stats['total_penalties'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">Active Penalties</p>
+                <div>
+                    <p class="text-xl font-bold text-red-600">{{ number_format($stats['total_penalties'], 2) }}</p>
+                    <p class="text-xs text-gray-500">Active</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-orange-500">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-orange-500 flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Interests</p>
-                <p class="text-2xl font-bold text-orange-600 mt-3">{{ number_format($stats['total_interests'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">From Loan Charges</p>
+                <div>
+                    <p class="text-xl font-bold text-orange-600">{{ number_format($stats['total_interests'], 2) }}</p>
+                    <p class="text-xs text-gray-500">From Loans</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-pink-500">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Support Fund Available</p>
-                <p class="text-2xl font-bold text-pink-600 mt-3">{{ number_format($stats['support_fund_available'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">Penalties + Interests - Disbursed</p>
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-pink-500 flex flex-col justify-between h-32">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Support Available</p>
+                <p class="text-xl font-bold text-pink-600">{{ number_format($stats['support_fund_available'], 2) }}</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-600' : 'border-green-500' }}">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-600' : 'border-green-500' }} flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Support Disbursed</p>
-                <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-green-600' }} mt-3">{{ number_format($stats['total_support_disbursed'], 2) }}</p>
-                <p class="text-xs text-gray-500 mt-1">From Support Pool</p>
+                <div>
+                    <p class="text-xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-green-600' }}">{{ number_format($stats['total_support_disbursed'], 2) }}</p>
+                    <p class="text-xs text-gray-500">From Pool</p>
+                </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-500' : 'border-gray-300' }}">
+            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-500' : 'border-gray-300' }} flex flex-col justify-between h-32">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Overdue Loans</p>
-                <p class="text-3xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-600' }} mt-3">{{ $stats['overdue_loans'] }}</p>
-                <p class="text-xs text-gray-500 mt-1">Loans past maturity date</p>
+                <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-600' }}">{{ $stats['overdue_loans'] }}</p>
             </div>
         </div>
 
