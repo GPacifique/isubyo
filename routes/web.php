@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberDashboardController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\SocialSupportController;
+use App\Http\Controllers\LoanRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,6 +57,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'storeSavings'])->name('store-savings');
         Route::get('/groups/{group}/record-interest', [GroupAdminDashboardController::class, 'recordInterest'])->name('record-interest');
         Route::post('/groups/{group}/record-interest', [GroupAdminDashboardController::class, 'storeInterest'])->name('store-interest');
+        Route::get('/groups/{group}/loan-requests', [LoanRequestController::class, 'index'])->name('loan-requests');
+        Route::post('/loan-requests/{loanRequest}/approve', [LoanRequestController::class, 'approve'])->name('loan-requests.approve');
+        Route::post('/loan-requests/{loanRequest}/reject', [LoanRequestController::class, 'reject'])->name('loan-requests.reject');
     });
 
     // Member Dashboard Routes
@@ -68,6 +72,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/savings/{saving}/history', [MemberDashboardController::class, 'savingsHistory'])->name('savings.history');
         Route::get('/transactions', [MemberDashboardController::class, 'myTransactions'])->name('transactions');
         Route::get('/groups', [MemberDashboardController::class, 'myGroups'])->name('groups');
+        Route::get('/loan-requests', [LoanRequestController::class, 'myRequests'])->name('loan-requests');
+        Route::post('/loan-requests', [LoanRequestController::class, 'store'])->name('loan-requests.store');
     });
 
     // Profile Routes
