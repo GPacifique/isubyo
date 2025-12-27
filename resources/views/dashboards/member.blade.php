@@ -82,17 +82,22 @@
                         <!-- Recent Loans -->
                         <div class="space-y-2 border-t pt-4">
                             @foreach($loans->take(5) as $loan)
-                                <div class="border rounded p-3 hover:bg-gray-50">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <div>
-                                            <h4 class="font-semibold text-gray-900">{{ $loan->group->name }}</h4>
-                                            <p class="text-xs text-gray-500">Principal: {{ number_format($loan->principal_amount, 0) }}</p>
-                                        </div>
+                                <div class="border rounded p-3 hover:bg-gray-50 flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-gray-900">{{ $loan->group->name }}</h4>
+                                        <p class="text-xs text-gray-500">Principal: {{ number_format($loan->principal_amount, 0) }}</p>
+                                        <p class="text-xs text-gray-600">Paid: {{ number_format($loan->total_principal_paid ?? 0, 0) }} / Remaining: {{ number_format($loan->remaining_balance ?? 0, 0) }}</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
                                         <span class="px-2 py-1 rounded text-xs font-bold {{ $loan->status === 'active' ? 'bg-green-100 text-green-800' : ($loan->status === 'completed' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800') }}">
                                             {{ ucfirst($loan->status) }}
                                         </span>
+                                        @if($loan->status === 'active' && ($loan->remaining_balance ?? 0) > 0)
+                                            <a href="{{ route('member.loans.pay', $loan->id) }}" class="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded transition">
+                                                Pay
+                                            </a>
+                                        @endif
                                     </div>
-                                    <p class="text-xs text-gray-600">Paid: {{ number_format($loan->total_principal_paid ?? 0, 0) }} / Remaining: {{ number_format($loan->remaining_balance ?? 0, 0) }}</p>
                                 </div>
                             @endforeach
                         </div>

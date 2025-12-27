@@ -290,6 +290,62 @@ class MemberDashboardController extends Controller
     }
 
     /**
+     * Show form to record loan payment
+     */
+    public function recordLoanPayment(Loan $loan)
+    {
+        $user = Auth::user();
+
+        // Verify the loan belongs to one of the user's member records
+        $userMembers = $user->groupMembers()->pluck('id');
+        if (!$userMembers->contains($loan->member_id)) {
+            abort(403, 'You are not authorized to view this record.');
+        }
+
+        return view('dashboards.member-loan-payment', compact('loan'));
+    }
+
+    /**
+     * Store loan payment
+     */
+    public function storeLoanPayment(Request $request, Loan $loan)
+    {
+        $user = Auth::user();
+
+        // Verify the loan belongs to one of the user's member records
+        $userMembers = $user->groupMembers()->pluck('id');
+        if (!$userMembers->contains($loan->member_id)) {
+            abort(403, 'You are not authorized to perform this action.');
+        }
+
+        $validated = $request->validate([
+            'principal_paid' => 'required|numeric|min:0',
+            'charges_paid' => 'required|numeric|min:0',
+            'payment_method' => 'required|string|in:cash,bank_transfer,mobile_money|max:50',
+            'notes' => 'nullable|string|max:500',
+        ]);
+
+        try {
+            // Use LoanService to record payment
+            $loanService = app(\App\Services\LoanService::class);
+            $loanService->recordLoanPayment(
+                loan: $loan,
+                principalPaid: (float)$validated['principal_paid'],
+                chargesPaid: (float)$validated['charges_paid'],
+                paymentMethod: $validated['payment_method'],
+                notes: $validated['notes'] ?? null
+            );
+
+            return redirect()->route('member.loans')
+                ->with('success', 'Loan payment recorded successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Failed to record payment: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Prevent members from accessing edit/delete pages
      * Show error message
      */

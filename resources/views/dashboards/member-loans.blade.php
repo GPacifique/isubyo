@@ -58,6 +58,7 @@
                                 <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
                                 <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Issued Date</th>
                                 <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Due Date</th>
+                                <th class="px-6 py-3 text-center text-sm font-semibold text-gray-700">Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y">
@@ -74,6 +75,15 @@
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-600">{{ $loan->issued_at ? \Carbon\Carbon::parse($loan->issued_at)->format('M d, Y') : 'N/A' }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600">{{ $loan->maturity_date ? \Carbon\Carbon::parse($loan->maturity_date)->format('M d, Y') : 'N/A' }}</td>
+                                    <td class="px-6 py-4 text-center">
+                                        @if($loan->status === 'active' && ($loan->remaining_balance ?? 0) > 0)
+                                            <a href="{{ route('member.loans.pay', $loan->id) }}" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded transition">
+                                                Pay
+                                            </a>
+                                        @else
+                                            <span class="text-gray-400 text-xs">—</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
