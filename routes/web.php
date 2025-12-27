@@ -63,7 +63,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Member Dashboard Routes
-    Route::prefix('member')->name('member.')->group(function () {
+    Route::prefix('member')->name('member.')->middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [MemberDashboardController::class, 'index'])->name('dashboard');
         Route::get('/loans', [MemberDashboardController::class, 'myLoans'])->name('loans');
         Route::get('/loans/{loan}/pay', [MemberDashboardController::class, 'recordLoanPayment'])->name('loans.pay');
