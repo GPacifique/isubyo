@@ -175,7 +175,16 @@ class LoanRequestController extends Controller
 
             return back()->with('success', 'Loan request approved and loan has been created.');
         } catch (\Exception $e) {
-            \Log::error('Loan creation failed: ' . $e->getMessage());
+            \Log::error('Loan creation failed for request #' . $loanRequest->id, [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'request_data' => [
+                    'group_id' => $loanRequest->group_id,
+                    'member_id' => $loanRequest->member_id,
+                    'requested_amount' => $loanRequest->requested_amount,
+                    'duration_months' => $loanRequest->requested_duration_months,
+                ]
+            ]);
             return back()->withErrors(['error' => 'Failed to create loan: ' . $e->getMessage()]);
         }
     }
