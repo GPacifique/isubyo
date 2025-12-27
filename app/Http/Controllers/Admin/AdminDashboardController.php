@@ -227,7 +227,21 @@ class AdminDashboardController extends Controller
         }
 
         $members = $group->members()->paginate(15);
-        return view('admin.groups.show', compact('group', 'members'));
+
+        // Get relevant stats
+        $totalLoans = $group->loans()->count();
+        $activeSavings = $group->savings()->count();
+        $totalLoanAmount = $group->loans()->sum('principal_amount');
+        $totalSavingsAmount = $group->savings()->sum('current_balance');
+
+        return view('admin.groups.show', compact(
+            'group',
+            'members',
+            'totalLoans',
+            'activeSavings',
+            'totalLoanAmount',
+            'totalSavingsAmount'
+        ));
     }
 
     /**

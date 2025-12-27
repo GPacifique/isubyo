@@ -67,12 +67,14 @@
                     <p class="text-sm text-gray-600">Total Members</p>
                 </div>
                 <div class="text-center py-3 bg-green-50 rounded-lg">
-                    <p class="text-2xl font-bold text-green-600">0</p>
+                    <p class="text-2xl font-bold text-green-600">{{ $totalLoans }}</p>
                     <p class="text-sm text-gray-600">Total Loans</p>
+                    <p class="text-xs text-green-600 mt-1">{{ number_format($totalLoanAmount, 0) }}</p>
                 </div>
                 <div class="text-center py-3 bg-yellow-50 rounded-lg">
-                    <p class="text-2xl font-bold text-yellow-600">0</p>
+                    <p class="text-2xl font-bold text-yellow-600">{{ $activeSavings }}</p>
                     <p class="text-sm text-gray-600">Active Savings</p>
+                    <p class="text-xs text-yellow-600 mt-1">{{ number_format($totalSavingsAmount, 0) }}</p>
                 </div>
             </div>
         </div>
