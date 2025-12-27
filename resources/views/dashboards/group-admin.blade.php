@@ -18,7 +18,8 @@
 
     <div class="max-w-7xl mx-auto py-12 px-4">
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <!-- Row 1: Main Stats -->
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-blue-500">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Members</p>
                 <p class="text-3xl font-bold text-blue-600 mt-3">{{ $stats['total_members'] }}</p>
@@ -36,13 +37,44 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-purple-500">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Savings Balance</p>
-                <p class="text-2xl font-bold text-purple-600 mt-3">{{ number_format($stats['total_savings_balance'], 2) }}</p>
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Member Shares</p>
+                <p class="text-2xl font-bold text-purple-600 mt-3">{{ number_format($stats['total_member_shares'], 2) }}</p>
+            </div>
+        </div>
+
+        <!-- Financial Pool Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-red-500">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Penalties</p>
+                <p class="text-2xl font-bold text-red-600 mt-3">{{ number_format($stats['total_penalties'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">Active Penalties</p>
             </div>
 
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-orange-500">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Interests</p>
+                <p class="text-2xl font-bold text-orange-600 mt-3">{{ number_format($stats['total_interests'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">From Loan Charges</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-pink-500">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Support Fund Available</p>
+                <p class="text-2xl font-bold text-pink-600 mt-3">{{ number_format($stats['support_fund_available'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">Penalties + Interests - Disbursed</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-600' : 'border-green-500' }}">
+                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Support Disbursed</p>
+                <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-green-600' }} mt-3">{{ number_format($stats['total_support_disbursed'], 2) }}</p>
+                <p class="text-xs text-gray-500 mt-1">From Support Pool</p>
+            </div>
+        </div>
+
+        <!-- Overdue Loans Alert Card -->
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-500' : 'border-gray-300' }}">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Overdue Loans</p>
                 <p class="text-3xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-600' }} mt-3">{{ $stats['overdue_loans'] }}</p>
+                <p class="text-xs text-gray-500 mt-1">Loans past maturity date</p>
             </div>
         </div>
 
@@ -253,7 +285,7 @@
                             ⚖️ Manage Penalties
                         </a>
                         <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-600 font-medium transition text-sm">
-                            ❤️ Social Support Requests
+                            ❤️ Manage Social Support
                         </a>
                         <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm">
                             📈 View Reports
@@ -284,6 +316,48 @@
                                 <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
                             </svg>
                             📈 Record Loan Interest
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Support Actions -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border-t-4 border-pink-500">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
+                        </svg>
+                        Social Support Actions
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-600 font-medium transition text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            📋 View All Support Requests
+                        </a>
+                        <button onclick="showCreateSocialSupportModal()" class="w-full px-4 py-3 bg-purple-50 hover:bg-purple-100 rounded-lg text-purple-600 font-medium transition text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            ➕ New Support Request
+                        </button>
+                        <a href="{{ route('group-admin.social-supports', $group) }}?status=pending" class="block px-4 py-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg text-yellow-600 font-medium transition text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
+                            </svg>
+                            ⏳ Pending Requests
+                        </a>
+                        <a href="{{ route('group-admin.social-supports', $group) }}?status=approved" class="block px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-600 font-medium transition text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            ✓ Approved Requests
+                        </a>
+                        <a href="{{ route('group-admin.social-supports', $group) }}?status=disbursed" class="block px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg text-green-600 font-medium transition text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
+                            </svg>
+                            💳 Disbursed Requests
                         </a>
                     </div>
                 </div>
@@ -342,4 +416,92 @@
         </div>
     </div>
 </div>
+
+<!-- Quick Create Social Support Modal -->
+<div id="quickCreateSocialSupportModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto">
+        <div class="bg-pink-600 text-white p-6">
+            <h2 class="text-xl font-bold">New Support Request</h2>
+        </div>
+        <form method="POST" action="{{ route('group-admin.social-supports.store', $group) }}" class="p-6 space-y-4">
+            @csrf
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Member *</label>
+                <select name="member_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                    <option value="">Select a member</option>
+                    @foreach($members as $member)
+                        <option value="{{ $member->id }}">{{ $member->user->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Support Type *</label>
+                <select name="type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                    <option value="">Select type</option>
+                    <option value="death">☠️ Death of Loved One</option>
+                    <option value="marriage">💍 Marriage</option>
+                    <option value="sickness">🏥 Sickness/Medical</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
+                <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    placeholder="0.00"
+                />
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                <textarea
+                    name="description"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    rows="3"
+                    placeholder="Provide details..."
+                ></textarea>
+            </div>
+
+            <div class="flex gap-2 pt-4">
+                <button
+                    type="button"
+                    onclick="hideCreateSocialSupportModal()"
+                    class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
+                >
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    class="flex-1 px-4 py-2 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition"
+                >
+                    Create Request
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showCreateSocialSupportModal() {
+        document.getElementById('quickCreateSocialSupportModal').classList.remove('hidden');
+    }
+
+    function hideCreateSocialSupportModal() {
+        document.getElementById('quickCreateSocialSupportModal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('quickCreateSocialSupportModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.add('hidden');
+        }
+    });
+</script>
 @endsection

@@ -7,6 +7,7 @@ use App\Models\GroupMember;
 use App\Models\Loan;
 use App\Models\Penalty;
 use App\Models\Saving;
+use App\Models\SocialSupport;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,12 +41,26 @@ class GroupAdminDashboardController extends Controller
             ->get();
 
         // Get group statistics
+        $totalPenalties = $group->penalties()->where('waived', false)->sum('amount');
+        $totalInterests = Transaction::where('group_id', $group->id)
+            ->where('type', 'interest')
+            ->sum('amount');
+        $totalDisbursed = $group->socialSupports()
+            ->where('status', 'disbursed')
+            ->sum('amount');
+        $supportFundAvailable = $totalPenalties + $totalInterests - $totalDisbursed;
+
         $stats = [
             'total_members' => $members->count(),
             'active_loans' => $group->loans()->where('status', 'active')->count(),
             'total_loans' => $group->loans()->count(),
             'total_loan_amount' => $group->loans()->sum('principal_amount'),
-            'total_savings_balance' => $group->savings()->get()->sum('balance'),
+            'total_savings_balance' => $group->savings()->get()->sum('current_balance'),
+            'total_member_shares' => $group->savings()->sum('current_balance'),
+            'total_penalties' => $totalPenalties,
+            'total_interests' => $totalInterests,
+            'total_support_disbursed' => $totalDisbursed,
+            'support_fund_available' => max(0, $supportFundAvailable),
             'overdue_loans' => $group->loans()->where('status', 'active')->where('maturity_date', '<', now())->count(),
             'pending_charges' => $group->loans()->get()->sum(function($loan) {
                 return optional($loan->pendingCharges())->sum('charge_amount') ?? 0;
