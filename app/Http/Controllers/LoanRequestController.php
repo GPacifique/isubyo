@@ -7,6 +7,9 @@ use App\Models\Loan;
 use App\Models\Group;
 use App\Models\GroupMember;
 use App\Services\ActivityLoggerService;
+use App\Notifications\LoanRequestSubmittedNotification;
+use App\Notifications\LoanRequestApprovedNotification;
+use App\Notifications\LoanRequestRejectedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -104,6 +107,9 @@ class LoanRequestController extends Controller
             ]
         );
 
+        // Send notification to member
+        $member->user->notify(new LoanRequestSubmittedNotification($loanRequest));
+
         return back()->with('success', 'Loan request submitted successfully. Wait for group admin approval.');
     }
 
@@ -164,6 +170,9 @@ class LoanRequestController extends Controller
                 ]
             );
 
+            // Send approval notification to member
+            $loanRequest->member->user->notify(new LoanRequestApprovedNotification($loanRequest));
+
             return back()->with('success', 'Loan request approved and loan has been created.');
         } catch (\Exception $e) {
             \Log::error('Loan creation failed: ' . $e->getMessage());
@@ -206,6 +215,9 @@ class LoanRequestController extends Controller
                 'reason' => $validated['review_notes'],
             ]
         );
+
+        // Send rejection notification to member
+        $loanRequest->member->user->notify(new LoanRequestRejectedNotification($loanRequest));
 
         return back()->with('success', 'Loan request rejected.');
     }
