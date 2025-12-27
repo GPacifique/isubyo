@@ -62,46 +62,5 @@
             <!-- Footer -->
             @include('components.footer')
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Member Dashboard Switcher
-                const memberSwitcherBtn = document.getElementById('member-switcher-btn');
-                const memberSwitcherMenu = document.getElementById('member-switcher-menu');
-                const memberSwitcherChevron = document.getElementById('member-switcher-chevron');
-
-                if (memberSwitcherBtn && memberSwitcherMenu) {
-                    memberSwitcherBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        memberSwitcherMenu.classList.toggle('hidden');
-                        memberSwitcherChevron.style.transform = memberSwitcherMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-                    });
-
-                    const memberSwitcherLinks = memberSwitcherMenu.querySelectorAll('a');
-                    memberSwitcherLinks.forEach(link => {
-                        link.addEventListener('click', function() {
-                            memberSwitcherMenu.classList.add('hidden');
-                            memberSwitcherChevron.style.transform = 'rotate(0deg)';
-                        });
-                    });
-
-                    document.addEventListener('click', function(event) {
-                        const isClickInsideMenu = memberSwitcherMenu.contains(event.target);
-                        const isClickInsideButton = memberSwitcherBtn.contains(event.target);
-                        if (!isClickInsideMenu && !isClickInsideButton) {
-                            memberSwitcherMenu.classList.add('hidden');
-                            memberSwitcherChevron.style.transform = 'rotate(0deg)';
-                        }
-                    });
-
-                    document.addEventListener('keydown', function(event) {
-                        if (event.key === 'Escape') {
-                            memberSwitcherMenu.classList.add('hidden');
-                            memberSwitcherChevron.style.transform = 'rotate(0deg)';
-                        }
-                    });
-                }
-            });
-        </script>
     </body>
 </html>
