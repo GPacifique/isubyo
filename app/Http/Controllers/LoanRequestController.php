@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LoanRequest;
 use App\Models\Loan;
+use App\Models\Group;
 use App\Models\GroupMember;
 use App\Services\ActivityLoggerService;
 use Illuminate\Http\Request;
@@ -15,14 +16,10 @@ class LoanRequestController extends Controller
     /**
      * Show pending loan requests for a group admin
      */
-    public function index(Request $request): View
+    public function index(Request $request, Group $group): View
     {
-        // Get the group from query parameter or route
-        $groupId = $request->query('group_id');
-
-        if (!$groupId) {
-            abort(400, 'Group ID is required');
-        }
+        // Get the group from route parameter
+        $groupId = $group->id;
 
         // Check if user is an admin of this group
         $isGroupAdmin = auth()->user()->adminGroups()->where('group_id', $groupId)->exists();
@@ -51,7 +48,7 @@ class LoanRequestController extends Controller
             ->orderBy('reviewed_at', 'desc')
             ->paginate(15);
 
-        return view('loan-requests.index', compact('pendingRequests', 'approvedRequests', 'rejectedRequests', 'groupId'));
+        return view('loan-requests.index', compact('pendingRequests', 'approvedRequests', 'rejectedRequests', 'group', 'groupId'));
     }
 
     /**
@@ -95,9 +92,9 @@ class LoanRequestController extends Controller
         // Log activity
         ActivityLoggerService::log(
             action: 'loan_request_created',
-            model_type: 'LoanRequest',
-            model_id: $loanRequest->id,
             description: "Member requested loan of " . number_format($validated['requested_amount'], 2) . " for " . $validated['requested_duration_months'] . " months",
+            modelType: 'LoanRequest',
+            modelId: $loanRequest->id,
             data: [
                 'member_name' => $member->user->name,
                 'group_name' => $loanRequest->group->name,
@@ -135,38 +132,43 @@ class LoanRequestController extends Controller
         // Create the loan from approved request
         $monthlyCharge = ($loanRequest->requested_amount * 0.05) / $loanRequest->requested_duration_months;
 
-        $loan = Loan::create([
-            'group_id' => $loanRequest->group_id,
-            'member_id' => $loanRequest->member_id,
-            'principal_amount' => $loanRequest->requested_amount,
-            'monthly_charge' => $monthlyCharge,
-            'remaining_balance' => $loanRequest->requested_amount,
-            'duration_months' => $loanRequest->requested_duration_months,
-            'months_paid' => 0,
-            'total_charged' => 0,
-            'total_principal_paid' => 0,
-            'issued_at' => now()->date(),
-            'maturity_date' => now()->addMonths($loanRequest->requested_duration_months)->date(),
-            'status' => 'active',
-            'notes' => 'Created from approved loan request #' . $loanRequest->id,
-        ]);
+        try {
+            $loan = Loan::create([
+                'group_id' => $loanRequest->group_id,
+                'member_id' => $loanRequest->member_id,
+                'principal_amount' => $loanRequest->requested_amount,
+                'monthly_charge' => $monthlyCharge,
+                'remaining_balance' => $loanRequest->requested_amount,
+                'duration_months' => $loanRequest->requested_duration_months,
+                'months_paid' => 0,
+                'total_charged' => 0,
+                'total_principal_paid' => 0,
+                'issued_at' => now(),
+                'maturity_date' => now()->addMonths($loanRequest->requested_duration_months),
+                'status' => 'active',
+                'notes' => 'Created from approved loan request #' . $loanRequest->id,
+            ]);
 
-        // Log activity
-        ActivityLoggerService::log(
-            action: 'loan_request_approved',
-            model_type: 'LoanRequest',
-            model_id: $loanRequest->id,
-            description: "Loan request of " . number_format($loanRequest->requested_amount, 2) . " approved and loan created",
-            data: [
-                'reviewer' => auth()->user()->name,
-                'member_name' => $loanRequest->member->user->name,
-                'group_name' => $loanRequest->group->name,
-                'loan_id' => $loan->id,
-                'review_notes' => $validated['review_notes'] ?? '',
-            ]
-        );
+            // Log activity
+            ActivityLoggerService::log(
+                action: 'loan_request_approved',
+                description: "Loan request of " . number_format($loanRequest->requested_amount, 2) . " approved and loan created",
+                modelType: 'LoanRequest',
+                modelId: $loanRequest->id,
+                data: [
+                    'reviewer' => auth()->user()->name,
+                    'member_name' => $loanRequest->member->user->name,
+                    'group_name' => $loanRequest->group->name,
+                    'loan_id' => $loan->id,
+                    'review_notes' => $validated['review_notes'] ?? '',
+                ]
+            );
 
-        return back()->with('success', 'Loan request approved and loan has been created.');
+            return back()->with('success', 'Loan request approved and loan has been created.');
+        } catch (\Exception $e) {
+            \Log::error('Loan creation failed: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Failed to create loan: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -194,9 +196,9 @@ class LoanRequestController extends Controller
         // Log activity
         ActivityLoggerService::log(
             action: 'loan_request_rejected',
-            model_type: 'LoanRequest',
-            model_id: $loanRequest->id,
             description: "Loan request of " . number_format($loanRequest->requested_amount, 2) . " rejected",
+            modelType: 'LoanRequest',
+            modelId: $loanRequest->id,
             data: [
                 'reviewer' => auth()->user()->name,
                 'member_name' => $loanRequest->member->user->name,
