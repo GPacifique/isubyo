@@ -47,7 +47,93 @@
                     </li>
                 </ul>
             </div>
-            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg h-80"></div>
+            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-lg h-80 p-6 flex flex-col items-center justify-center">
+                <svg class="w-32 h-32 text-blue-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <p class="text-blue-600 font-medium">Dashboard Screenshot</p>
+            </div>
+        </div>
+
+        <!-- Screenshot Section -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Dashboard Preview</h2>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+                <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4 flex items-center">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <span class="ml-4 text-white font-semibold text-sm">member.isubyo.com/dashboard</span>
+                </div>
+                <div class="p-8 bg-gray-50">
+                    <!-- Dashboard Header -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome, John Doe</h3>
+                        <p class="text-gray-600">December 27, 2025</p>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-white rounded-lg p-4 border border-gray-200">
+                            <p class="text-gray-500 text-sm font-medium">Total Savings</p>
+                            <p class="text-2xl font-bold text-green-600 mt-2">₦125,400</p>
+                            <p class="text-xs text-gray-500 mt-1">+2.5% this month</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-gray-200">
+                            <p class="text-gray-500 text-sm font-medium">Active Loans</p>
+                            <p class="text-2xl font-bold text-blue-600 mt-2">3</p>
+                            <p class="text-xs text-gray-500 mt-1">₦45,000 outstanding</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-gray-200">
+                            <p class="text-gray-500 text-sm font-medium">Groups</p>
+                            <p class="text-2xl font-bold text-purple-600 mt-2">5</p>
+                            <p class="text-xs text-gray-500 mt-1">All groups active</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-gray-200">
+                            <p class="text-gray-500 text-sm font-medium">Next Payment</p>
+                            <p class="text-2xl font-bold text-amber-600 mt-2">Dec 31</p>
+                            <p class="text-xs text-gray-500 mt-1">₦15,000 due</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg p-6 border border-gray-200">
+                            <h4 class="font-semibold text-gray-900 mb-4">Savings Trend</h4>
+                            <div class="h-32 bg-gradient-to-t from-blue-100 to-blue-50 rounded flex items-end justify-around px-4">
+                                <div class="w-8 h-16 bg-blue-500 rounded-t"></div>
+                                <div class="w-8 h-20 bg-blue-500 rounded-t"></div>
+                                <div class="w-8 h-24 bg-blue-500 rounded-t"></div>
+                                <div class="w-8 h-28 bg-blue-500 rounded-t"></div>
+                                <div class="w-8 h-32 bg-green-500 rounded-t"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-6 border border-gray-200">
+                            <h4 class="font-semibold text-gray-900 mb-4">Transaction Activity</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Savings Deposit</span>
+                                    <span class="text-green-600 font-semibold">+₦5,000</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Loan Payment</span>
+                                    <span class="text-red-600 font-semibold">-₦3,500</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Interest Earned</span>
+                                    <span class="text-green-600 font-semibold">+₦245</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Group Contribution</span>
+                                    <span class="text-red-600 font-semibold">-₦2,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Features -->
