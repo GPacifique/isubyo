@@ -31,19 +31,34 @@ class CheckMemberAccess
             return redirect()->route('login');
         }
 
-        // TIER 1: System Admin
+        // TIER 1: System Admin - allow to access member routes
         if ($user->is_admin) {
-            return redirect()->route('admin.dashboard')
-                ->with('info', 'You have system admin access. Use the admin dashboard for system-wide controls.');
+            return $next($request);
         }
 
-        // TIER 2: Group Admin
+        // TIER 2: Group Admin - allow to access member routes if they're also members
         $groupAdmin = GroupMember::where('user_id', $user->id)
             ->where('role', 'admin')
             ->where('status', 'active')
             ->first();
 
+        // Allow group admins to access member routes if they're also members of a group
         if ($groupAdmin) {
+            // Check if they're also a regular member
+            $member = GroupMember::where('user_id', $user->id)
+                ->whereIn('role', ['member', 'treasurer'])
+                ->where('status', 'active')
+                ->first();
+
+            if ($member) {
+                // They're both admin and member, allow access
+                $request->merge([
+                    'user_member' => $member,
+                ]);
+                return $next($request);
+            }
+
+            // They're only an admin, redirect to admin dashboard
             return redirect()->route('group-admin.dashboard')
                 ->with('info', 'You have group admin access. Use the group admin dashboard to manage your groups.');
         }
