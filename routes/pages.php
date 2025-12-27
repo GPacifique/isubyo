@@ -62,13 +62,29 @@ Route::middleware('web')->group(function () {
             return view('pages.support.documentation');
         })->name('documentation');
 
+        Route::get('/user-guide', function () {
+            return view('pages.support.user-guide');
+        })->name('user-guide');
+
+        Route::get('/admin-guide', function () {
+            return view('pages.support.admin-guide');
+        })->name('admin-guide');
+
         Route::get('/api-docs', function () {
             return view('pages.support.api-docs');
         })->name('api-docs');
 
+        Route::get('/faq', function () {
+            return view('pages.support.faq');
+        })->name('faq');
+
         Route::get('/status', function () {
             return view('pages.support.status-page');
         })->name('status-page');
+
+        Route::get('/changelog', function () {
+            return view('pages.support.changelog');
+        })->name('changelog');
     });
 
     // Legal
