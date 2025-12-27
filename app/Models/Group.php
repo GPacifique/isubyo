@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Group extends Model
@@ -42,6 +43,12 @@ class Group extends Model
     public function approver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function admins(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'group_admins', 'group_id', 'user_id')
+            ->withTimestamps();
     }
 
     public function members(): HasMany

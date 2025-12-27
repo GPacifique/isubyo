@@ -176,7 +176,7 @@ class AdminDashboardController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        $groups = Group::with('creator')
+        $groups = Group::with('creator', 'admins')
             ->withCount('members')
             ->paginate(20);
 
@@ -294,9 +294,14 @@ class AdminDashboardController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'status' => 'required|in:active,inactive,suspended',
+            'admin_ids' => 'nullable|array',
+            'admin_ids.*' => 'exists:users,id',
         ]);
 
         $group->update($validated);
+
+        // Sync the admins (replaces all existing admins with new ones)
+        $group->admins()->sync($validated['admin_ids'] ?? []);
 
         return redirect()->route('admin.groups.show', $group)
             ->with('success', 'Group updated successfully');

@@ -57,6 +57,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get groups where user is admin
+     */
+    public function adminGroups()
+    {
+        return $this->belongsToMany(Group::class, 'group_admins', 'user_id', 'group_id')
+                    ->withTimestamps();
+    }
+
+    /**
      * Get user's groups through group members
      */
     public function groups()

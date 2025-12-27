@@ -37,13 +37,19 @@
                     <p class="text-sm text-gray-700">{{ $group->description ?? 'No description provided' }}</p>
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Administrator</p>
-                    <p class="text-sm font-semibold text-gray-900">
-                        {{ $group->admin?->name ?? 'Not Assigned' }}
-                        @if($group->admin)
-                            <span class="text-xs text-gray-500">({{ $group->admin->email }})</span>
-                        @endif
-                    </p>
+                    <p class="text-xs text-gray-500 uppercase">Administrators</p>
+                    @if($group->admins->count() > 0)
+                        <div class="space-y-2 mt-2">
+                            @foreach($group->admins as $admin)
+                                <div class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold mr-2">
+                                    {{ $admin->name }}
+                                    <span class="text-purple-600">({{ $admin->email }})</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-sm text-gray-600 mt-1">No administrators assigned</p>
+                    @endif
                 </div>
                 <div class="py-2 border-b">
                     <p class="text-xs text-gray-500 uppercase">Status</p>

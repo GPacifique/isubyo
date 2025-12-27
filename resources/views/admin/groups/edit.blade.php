@@ -46,24 +46,25 @@
                 @enderror
             </div>
 
-            <!-- Group Administrator -->
+            <!-- Group Administrator(s) -->
             <div class="mb-6">
-                <label for="admin_id" class="block text-sm font-bold text-gray-700 mb-2">Group Administrator</label>
+                <label for="admin_ids" class="block text-sm font-bold text-gray-700 mb-2">Group Administrators (Select one or more)</label>
                 <select
-                    id="admin_id"
-                    name="admin_id"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('admin_id') border-red-500 @enderror"
+                    id="admin_ids"
+                    name="admin_ids[]"
+                    multiple
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('admin_ids') border-red-500 @enderror"
                 >
-                    <option value="">Select Administrator (Optional)</option>
                     @foreach($admins as $admin)
-                        <option value="{{ $admin->id }}" {{ old('admin_id', $group->admin_id) == $admin->id ? 'selected' : '' }}>
+                        <option value="{{ $admin->id }}" {{ in_array($admin->id, old('admin_ids', $group->admins->pluck('id')->toArray())) ? 'selected' : '' }}>
                             {{ $admin->name }} ({{ $admin->email }})
                         </option>
                     @endforeach
                 </select>
-                @error('admin_id')
+                @error('admin_ids')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
+                <p class="text-gray-500 text-xs mt-2">Hold Ctrl (Cmd on Mac) to select multiple administrators</p>
             </div>
 
             <!-- Status -->

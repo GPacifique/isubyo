@@ -43,7 +43,20 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 text-sm font-semibold text-gray-900">#{{ $group->id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ $group->name }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{ $group->creator?->name ?? 'Not Assigned' }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">
+                            @if($group->admins->count() > 0)
+                                <div class="space-y-1">
+                                    @foreach($group->admins->take(2) as $admin)
+                                        <div class="text-xs">{{ $admin->name }}</div>
+                                    @endforeach
+                                    @if($group->admins->count() > 2)
+                                        <div class="text-xs text-gray-500">+{{ $group->admins->count() - 2 }} more</div>
+                                    @endif
+                                </div>
+                            @else
+                                <span class="text-gray-400">None assigned</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-4 text-sm">
                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">
                                 {{ $group->members_count ?? 0 }}
