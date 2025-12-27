@@ -176,7 +176,19 @@ class AdminDashboardController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        $groups = Group::with('creator')->paginate(20);
+        $groups = Group::with('creator')
+            ->withCount('members')
+            ->paginate(20);
+
+        // Add financial stats for each group
+        $groups->each(function ($group) {
+            $group->active_members = $group->members()->where('status', 'active')->count();
+            $group->total_loans = $group->loans()->count();
+            $group->total_loan_amount = $group->loans()->sum('principal_amount') ?? 0;
+            $group->total_savings = $group->savings()->sum('current_balance') ?? 0;
+            $group->total_penalties = $group->penalties()->where('waived', false)->sum('amount') ?? 0;
+        });
+
         return view('admin.groups.index', compact('groups'));
     }
 

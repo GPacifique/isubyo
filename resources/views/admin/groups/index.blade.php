@@ -28,6 +28,11 @@
                     <th class="px-6 py-4 text-left text-sm font-semibold">Group Name</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold">Admin</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold">Members</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold">Active</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold">Total Loans</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold">Loan Amount</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold">Savings</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold">Penalties</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold">Status</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold">Created</th>
                     <th class="px-6 py-4 text-left text-sm font-semibold">Actions</th>
@@ -43,6 +48,23 @@
                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">
                                 {{ $group->members_count ?? 0 }}
                             </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-semibold">
+                                {{ $group->active_members ?? 0 }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-gray-900">
+                            {{ $group->total_loans ?? 0 }}
+                        </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-purple-600">
+                            {{ number_format($group->total_loan_amount ?? 0, 0) }}
+                        </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-yellow-600">
+                            {{ number_format($group->total_savings ?? 0, 0) }}
+                        </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-red-600">
+                            {{ number_format($group->total_penalties ?? 0, 0) }}
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <span class="px-3 py-1 rounded-full text-xs font-bold {{ $group->status === 'active' ? 'bg-green-100 text-green-800' : ($group->status === 'suspended' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800') }}">
@@ -63,7 +85,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="px-6 py-8 text-center text-gray-500">
+                        <td colspan="12" class="px-6 py-8 text-center text-gray-500">
                             No groups found
                         </td>
                     </tr>
