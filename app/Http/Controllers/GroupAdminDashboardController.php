@@ -22,18 +22,25 @@ class GroupAdminDashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Get the group where user is admin
-        $group = GroupMember::where('user_id', $user->id)
+        // Get all groups where user is admin
+        $adminGroups = GroupMember::where('user_id', $user->id)
             ->where('role', 'admin')
             ->where('status', 'active')
             ->with('group')
-            ->first()
-            ->group ?? null;
+            ->get()
+            ->pluck('group');
 
-        if (!$group) {
+        if ($adminGroups->isEmpty()) {
             return redirect()->route('dashboard')
                 ->with('error', 'You must be a group admin to access this dashboard.');
         }
+
+        // Get the current selected group from session or use the first one
+        $selectedGroupId = session('admin_group_id');
+        $group = $adminGroups->firstWhere('id', $selectedGroupId) ?? $adminGroups->first();
+
+        // Store the selected group in session for consistency
+        session(['admin_group_id' => $group->id]);
 
         // Get active members with their loan and savings info
         $members = $group->members()
@@ -141,7 +148,8 @@ class GroupAdminDashboardController extends Controller
             'upcoming_loans',
             'overdue_loans',
             'recent_loans',
-            'recent_savings'
+            'recent_savings',
+            'adminGroups'
         ));
     }
 
@@ -672,5 +680,31 @@ class GroupAdminDashboardController extends Controller
             return redirect()->back()
                 ->with('error', 'Failed to create loan: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Switch the active admin group
+     */
+    public function switchGroup(Group $group)
+    {
+        $user = Auth::user();
+
+        // Verify user is admin of this group
+        $isAdmin = GroupMember::where('user_id', $user->id)
+            ->where('group_id', $group->id)
+            ->where('role', 'admin')
+            ->where('status', 'active')
+            ->exists();
+
+        if (!$isAdmin) {
+            return redirect()->route('group-admin.dashboard')
+                ->with('error', 'You are not authorized to manage this group.');
+        }
+
+        // Store the selected group in session
+        session(['admin_group_id' => $group->id]);
+
+        return redirect()->route('group-admin.dashboard')
+            ->with('success', "Switched to {$group->name}");
     }
 }

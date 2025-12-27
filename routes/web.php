@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Group Admin Dashboard Routes
     Route::prefix('group-admin')->name('group-admin.')->middleware('group.admin')->group(function () {
         Route::get('/dashboard', [GroupAdminDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/switch-group/{group}', [GroupAdminDashboardController::class, 'switchGroup'])->name('switch-group');
         Route::get('/groups/{group}/loans', [GroupAdminDashboardController::class, 'loans'])->name('loans');
         Route::get('/groups/{group}/savings', [GroupAdminDashboardController::class, 'savings'])->name('savings');
         Route::get('/groups/{group}/members', [GroupAdminDashboardController::class, 'members'])->name('members');

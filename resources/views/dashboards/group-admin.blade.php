@@ -11,8 +11,33 @@
                 <img src="{{ asset('images/isubyo.svg') }}" alt="isubyo Logo" class="h-12 w-12">
                 <span class="text-sm font-semibold text-indigo-100">ISUBYO</span>
             </div>
-            <h1 class="text-4xl font-bold">{{ $group->name }} - Group Admin Dashboard</h1>
-            <p class="text-indigo-100 mt-2">Manage members, loans, savings, and financial records</p>
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex-1">
+                    <h1 class="text-4xl font-bold">{{ $group->name }} - Group Admin Dashboard</h1>
+                    <p class="text-indigo-100 mt-2">Manage members, loans, savings, and financial records</p>
+                </div>
+                <!-- Group Switcher (show only if user manages multiple groups) -->
+                @if($adminGroups->count() > 1)
+                    <div class="ml-6">
+                        <form action="#" id="groupSwitchForm" class="inline">
+                            <div class="flex items-center gap-2">
+                                <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Switch Group:</label>
+                                <select
+                                    id="groupSelect"
+                                    class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium"
+                                    onchange="switchGroup(this.value)"
+                                >
+                                    @foreach($adminGroups as $availableGroup)
+                                        <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
+                                            {{ $availableGroup->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 
@@ -528,5 +553,25 @@
             this.classList.add('hidden');
         }
     });
+
+    // Group switching function
+    function switchGroup(groupId) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{ route("group-admin.switch-group", ":groupId") }}'.replace(':groupId', groupId);
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]');
+        if (csrfToken) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = '_token';
+            input.value = csrfToken.getAttribute('content');
+            form.appendChild(input);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
 </script>
 @endsection
