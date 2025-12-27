@@ -42,12 +42,12 @@
             <div>
                 <h3 class="text-white font-semibold mb-4 text-lg">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Home</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">About Us</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Features</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Pricing</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Blog</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Contact</a></li>
+                    <li><a href="{{ route('pages.index') }}" class="text-gray-400 hover:text-white transition text-sm">Home</a></li>
+                    <li><a href="{{ route('pages.about') }}" class="text-gray-400 hover:text-white transition text-sm">About Us</a></li>
+                    <li><a href="{{ route('pages.features') }}" class="text-gray-400 hover:text-white transition text-sm">Features</a></li>
+                    <li><a href="{{ route('pages.pricing') }}" class="text-gray-400 hover:text-white transition text-sm">Pricing</a></li>
+                    <li><a href="{{ route('pages.blog') }}" class="text-gray-400 hover:text-white transition text-sm">Blog</a></li>
+                    <li><a href="{{ route('pages.contact') }}" class="text-gray-400 hover:text-white transition text-sm">Contact</a></li>
                 </ul>
             </div>
 
@@ -55,11 +55,11 @@
             <div>
                 <h3 class="text-white font-semibold mb-4 text-lg">Products</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Group Savings</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Loan Management</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Member Dashboard</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Reports & Analytics</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Mobile App</a></li>
+                    <li><a href="{{ route('pages.products.group-savings') }}" class="text-gray-400 hover:text-white transition text-sm">Group Savings</a></li>
+                    <li><a href="{{ route('pages.products.loan-management') }}" class="text-gray-400 hover:text-white transition text-sm">Loan Management</a></li>
+                    <li><a href="{{ route('pages.products.member-dashboard') }}" class="text-gray-400 hover:text-white transition text-sm">Member Dashboard</a></li>
+                    <li><a href="{{ route('pages.products.analytics') }}" class="text-gray-400 hover:text-white transition text-sm">Reports & Analytics</a></li>
+                    <li><a href="{{ route('pages.products.mobile-app') }}" class="text-gray-400 hover:text-white transition text-sm">Mobile App</a></li>
                 </ul>
             </div>
 
@@ -67,11 +67,11 @@
             <div>
                 <h3 class="text-white font-semibold mb-4 text-lg">Support</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Help Center</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Documentation</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">API Docs</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Status Page</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition text-sm">Contact Support</a></li>
+                    <li><a href="{{ route('pages.support.help-center') }}" class="text-gray-400 hover:text-white transition text-sm">Help Center</a></li>
+                    <li><a href="{{ route('pages.support.documentation') }}" class="text-gray-400 hover:text-white transition text-sm">Documentation</a></li>
+                    <li><a href="{{ route('pages.support.api-docs') }}" class="text-gray-400 hover:text-white transition text-sm">API Docs</a></li>
+                    <li><a href="{{ route('pages.support.status-page') }}" class="text-gray-400 hover:text-white transition text-sm">Status Page</a></li>
+                    <li><a href="{{ route('pages.contact') }}" class="text-gray-400 hover:text-white transition text-sm">Contact Support</a></li>
                 </ul>
             </div>
 
@@ -147,9 +147,9 @@
                     &copy; {{ date('Y') }} <span class="text-white font-semibold">isubyo</span>. All rights reserved.
                 </p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition">Privacy Policy</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition">Terms of Service</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition">Cookie Policy</a>
+                    <a href="{{ route('pages.legal.privacy-policy') }}" class="text-sm text-gray-500 hover:text-gray-400 transition">Privacy Policy</a>
+                    <a href="{{ route('pages.legal.terms-of-service') }}" class="text-sm text-gray-500 hover:text-gray-400 transition">Terms of Service</a>
+                    <a href="{{ route('pages.legal.cookie-policy') }}" class="text-sm text-gray-500 hover:text-gray-400 transition">Cookie Policy</a>
                     <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition">Sitemap</a>
                 </div>
             </div>
