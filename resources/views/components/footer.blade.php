@@ -3,11 +3,11 @@
     <!-- Main Footer Content -->
     <div class="container mx-auto px-4 max-w-7xl">
         <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
-            
+
             <!-- Column 1: Brand & Company Info -->
             <div class="space-y-4">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ asset('images/isubyo-logo-modern.svg') }}" alt="isubyo" class="h-10 w-10">
+                    <img src="{{ asset('images/isubyo-logo-modern.png') }}" alt="isubyo" class="h-10 w-10">
                     <span class="text-2xl font-bold text-white">isubyo</span>
                 </div>
                 <p class="text-sm text-gray-400">
@@ -81,10 +81,10 @@
                 <p class="text-sm text-gray-400 mb-4">Get the latest updates and financial tips delivered to your inbox.</p>
                 <form class="space-y-2">
                     <div class="relative">
-                        <input type="email" placeholder="Enter your email" 
+                        <input type="email" placeholder="Enter your email"
                                class="w-full px-4 py-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
                     </div>
-                    <button type="submit" 
+                    <button type="submit"
                             class="w-full px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium text-sm">
                         Subscribe
                     </button>
@@ -98,7 +98,7 @@
 
         <!-- Middle Section: Additional Features -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            
+
             <!-- Trust Indicators -->
             <div class="text-center">
                 <svg class="w-8 h-8 mx-auto mb-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -165,7 +165,7 @@
                 </select>
 
                 <!-- Back to Top Button -->
-                <button id="back-to-top" 
+                <button id="back-to-top"
                         class="p-2 bg-gray-800 rounded hover:bg-green-600 transition text-gray-400 hover:text-white"
                         title="Back to top">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -201,7 +201,7 @@
 
     <!-- Floating Action Button for Support -->
     <div class="fixed bottom-6 right-6 z-40">
-        <button id="support-chat" 
+        <button id="support-chat"
                 class="w-14 h-14 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full shadow-lg hover:shadow-xl hover:from-green-700 hover:to-green-800 transition flex items-center justify-center"
                 title="Chat with support">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">

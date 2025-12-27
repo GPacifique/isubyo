@@ -8,7 +8,7 @@
     <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white shadow">
         <div class="max-w-7xl mx-auto py-8 px-4">
             <div class="flex items-center space-x-4 mb-4">
-                <img src="{{ asset('images/isubyo-logo-modern.svg') }}" alt="isubyo Logo" class="h-12 w-12">
+                <img src="{{ asset('images/isubyo-logo-modern.png') }}" alt="isubyo Logo" class="h-12 w-12">
                 <span class="text-sm font-semibold text-indigo-100">ISUBYO</span>
             </div>
             <h1 class="text-4xl font-bold">{{ $group->name }} - Group Admin Dashboard</h1>

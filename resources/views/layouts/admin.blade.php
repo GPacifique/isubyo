@@ -22,7 +22,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
-                    <img src="{{ asset('images/isubyo-logo-modern.svg') }}" alt="isubyo Logo" class="h-12 w-12">
+                    <img src="{{ asset('images/isubyo-logo-modern.png') }}" alt="isubyo Logo" class="h-12 w-12">
                     <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold text-green-100">
                         isubyo Admin
                     </a>
