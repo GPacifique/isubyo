@@ -17,9 +17,8 @@
     </div>
 
     <div class="max-w-7xl mx-auto py-12 px-4">
-        <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <!-- Row 1: Main Stats -->
+        <!-- All Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-blue-500">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Members</p>
                 <p class="text-3xl font-bold text-blue-600 mt-3">{{ $stats['total_members'] }}</p>
@@ -40,10 +39,7 @@
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Member Shares</p>
                 <p class="text-2xl font-bold text-purple-600 mt-3">{{ number_format($stats['total_member_shares'], 2) }}</p>
             </div>
-        </div>
 
-        <!-- Daily & Monthly Savings -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-cyan-500">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Today's Savings</p>
                 <p class="text-2xl font-bold text-cyan-600 mt-3">{{ number_format($stats['daily_savings'], 2) }}</p>
@@ -57,8 +53,8 @@
             </div>
         </div>
 
-        <!-- Financial Pool Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <!-- Financial Pool & Alerts Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 border-red-500">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Penalties</p>
                 <p class="text-2xl font-bold text-red-600 mt-3">{{ number_format($stats['total_penalties'], 2) }}</p>
@@ -82,10 +78,7 @@
                 <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-green-600' }} mt-3">{{ number_format($stats['total_support_disbursed'], 2) }}</p>
                 <p class="text-xs text-gray-500 mt-1">From Support Pool</p>
             </div>
-        </div>
 
-        <!-- Overdue Loans Alert Card -->
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-5 border-l-4 {{ $stats['overdue_loans'] > 0 ? 'border-red-500' : 'border-gray-300' }}">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Overdue Loans</p>
                 <p class="text-3xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-600' }} mt-3">{{ $stats['overdue_loans'] }}</p>
