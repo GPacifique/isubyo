@@ -247,16 +247,84 @@ class GroupAdminDashboardController extends Controller
     {
         $this->authorizeGroupAdmin($group);
 
+        // Calculate all financial metrics
+        $totalPenalties = $group->penalties()->where('waived', false)->sum('amount');
+        $totalInterests = Transaction::where('group_id', $group->id)
+            ->where('type', 'interest')
+            ->sum('amount');
+        $totalDisbursed = $group->socialSupports()
+            ->where('status', 'disbursed')
+            ->sum('amount');
+        $supportFundAvailable = $totalPenalties + $totalInterests - $totalDisbursed;
+
+        // Daily and Monthly Savings
+        $todaySavings = Transaction::where('group_id', $group->id)
+            ->where('type', 'deposit')
+            ->whereDate('transaction_date', today())
+            ->sum('amount');
+
+        $monthSavings = Transaction::where('group_id', $group->id)
+            ->where('type', 'deposit')
+            ->whereYear('transaction_date', now()->year)
+            ->whereMonth('transaction_date', now()->month)
+            ->sum('amount');
+
         $stats = [
+            // Loan Statistics
             'total_loans' => $group->loans()->sum('principal_amount'),
             'total_principal_paid' => $group->loans()->sum('total_principal_paid'),
             'outstanding' => ($group->loans()->sum('principal_amount') ?? 0) - ($group->loans()->sum('total_principal_paid') ?? 0),
-            'total_savings' => $group->savings()->sum('current_balance'),
-            'total_members' => $group->members()->where('status', 'active')->count(),
             'active_loans' => $group->loans()->where('status', 'active')->count(),
+            'total_loan_count' => $group->loans()->count(),
+            'overdue_loans' => $group->loans()->where('status', 'active')->where('maturity_date', '<', now())->count(),
+
+            // Savings Statistics
+            'total_savings' => $group->savings()->sum('current_balance'),
+            'total_member_shares' => $group->savings()->sum('current_balance'),
+            'daily_savings' => $todaySavings,
+            'monthly_savings' => $monthSavings,
+
+            // Penalty & Interest Statistics
+            'total_penalties' => $totalPenalties,
+            'total_interests' => $totalInterests,
+            'support_fund_available' => max(0, $supportFundAvailable),
+            'total_support_disbursed' => $totalDisbursed,
+
+            // Member Statistics
+            'total_members' => $group->members()->where('status', 'active')->count(),
+            'total_pending_requests' => $group->socialSupports()->where('status', 'pending')->count(),
+            'total_approved_requests' => $group->socialSupports()->where('status', 'approved')->count(),
         ];
 
-        return view('dashboards.group-reports', compact('group', 'stats'));
+        // Get transaction summary
+        $transactions = Transaction::where('group_id', $group->id)
+            ->with(['member.user'])
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        // Get top savers
+        $topSavers = $group->savings()
+            ->with(['member.user'])
+            ->orderBy('current_balance', 'desc')
+            ->take(5)
+            ->get();
+
+        // Get pending social support requests
+        $pendingSupport = $group->socialSupports()
+            ->where('status', 'pending')
+            ->with(['member.user'])
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('dashboards.group-reports', compact(
+            'group',
+            'stats',
+            'transactions',
+            'topSavers',
+            'pendingSupport'
+        ));
     }
 
     /**
