@@ -262,6 +262,13 @@
                         </svg>
                         <span>View Reports</span>
                     </a>
+                    <a href="{{ route('admin.activity-logs') }}" class="flex items-center px-4 py-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition font-medium text-gray-700">
+                        <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000-2 4 4 0 00-4 4v10a4 4 0 004 4h12a4 4 0 004-4V5a4 4 0 00-4-4 1 1 0 000 2 2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Activity Logs</span>
+                    </a>
                 </div>
             </div>
 

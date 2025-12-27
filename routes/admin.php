@@ -86,6 +86,9 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->prefix('admin')
     // Reports
     Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');
 
+    // Activity Logs
+    Route::get('/activity-logs', [AdminDashboardController::class, 'activityLogs'])->name('activity-logs');
+
     // Settings
     Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
 

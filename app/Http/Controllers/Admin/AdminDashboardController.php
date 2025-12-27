@@ -12,6 +12,8 @@ use App\Models\Transaction;
 use App\Models\GroupMember;
 use App\Models\Role;
 use App\Models\Permission;
+use App\Models\ActivityLog;
+use App\Services\ActivityLoggerService;
 use Illuminate\View\View;
 
 class AdminDashboardController extends Controller
@@ -223,7 +225,10 @@ class AdminDashboardController extends Controller
         // Add the current user as the creator
         $validated['created_by'] = auth()->id();
 
-        Group::create($validated);
+        $group = Group::create($validated);
+
+        // Log the activity
+        ActivityLoggerService::logGroupCreation($group->id, $group->name);
 
         return redirect()->route('admin.groups.index')
             ->with('success', 'Group created successfully.');
@@ -298,10 +303,23 @@ class AdminDashboardController extends Controller
             'admin_ids.*' => 'exists:users,id',
         ]);
 
+        $changes = [];
+        if ($group->name !== $validated['name']) {
+            $changes['name'] = ['old' => $group->name, 'new' => $validated['name']];
+        }
+        if ($group->status !== $validated['status']) {
+            $changes['status'] = ['old' => $group->status, 'new' => $validated['status']];
+        }
+
         $group->update($validated);
 
         // Sync the admins (replaces all existing admins with new ones)
         $group->admins()->sync($validated['admin_ids'] ?? []);
+
+        // Log the activity
+        if (!empty($changes)) {
+            ActivityLoggerService::logGroupUpdate($group->id, $group->name, $changes);
+        }
 
         return redirect()->route('admin.groups.show', $group)
             ->with('success', 'Group updated successfully');
@@ -841,5 +859,36 @@ class AdminDashboardController extends Controller
 
         return redirect()->route('admin.groups.members.index', $group)
             ->with('success', "Member '$memberName' removed from group");
+    }
+
+    /**
+     * Show activity logs
+     */
+    public function activityLogs(): View
+    {
+        if (!auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
+        $query = ActivityLog::with('user');
+
+        // Filter by action
+        if (request('action')) {
+            $query->where('action', request('action'));
+        }
+
+        // Filter by user
+        if (request('user_id')) {
+            $query->where('user_id', request('user_id'));
+        }
+
+        // Filter by date
+        if (request('date')) {
+            $query->whereDate('performed_at', request('date'));
+        }
+
+        $activities = $query->orderBy('performed_at', 'desc')->paginate(50);
+
+        return view('admin.activity-logs', compact('activities'));
     }
 }
