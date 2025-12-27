@@ -62,7 +62,5 @@ class LoanRequestSubmittedNotification extends Notification implements ShouldQue
             'group_name' => $this->loanRequest->group->name,
             'amount' => $this->loanRequest->requested_amount,
         ];
-            //
-        ];
     }
 }
