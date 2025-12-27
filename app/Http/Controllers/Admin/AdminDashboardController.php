@@ -228,19 +228,31 @@ class AdminDashboardController extends Controller
 
         $members = $group->members()->paginate(15);
 
-        // Get relevant stats
+        // Get comprehensive group statistics
+        $totalMembers = $group->members()->count();
+        $activeMembers = $group->members()->where('status', 'active')->count();
         $totalLoans = $group->loans()->count();
-        $activeSavings = $group->savings()->count();
+        $activeLoans = $group->loans()->where('status', 'active')->count();
+        $completedLoans = $group->loans()->where('status', 'completed')->count();
         $totalLoanAmount = $group->loans()->sum('principal_amount');
+        $activeSavings = $group->savings()->count();
         $totalSavingsAmount = $group->savings()->sum('current_balance');
+        $totalInterest = $group->transactions()->where('type', 'interest')->sum('amount');
+        $totalPenalties = $group->penalties()->where('waived', false)->sum('amount');
 
         return view('admin.groups.show', compact(
             'group',
             'members',
+            'totalMembers',
+            'activeMembers',
             'totalLoans',
-            'activeSavings',
+            'activeLoans',
+            'completedLoans',
             'totalLoanAmount',
-            'totalSavingsAmount'
+            'activeSavings',
+            'totalSavingsAmount',
+            'totalInterest',
+            'totalPenalties'
         ));
     }
 

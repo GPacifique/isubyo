@@ -61,20 +61,29 @@
         <!-- Quick Stats -->
         <div class="bg-white rounded-lg shadow p-6">
             <h3 class="text-lg font-bold text-gray-900 mb-4">Quick Stats</h3>
-            <div class="space-y-4">
-                <div class="text-center py-3 bg-blue-50 rounded-lg">
-                    <p class="text-2xl font-bold text-blue-600">{{ $members->total() }}</p>
-                    <p class="text-sm text-gray-600">Total Members</p>
+            <div class="space-y-3">
+                <div class="text-center py-2 bg-blue-50 rounded-lg">
+                    <p class="text-xl font-bold text-blue-600">{{ $totalMembers }}</p>
+                    <p class="text-xs text-gray-600">Total Members</p>
+                    <p class="text-xs text-blue-600 mt-1">{{ $activeMembers }} active</p>
                 </div>
-                <div class="text-center py-3 bg-green-50 rounded-lg">
-                    <p class="text-2xl font-bold text-green-600">{{ $totalLoans }}</p>
-                    <p class="text-sm text-gray-600">Total Loans</p>
-                    <p class="text-xs text-green-600 mt-1">{{ number_format($totalLoanAmount, 0) }}</p>
+                <div class="text-center py-2 bg-green-50 rounded-lg">
+                    <p class="text-xl font-bold text-green-600">{{ $totalLoans }}</p>
+                    <p class="text-xs text-gray-600">Total Loans</p>
+                    <p class="text-xs text-green-600 mt-1">{{ $activeLoans }} active</p>
                 </div>
-                <div class="text-center py-3 bg-yellow-50 rounded-lg">
-                    <p class="text-2xl font-bold text-yellow-600">{{ $activeSavings }}</p>
-                    <p class="text-sm text-gray-600">Active Savings</p>
+                <div class="text-center py-2 bg-purple-50 rounded-lg">
+                    <p class="text-lg font-bold text-purple-600">{{ number_format($totalLoanAmount, 0) }}</p>
+                    <p class="text-xs text-gray-600">Loan Amount</p>
+                </div>
+                <div class="text-center py-2 bg-yellow-50 rounded-lg">
+                    <p class="text-xl font-bold text-yellow-600">{{ $activeSavings }}</p>
+                    <p class="text-xs text-gray-600">Savings Accounts</p>
                     <p class="text-xs text-yellow-600 mt-1">{{ number_format($totalSavingsAmount, 0) }}</p>
+                </div>
+                <div class="text-center py-2 bg-red-50 rounded-lg">
+                    <p class="text-lg font-bold text-red-600">{{ number_format($totalPenalties, 0) }}</p>
+                    <p class="text-xs text-gray-600">Pending Penalties</p>
                 </div>
             </div>
         </div>
@@ -109,8 +118,8 @@
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-600">{{ $member->created_at->format('M d, Y') }}</td>
                         <td class="px-6 py-4 text-sm">
-                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
-                                Active
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-{{ $member->status == 'active' ? 'green' : 'gray' }}-100 text-{{ $member->status == 'active' ? 'green' : 'gray' }}-800">
+                                {{ ucfirst($member->status) }}
                             </span>
                         </td>
                     </tr>
