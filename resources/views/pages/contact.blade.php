@@ -27,16 +27,15 @@
                     <!-- Phone -->
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-2">Phone</h3>
-                        <p class="text-gray-600">+1 (555) 123-4567</p>
-                        <p class="text-gray-600">Available Mon-Fri, 9am-5pm EST</p>
+                        <p class="text-gray-600">+250787457398</p>
+                        <p class="text-gray-600">Available Mon-Fri, 9am-5pm EAT</p>
                     </div>
 
                     <!-- Address -->
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-2">Office</h3>
-                        <p class="text-gray-600">123 Financial Street</p>
-                        <p class="text-gray-600">New York, NY 10001</p>
-                        <p class="text-gray-600">United States</p>
+                        <p class="text-gray-600">Kigali</p>
+                        <p class="text-gray-600">Rwanda</p>
                     </div>
 
                     <!-- Social -->
