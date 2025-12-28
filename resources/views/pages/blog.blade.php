@@ -43,7 +43,7 @@
                             <p class="text-sm text-gray-600">Financial Advisor at isubyo</p>
                         </div>
                     </div>
-                    <a href="#" class="text-green-600 font-semibold hover:text-green-700 inline-flex items-center group">
+                    <a href="{{ route('pages.blog.article-savings-strategies') }}" class="text-green-600 font-semibold hover:text-green-700 inline-flex items-center group">
                         Read Full Article
                         <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -87,12 +87,8 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">5 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-savings-strategies') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
             <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-xl transition group">
                 <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -114,12 +110,8 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">7 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-loan-management') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
-                </div>
-            </article>
-
-            <!-- Article 3 -->
             <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-xl transition group">
                 <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-500 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -141,12 +133,8 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">6 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-financial-literacy') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
             <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-xl transition group">
                 <div class="h-48 bg-gradient-to-br from-red-400 to-rose-500 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -168,12 +156,8 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">8 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-community-story') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
             <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-xl transition group">
                 <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-600 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -195,12 +179,8 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">6 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-financial-metrics') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
             <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-xl transition group">
                 <div class="h-48 bg-gradient-to-br from-teal-400 to-emerald-600 relative overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -222,7 +202,7 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-xs text-gray-500">5 min read</span>
-                        <a href="#" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
+                        <a href="{{ route('pages.blog.article-digitization') }}" class="text-green-600 font-semibold text-sm hover:text-green-700">Read →</a>
                     </div>
                 </div>
             </article>

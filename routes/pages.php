@@ -26,6 +26,33 @@ Route::middleware('web')->group(function () {
         return view('pages.blog');
     })->name('pages.blog');
 
+    // Blog Articles
+    Route::prefix('blog')->name('pages.blog.')->group(function () {
+        Route::get('/article-savings-strategies', function () {
+            return view('pages.blog.article-savings-strategies');
+        })->name('article-savings-strategies');
+
+        Route::get('/article-loan-management', function () {
+            return view('pages.blog.article-loan-management');
+        })->name('article-loan-management');
+
+        Route::get('/article-financial-literacy', function () {
+            return view('pages.blog.article-financial-literacy');
+        })->name('article-financial-literacy');
+
+        Route::get('/article-community-story', function () {
+            return view('pages.blog.article-community-story');
+        })->name('article-community-story');
+
+        Route::get('/article-financial-metrics', function () {
+            return view('pages.blog.article-financial-metrics');
+        })->name('article-financial-metrics');
+
+        Route::get('/article-digitization', function () {
+            return view('pages.blog.article-digitization');
+        })->name('article-digitization');
+    });
+
     Route::get('/contact', [ContactController::class, 'show'])->name('pages.contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('pages.contact.store');
 
