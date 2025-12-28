@@ -115,11 +115,11 @@
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 text-sm">Savings Deposit</span>
-                                    <span class="text-green-600 font-semibold">+₦5,000</span>
+                                    <span class="text-green-600 font-semibold">+22,000 RWF</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 text-sm">Loan Payment</span>
-                                    <span class="text-red-600 font-semibold">-₦3,500</span>
+                                    <span class="text-red-600 font-semibold">-15,400 RWF</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 text-sm">Interest Earned</span>

@@ -85,17 +85,17 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                         <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
                             <p class="text-green-700 text-sm font-medium">Total Savings</p>
-                            <p class="text-2xl font-bold text-green-700 mt-2">₦2,450,000</p>
+                            <p class="text-2xl font-bold text-green-700 mt-2">10.8M RWF</p>
                             <p class="text-xs text-green-600 mt-1">↑ 12.5% from Nov</p>
                         </div>
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
                             <p class="text-blue-700 text-sm font-medium">Total Disbursed</p>
-                            <p class="text-2xl font-bold text-blue-700 mt-2">₦1,850,000</p>
+                            <p class="text-2xl font-bold text-blue-700 mt-2">8.15M RWF</p>
                             <p class="text-xs text-blue-600 mt-1">↑ 8.2% from Nov</p>
                         </div>
                         <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
                             <p class="text-purple-700 text-sm font-medium">Interest Earned</p>
-                            <p class="text-2xl font-bold text-purple-700 mt-2">₦125,400</p>
+                            <p class="text-2xl font-bold text-purple-700 mt-2">552,000 RWF</p>
                             <p class="text-xs text-purple-600 mt-1">↑ 5.8% from Nov</p>
                         </div>
                         <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 border border-amber-200">

@@ -93,11 +93,11 @@
                                 <div class="grid grid-cols-2 gap-3">
                                     <div class="bg-gray-100 rounded-lg p-3">
                                         <p class="text-xs text-gray-600">Savings</p>
-                                        <p class="text-lg font-bold text-gray-900 mt-1">₦60K</p>
+                                        <p class="text-lg font-bold text-gray-900 mt-1">264K RWF</p>
                                     </div>
                                     <div class="bg-gray-100 rounded-lg p-3">
                                         <p class="text-xs text-gray-600">Loans</p>
-                                        <p class="text-lg font-bold text-gray-900 mt-1">₦25K</p>
+                                        <p class="text-lg font-bold text-gray-900 mt-1">110K RWF</p>
                                     </div>
                                 </div>
                                 <button class="w-full py-2 bg-pink-600 text-white rounded-lg text-sm font-semibold">Record Savings</button>

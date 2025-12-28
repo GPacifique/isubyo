@@ -82,18 +82,18 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Total Disbursed</p>
-                            <p class="text-2xl font-bold text-indigo-600 mt-2">₦850,000</p>
+                            <p class="text-2xl font-bold text-indigo-600 mt-2">3.75M RWF</p>
                             <p class="text-xs text-gray-500 mt-1">12 active loans</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Outstanding Balance</p>
-                            <p class="text-2xl font-bold text-amber-600 mt-2">₦385,400</p>
+                            <p class="text-2xl font-bold text-amber-600 mt-2">1.7M RWF</p>
                             <p class="text-xs text-gray-500 mt-1">45% repaid</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Pending Approval</p>
                             <p class="text-2xl font-bold text-purple-600 mt-2">3</p>
-                            <p class="text-xs text-gray-500 mt-1">₦125,000 total</p>
+                            <p class="text-xs text-gray-500 mt-1">550,000 RWF total</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Default Rate</p>
