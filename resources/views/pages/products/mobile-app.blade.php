@@ -88,7 +88,7 @@
                             <div class="p-4 space-y-4">
                                 <div class="bg-gradient-to-br from-pink-50 to-red-50 rounded-lg p-4 border border-pink-200">
                                     <p class="text-xs text-gray-600">Total Balance</p>
-                                    <p class="text-2xl font-bold text-pink-600 mt-1">₦85,500</p>
+                                    <p class="text-2xl font-bold text-pink-600 mt-1">376,000 RWF</p>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div class="bg-gray-100 rounded-lg p-3">
@@ -116,28 +116,28 @@
                                         <p class="font-semibold text-gray-900 text-sm">Savings Deposit</p>
                                         <p class="text-xs text-gray-500">Today, 10:30 AM</p>
                                     </div>
-                                    <p class="font-bold text-green-600">+₦5,000</p>
+                                    <p class="font-bold text-green-600">+22,000 RWF</p>
                                 </div>
                                 <div class="flex justify-between items-center py-3 border-b border-gray-200">
                                     <div>
                                         <p class="font-semibold text-gray-900 text-sm">Loan Payment</p>
                                         <p class="text-xs text-gray-500">Dec 26, 2:15 PM</p>
                                     </div>
-                                    <p class="font-bold text-red-600">-₦3,500</p>
+                                    <p class="font-bold text-red-600">-15,400 RWF</p>
                                 </div>
                                 <div class="flex justify-between items-center py-3 border-b border-gray-200">
                                     <div>
                                         <p class="font-semibold text-gray-900 text-sm">Interest Earned</p>
                                         <p class="text-xs text-gray-500">Dec 25, 9:00 AM</p>
                                     </div>
-                                    <p class="font-bold text-green-600">+₦245</p>
+                                    <p class="font-bold text-green-600">+1,080 RWF</p>
                                 </div>
                                 <div class="flex justify-between items-center py-3 border-b border-gray-200">
                                     <div>
                                         <p class="font-semibold text-gray-900 text-sm">Group Contribution</p>
                                         <p class="text-xs text-gray-500">Dec 24, 1:45 PM</p>
                                     </div>
-                                    <p class="font-bold text-red-600">-₦2,000</p>
+                                    <p class="font-bold text-red-600">-8,800 RWF</p>
                                 </div>
                             </div>
                         </div>

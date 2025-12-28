@@ -185,20 +185,20 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 text-gray-900">Amina Johnson</td>
-                                    <td class="px-6 py-4 font-semibold text-gray-900">₦85,500</td>
+                                    <td class="px-6 py-4 text-gray-900">Amina Nkurunziza</td>
+                                    <td class="px-6 py-4 font-semibold text-gray-900">376,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">34 months</td>
                                     <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">100%</span></td>
                                 </tr>
                                 <tr>
                                     <td class="px-6 py-4 text-gray-900">Grace Okafor</td>
-                                    <td class="px-6 py-4 font-semibold text-gray-900">₦78,200</td>
+                                    <td class="px-6 py-4 font-semibold text-gray-900">344,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">32 months</td>
                                     <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">100%</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 text-gray-900">Zainab Hassan</td>
-                                    <td class="px-6 py-4 font-semibold text-gray-900">₦72,900</td>
+                                    <td class="px-6 py-4 text-gray-900">Zainab Habimana</td>
+                                    <td class="px-6 py-4 font-semibold text-gray-900">320,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">30 months</td>
                                     <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">100%</span></td>
                                 </tr>

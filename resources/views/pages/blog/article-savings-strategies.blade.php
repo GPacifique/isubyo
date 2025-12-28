@@ -23,7 +23,7 @@
         <div class="flex items-center space-x-4 mb-12 pb-12 border-b border-gray-200">
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
             <div>
-                <p class="font-bold text-gray-900">Michael Okonkwo</p>
+                <p class="font-bold text-gray-900">Marc Mwizerwa</p>
                 <p class="text-gray-600">Financial Coach & Community Advocate</p>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-10">1. Set Clear, Achievable Targets</h2>
             <p class="text-gray-700 mb-6 leading-relaxed">
                 Before your group starts saving, establish specific, measurable goals. Instead of "save as much as possible,"
-                aim for "reach ₦1,000,000 in 18 months" or "each member contributes ₦5,000 monthly."
+                aim for "reach 500,000 RWF in 18 months" or "each member contributes 5,000 RWF monthly."
             </p>
             <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
                 <li>Break larger goals into quarterly milestones</li>
@@ -82,8 +82,8 @@
                 Regular financial literacy workshops help members see why higher savings rates matter.
             </p>
             <p class="text-gray-700 mb-6 leading-relaxed">
-                Use real examples: "If 50 members each save ₦10,000 monthly for 2 years, your group will have ₦12,000,000
-                before any interest. With 6% interest, that becomes ₦12,720,000!"
+                Use real examples: "If 50 members each save 10,000 RWF monthly for 2 years, your group will have 12,000,000 RWF
+                before any interest. With 6% interest, that becomes 12,720,000 RWF!"
             </p>
 
             <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-10">Conclusion</h2>

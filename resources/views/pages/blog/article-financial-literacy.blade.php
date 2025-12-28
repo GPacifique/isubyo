@@ -23,7 +23,7 @@
         <div class="flex items-center space-x-4 mb-12 pb-12 border-b border-gray-200">
             <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full"></div>
             <div>
-                <p class="font-bold text-gray-900">Patricia Okonkwo</p>
+                <p class="font-bold text-gray-900">Rosette Karangwa</p>
                 <p class="text-gray-600">Financial Education Expert & Curriculum Developer</p>
             </div>
         </div>

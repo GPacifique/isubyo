@@ -50,7 +50,7 @@
                 <strong>Target:</strong> 100%+ (exceeding your target is even better)
             </p>
             <p class="text-gray-700 mb-6 leading-relaxed">
-                <strong>Example:</strong> If your group targeted ₦1,000,000 in 12 months and achieved ₦850,000, your savings rate is 85%.
+                <strong>Example:</strong> If your group targeted 500,000 RWF in 12 months and achieved 425,000 RWF, your savings rate is 85%.
             </p>
 
             <h3 class="text-2xl font-bold text-gray-900 mb-4 mt-8">2. Member Participation Rate</h3>
@@ -130,7 +130,7 @@
                 Metrics are only useful if you act on them. Here's how:
             </p>
             <ul class="list-disc list-inside space-y-3 text-gray-700 mb-6">
-                <li><strong>Low Savings Rate?</strong> Review your contribution level. Is ₦5,000 monthly realistic for most members? Consider reducing it.</li>
+                <li><strong>Low Savings Rate?</strong> Review your contribution level. Is 5,000 RWF monthly realistic for most members? Consider reducing it.</li>
                 <li><strong>Low Participation?</strong> Reach out to inactive members. Are they facing challenges? Can the group help?</li>
                 <li><strong>High Default Rate?</strong> Your loan approval process is too lenient. Tighten eligibility criteria and require collateral.</li>
                 <li><strong>Low ROI?</strong> You're not lending enough. Consider adjusting interest rates or increasing loan amounts available.</li>
@@ -143,7 +143,7 @@
             <ul class="list-disc list-inside space-y-3 text-gray-700 mb-6">
                 <li>Use simple language, not jargon</li>
                 <li>Show charts or visuals (even hand-drawn ones help)</li>
-                <li>Celebrate progress: "We're 78% toward our ₦2M goal!"</li>
+                <li>Celebrate progress: "We're 78% toward our 1.5M RWF goal!"</li>
                 <li>Explain the implications: "Our 3% loan default rate is excellent and means we're careful about who we lend to"</li>
                 <li>Invite feedback: "Does this metric concern you? Let's discuss how to improve it"</li>
             </ul>
@@ -173,7 +173,7 @@
                     <div class="w-24 h-24 bg-gradient-to-br from-red-400 to-rose-500 rounded-lg flex-shrink-0"></div>
                     <div>
                         <h4 class="font-semibold text-gray-900 mb-1">Lagos Women's Group Story</h4>
-                        <p class="text-sm text-gray-600">How they built ₦5M in savings</p>
+                        <p class="text-sm text-gray-600">How they built 4M RWF in savings</p>
                     </div>
                 </div>
             </div>

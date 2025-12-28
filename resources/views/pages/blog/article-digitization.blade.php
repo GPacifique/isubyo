@@ -23,7 +23,7 @@
         <div class="flex items-center space-x-4 mb-12 pb-12 border-b border-gray-200">
             <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-full"></div>
             <div>
-                <p class="font-bold text-gray-900">Ibrahim Hassan</p>
+                <p class="font-bold text-gray-900">Jean Baptiste Habimana</p>
                 <p class="text-gray-600">Technology Adoption & Digital Transformation Coach</p>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'How a Lagos Women\'s Group Built ₦5M Savings - isubyo Blog')
+@section('title', 'How a Kigali Women\'s Group Built 4M RWF Savings - isubyo Blog')
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
@@ -13,7 +13,7 @@
                 <span class="text-red-100">•</span>
                 <span class="text-red-100">8 min read</span>
             </div>
-            <h1 class="text-5xl font-bold mb-4">How a Lagos Women's Group Built ₦5M Savings Fund in 18 Months</h1>
+            <h1 class="text-5xl font-bold mb-4">How a Kigali Women's Group Built 4M RWF Savings Fund in 18 Months</h1>
             <p class="text-red-100 text-lg">An inspiring case study of 45 women who transformed their financial futures through disciplined saving.</p>
         </div>
     </div>
@@ -32,8 +32,8 @@
         <article class="prose prose-lg max-w-none mb-12">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">The Beginning: A Vision Shared</h2>
             <p class="text-gray-700 mb-6 leading-relaxed">
-                In January 2023, 45 women from Yaba, Lagos came together with a bold vision: to collectively save ₦5,000,000
-                in 18 months. Most were petty traders, market women, and small business owners earning between ₦20,000-₦100,000 monthly.
+                In January 2023, 45 women from Kigali came together with a bold vision: to collectively save 4,000,000 RWF
+                in 18 months. Most were petty traders, market women, and small business owners earning between 200,000-1,000,000 RWF monthly.
                 Many had never participated in formal savings before. Yet they believed that together, they could achieve what seemed impossible individually.
             </p>
             <p class="text-gray-700 mb-6 leading-relaxed">
@@ -48,15 +48,15 @@
                 <ul class="space-y-3">
                     <li className="flex items-start">
                         <span className="font-bold text-red-600 mr-3">Target:</span>
-                        <span>₦5,000,000 in 18 months</span>
+                        <span>4,000,000 RWF in 18 months</span>
                     </li>
                     <li className="flex items-start">
                         <span className="font-bold text-red-600 mr-3">Monthly:</span>
-                        <span>₦277,778 (about ₦6,173 per person weekly)</span>
+                        <span>222,222 RWF (about 4,938 RWF per person weekly)</span>
                     </li>
                     <li className="flex items-start">
                         <span className="font-bold text-red-600 mr-3">Weekly:</span>
-                        <span>Each of 45 members saves ₦2,500 minimum</span>
+                        <span>Each of 45 members saves 2,000 RWF minimum</span>
                     </li>
                     <li className="flex items-start">
                         <span className="font-bold text-red-600 mr-3">Extra:</span>
@@ -95,8 +95,8 @@
                 While the group was supportive, they also enforced rules fairly:
             </p>
             <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
-                <li>Missing one week: ₦500 fine</li>
-                <li>Missing two consecutive weeks: ₦1,000 fine + meeting with committee</li>
+                <li>Missing one week: 500 RWF fine</li>
+                <li>Missing two consecutive weeks: 1,000 RWF fine + meeting with committee</li>
                 <li>Missing three weeks: Suspension pending review</li>
             </ul>
             <p class="text-gray-700 mb-6 leading-relaxed">
@@ -113,7 +113,7 @@
 
             <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-10">The Results: Beyond the Money</h2>
             <p class="text-gray-700 mb-6 leading-relaxed">
-                By June 2024 (18 months later), the group had achieved ₦5,200,000. But the real impact went far beyond the numbers:
+                By June 2024 (18 months later), the group had achieved 4,150,000 RWF. But the real impact went far beyond the numbers:
             </p>
             <div class="bg-rose-50 p-6 rounded-lg mb-6">
                 <h4 className="font-bold text-gray-900 mb-4">Impact Statistics:</h4>
@@ -156,10 +156,10 @@
 
             <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-10">The Future</h2>
             <p class="text-gray-700 mb-6 leading-relaxed">
-                The Yaba Women's Group didn't stop at ₦5M. They've since:
+                The Kigali Women's Group didn't stop at 4M. They've since:
             </p>
             <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
-                <li>Started a second savings cycle targeting ₦10M</li>
+                <li>Started a second savings cycle targeting 8M RWF</li>
                 <li>Created a mentorship program for newer groups</li>
                 <li>Partnered with a microfinance bank for larger loans</li>
                 <li>Established a scholarship fund for members' children</li>
@@ -168,7 +168,7 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-10">Conclusion</h2>
             <p class="text-gray-700 mb-6 leading-relaxed">
                 The Yaba Women's Group proves what's possible when women come together with a vision, clear strategies,
-                and unwavering commitment. ₦5 million wasn't built overnight—it was built ₦2,500 at a time, week after week,
+                and unwavering commitment. 4 million RWF wasn't built overnight—it was built 2,000 RWF at a time, week after week,
                 by women who believed in themselves and each other.
             </p>
             <p class="text-gray-700 leading-relaxed">

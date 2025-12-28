@@ -119,22 +119,22 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 text-gray-900">Amina Johnson</td>
-                                    <td class="px-6 py-4 text-gray-700">₦50,000</td>
+                                    <td class="px-6 py-4 text-gray-900">Amina Nkurunziza</td>
+                                    <td class="px-6 py-4 text-gray-700">220,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">12 months</td>
                                     <td class="px-6 py-4"><span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span></td>
                                     <td class="px-6 py-4"><button class="text-indigo-600 hover:text-indigo-700 font-semibold text-xs">Review</button></td>
                                 </tr>
                                 <tr>
                                     <td class="px-6 py-4 text-gray-900">Grace Okafor</td>
-                                    <td class="px-6 py-4 text-gray-700">₦75,000</td>
+                                    <td class="px-6 py-4 text-gray-700">330,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">18 months</td>
                                     <td class="px-6 py-4"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Approved</span></td>
                                     <td class="px-6 py-4"><button class="text-indigo-600 hover:text-indigo-700 font-semibold text-xs">View</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 text-gray-900">Zainab Hassan</td>
-                                    <td class="px-6 py-4 text-gray-700">₦40,000</td>
+                                    <td class="px-6 py-4 text-gray-900">Zainab Habimana</td>
+                                    <td class="px-6 py-4 text-gray-700">176,000 RWF</td>
                                     <td class="px-6 py-4 text-gray-700">12 months</td>
                                     <td class="px-6 py-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Active</span></td>
                                     <td class="px-6 py-4"><button class="text-indigo-600 hover:text-indigo-700 font-semibold text-xs">Manage</button></td>

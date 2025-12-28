@@ -23,7 +23,7 @@
         <div class="flex items-center space-x-4 mb-12 pb-12 border-b border-gray-200">
             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full"></div>
             <div>
-                <p class="font-bold text-gray-900">Dr. Amara Mensah</p>
+                <p class="font-bold text-gray-900">Dr. Ange Mukangire</p>
                 <p class="text-gray-600">Microfinance Specialist & Group Finance Consultant</p>
             </div>
         </div>

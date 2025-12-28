@@ -70,7 +70,7 @@
                 <div class="p-8 bg-gray-50">
                     <!-- Dashboard Header -->
                     <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome, John Doe</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome, Jean Pierre</h3>
                         <p class="text-gray-600">December 27, 2025</p>
                     </div>
 
@@ -78,13 +78,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Total Savings</p>
-                            <p class="text-2xl font-bold text-green-600 mt-2">₦125,400</p>
+                            <p class="text-2xl font-bold text-green-600 mt-2">550,000 RWF</p>
                             <p class="text-xs text-gray-500 mt-1">+2.5% this month</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Active Loans</p>
                             <p class="text-2xl font-bold text-blue-600 mt-2">3</p>
-                            <p class="text-xs text-gray-500 mt-1">₦45,000 outstanding</p>
+                            <p class="text-xs text-gray-500 mt-1">200,000 RWF outstanding</p>
                         </div>
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Groups</p>
@@ -94,7 +94,7 @@
                         <div class="bg-white rounded-lg p-4 border border-gray-200">
                             <p class="text-gray-500 text-sm font-medium">Next Payment</p>
                             <p class="text-2xl font-bold text-amber-600 mt-2">Dec 31</p>
-                            <p class="text-xs text-gray-500 mt-1">₦15,000 due</p>
+                            <p class="text-xs text-gray-500 mt-1">65,000 RWF due</p>
                         </div>
                     </div>
 
@@ -123,11 +123,11 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 text-sm">Interest Earned</span>
-                                    <span class="text-green-600 font-semibold">+₦245</span>
+                                    <span class="text-green-600 font-semibold">+1,080 RWF</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-600 text-sm">Group Contribution</span>
-                                    <span class="text-red-600 font-semibold">-₦2,000</span>
+                                    <span class="text-red-600 font-semibold">-8,800 RWF</span>
                                 </div>
                             </div>
                         </div>
