@@ -36,5 +36,8 @@
                 @endisset
             </main>
         </div>
+
+        @yield('chat-widget')
+        @yield('scripts')
     </body>
 </html>

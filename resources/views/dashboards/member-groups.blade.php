@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Groups')
+@section('title', 'Amatsinda Yanjye')
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
@@ -9,11 +9,11 @@
         <div class="max-w-7xl mx-auto py-6 px-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900">My Groups</h1>
-                    <p class="text-gray-600 mt-2">View all groups you belong to</p>
+                    <h1 class="text-3xl font-bold text-gray-900">Amatsinda Yanjye</h1>
+                    <p class="text-gray-600 mt-2">Reba amatsinda yose uri muri yo</p>
                 </div>
                 <a href="{{ route('member.dashboard') }}" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
-                    ← Back to Dashboard
+                    ← Subira ku Kibaho
                 </a>
             </div>
         </div>
@@ -27,27 +27,27 @@
                     <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-6">
                         <div class="mb-4">
                             <h3 class="text-lg font-bold text-gray-900">{{ $group->name }}</h3>
-                            <p class="text-sm text-gray-600 mt-1">{{ $group->description ?? 'No description' }}</p>
+                            <p class="text-sm text-gray-600 mt-1">{{ $group->description ?? 'Nta bisobanuro' }}</p>
                         </div>
 
                         <div class="space-y-3 border-t pt-4">
                             <div>
-                                <p class="text-xs text-gray-500 uppercase font-semibold">Members</p>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Abanyamuryango</p>
                                 <p class="text-xl font-bold text-blue-600">{{ $group->members_count ?? 0 }}</p>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase font-semibold">Your Role</p>
-                                <p class="text-sm font-semibold text-gray-900 capitalize">{{ $group->pivot->role ?? 'member' }}</p>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Umurimo Wawe</p>
+                                <p class="text-sm font-semibold text-gray-900 capitalize">{{ $group->pivot->role ?? 'umunyamuryango' }}</p>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase font-semibold">Member Status</p>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Imiterere y'Ubunyamuryango</p>
                                 <span class="px-2 py-1 rounded text-xs font-bold {{ $group->pivot->status === 'active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                    {{ ucfirst($group->pivot->status ?? 'active') }}
+                                    {{ $group->pivot->status === 'active' ? 'Iracyakora' : ucfirst($group->pivot->status ?? 'active') }}
                                 </span>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase font-semibold">Joined</p>
-                                <p class="text-sm text-gray-600">{{ $group->pivot->created_at ? \Carbon\Carbon::parse($group->pivot->created_at)->format('M d, Y') : 'N/A' }}</p>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Ninjiye</p>
+                                <p class="text-sm text-gray-600">{{ $group->pivot->created_at ? \Carbon\Carbon::parse($group->pivot->created_at)->format('M d, Y') : 'Ntabwo Bihari' }}</p>
                             </div>
                         </div>
                     </div>
@@ -60,9 +60,9 @@
             </div>
         @else
             <div class="bg-white rounded-lg shadow p-12 text-center">
-                <p class="text-gray-500 text-lg mb-4">You haven't joined any groups yet.</p>
+                <p class="text-gray-500 text-lg mb-4">Nturajya mu itsinda na rimwe.</p>
                 <a href="{{ route('admin.groups.index') }}" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
-                    Browse Groups
+                    Shakisha Amatsinda
                 </a>
             </div>
         @endif

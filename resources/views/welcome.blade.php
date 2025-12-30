@@ -26,7 +26,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('images/isubyo.svg') }}" alt="isubyo Logo" class="h-10 w-10">
+                    <img src="{{ asset('images/isubyo.svg') }}" alt="Ikirango cya isubyo" class="h-10 w-10">
                     <span class="text-xl font-bold text-gray-900">isubyo</span>
                 </div>
 

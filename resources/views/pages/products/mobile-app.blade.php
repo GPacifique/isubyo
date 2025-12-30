@@ -49,10 +49,10 @@
                 </ul>
                 <div class="flex gap-4">
                     <a href="#" class="inline-block">
-                        <img src="https://via.placeholder.com/150x45?text=App+Store" alt="Download on App Store" class="h-12">
+                        <img src="https://via.placeholder.com/150x45?text=App+Store" alt="Pakurura kuri App Store" class="h-12">
                     </a>
                     <a href="#" class="inline-block">
-                        <img src="https://via.placeholder.com/150x45?text=Google+Play" alt="Get it on Google Play" class="h-12">
+                        <img src="https://via.placeholder.com/150x45?text=Google+Play" alt="Ifate kuri Google Play" class="h-12">
                     </a>
                 </div>
             </div>

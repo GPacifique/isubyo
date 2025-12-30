@@ -420,3 +420,80 @@
     </div>
 </div>
 @endsection
+
+@section('chat-widget')
+<!-- Floating Chat Support Widget -->
+<div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+    <!-- Chat Button -->
+    <a href="{{ route('chat.show') }}"
+       class="group flex items-center justify-center w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 animate-pulse hover:animate-none"
+       title="Ubufasha bwo Kuganira">
+        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+        <!-- Tooltip -->
+        <span class="absolute right-16 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+            💬 Ubufasha bwo Kuganira
+        </span>
+    </a>
+    <!-- Notification Badge -->
+    <span class="absolute -top-1 -right-1 flex h-4 w-4">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
+    </span>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    // Member Dashboard Switcher
+    document.addEventListener('DOMContentLoaded', function() {
+        const memberSwitcherBtn = document.getElementById('member-switcher-btn');
+        const memberSwitcherMenu = document.getElementById('member-switcher-menu');
+        const memberSwitcherChevron = document.getElementById('member-switcher-chevron');
+
+        if (memberSwitcherBtn && memberSwitcherMenu) {
+            memberSwitcherBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                memberSwitcherMenu.classList.toggle('hidden');
+                if (memberSwitcherChevron) {
+                    memberSwitcherChevron.style.transform = memberSwitcherMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
+            });
+
+            // Close menu when clicking on links
+            const memberSwitcherLinks = memberSwitcherMenu.querySelectorAll('a');
+            memberSwitcherLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    memberSwitcherMenu.classList.add('hidden');
+                    if (memberSwitcherChevron) {
+                        memberSwitcherChevron.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = memberSwitcherMenu.contains(event.target);
+                const isClickInsideButton = memberSwitcherBtn.contains(event.target);
+                if (!isClickInsideMenu && !isClickInsideButton) {
+                    memberSwitcherMenu.classList.add('hidden');
+                    if (memberSwitcherChevron) {
+                        memberSwitcherChevron.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    memberSwitcherMenu.classList.add('hidden');
+                    if (memberSwitcherChevron) {
+                        memberSwitcherChevron.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+        }
+    });
+</script>
+@endsection
