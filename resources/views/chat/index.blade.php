@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
-@section('title', 'Live Chat Support')
+@section('title', 'Ubufasha bwo Kuganira')
 
 @section('content')
 <div class="container mx-auto py-8 px-4">
     <div class="max-w-2xl mx-auto">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Support Chat</h1>
-            <p class="text-gray-600">Get help from our support team</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Kuganira n'Ubufasha</h1>
+            <p class="text-gray-600">Bona ubufasha ku bakozi bacu</p>
         </div>
 
         @if($chat && $chat->status !== 'closed')
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-900">Chat Session</h2>
-                        <p class="text-sm text-gray-600">Started {{ $chat->created_at->diffForHumans() }}</p>
+                        <h2 class="text-xl font-semibold text-gray-900">Ibiganiro</h2>
+                        <p class="text-sm text-gray-600">Byatangiye {{ $chat->created_at->diffForHumans() }}</p>
                     </div>
                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                        {{ ucfirst($chat->status) }}
+                        {{ $chat->status === 'open' ? 'Birakinguye' : ($chat->status === 'closed' ? 'Byarafunze' : ucfirst($chat->status)) }}
                     </span>
                 </div>
 
@@ -33,39 +33,39 @@
                             </p>
                         </div>
                     @empty
-                        <p class="text-gray-500 text-center py-8">No messages yet</p>
+                        <p class="text-gray-500 text-center py-8">Nta butumwa buriho</p>
                     @endforelse
                 </div>
 
                 <form id="messageForm" class="flex gap-2">
                     @csrf
-                    <input type="text" id="messageInput" name="message" placeholder="Type your message..." 
+                    <input type="text" id="messageInput" name="message" placeholder="Andika ubutumwa bwawe..."
                            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                            required minlength="1" maxlength="1000">
                     <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
-                        Send
+                        Ohereza
                     </button>
                 </form>
 
                 <div class="mt-4">
                     <form action="{{ route('chat.close', $chat->id) }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="return confirm('Are you sure you want to close this chat?')">
-                            Close Chat
+                        <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="return confirm('Uremeza ko ushaka gufunga ibiganiro?')">
+                            Funga Ibiganiro
                         </button>
                     </form>
                 </div>
             </div>
         @else
             <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Start a New Chat</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Tangira Ikiganiro Gishya</h2>
 
                 <form action="{{ route('chat.start') }}" method="POST" class="space-y-4">
                     @csrf
 
                     @unless(auth()->check())
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Izina</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                             @error('name')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Imeli</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                             @error('email')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -82,24 +82,24 @@
                     @endunless
 
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required minlength="5" maxlength="1000" placeholder="Please describe your issue..."></textarea>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Ubutumwa</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required minlength="5" maxlength="1000" placeholder="Sobanura ikibazo cyawe..."></textarea>
                         @error('message')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <button type="submit" class="w-full px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold">
-                        Start Chat
+                        Tangira Ikiganiro
                     </button>
                 </form>
 
                 <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h3 class="font-semibold text-blue-900 mb-2">💡 Support Information</h3>
+                    <h3 class="font-semibold text-blue-900 mb-2">💡 Amakuru y'Ubufasha</h3>
                     <ul class="text-sm text-blue-800 space-y-1">
-                        <li>✓ Average response time: 2-5 minutes</li>
-                        <li>✓ Support hours: Mon - Fri, 9 AM - 6 PM</li>
-                        <li>✓ All chats are recorded for quality assurance</li>
+                        <li>✓ Igihe cyo gusubiza: iminota 2-5</li>
+                        <li>✓ Amasaha y'ubufasha: Kuwa Mbere - Kuwa Gatanu, 9h00 - 18h00</li>
+                        <li>✓ Ibiganiro byose byandikwa ku bw'ubwizerwe bw'ibikorwa</li>
                     </ul>
                 </div>
             </div>
@@ -107,8 +107,8 @@
             @if($chat && $chat->status === 'closed')
                 <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                     <p class="text-yellow-800">
-                        <strong>Chat Closed:</strong> Your previous chat was closed on {{ $chat->closed_at?->format('M d, Y H:i') }}.
-                        Feel free to start a new chat if you need further assistance.
+                        <strong>Ikiganiro Cyarafunze:</strong> Ikiganiro cyawe cy'ubushize cyafunzwe ku itariki {{ $chat->closed_at?->format('M d, Y H:i') }}.
+                        Ushobora gutangira ikiganiro gishya niba ukeneye ubufasha bundi.
                     </p>
                 </div>
             @endif
@@ -126,7 +126,7 @@
     // Send message
     messageForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const message = messageInput.value;
         if (!message.trim()) return;
 
@@ -147,7 +147,7 @@
             }
         } catch (error) {
             console.error('Error sending message:', error);
-            alert('Failed to send message. Please try again.');
+            alert('Ntibishoboye kohereza ubutumwa. Nyamuneka ongera ugerageze.');
         }
     });
 
@@ -160,7 +160,7 @@
                 messagesContainer.innerHTML = '';
 
                 if (messages.length === 0) {
-                    messagesContainer.innerHTML = '<p class="text-gray-500 text-center py-8">No messages yet</p>';
+                    messagesContainer.innerHTML = '<p class="text-gray-500 text-center py-8">Nta butumwa buriho</p>';
                     return;
                 }
 

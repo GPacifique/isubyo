@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Record Savings - ' . $group->name)
+@section('title', 'Kwandika Ubwizigame - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-green-600 to-green-800 text-white shadow">
         <div class="max-w-4xl mx-auto py-8 px-4">
-            <h1 class="text-3xl font-bold">Record Savings Deposit</h1>
+            <h1 class="text-3xl font-bold">Kwandika Ubwizigame</h1>
             <p class="text-green-100 mt-2">{{ $group->name }}</p>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Back to Dashboard
+                Subira ku Kibaho
             </a>
         </div>
 
@@ -31,11 +31,11 @@
                 <!-- Member Selection -->
                 <div>
                     <label for="member_id" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Member
+                        Umunyamuryango
                         <span class="text-red-600">*</span>
                     </label>
                     <select name="member_id" id="member_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('member_id') border-red-500 @enderror">
-                        <option value="">-- Select Member --</option>
+                        <option value="">-- Hitamo Umunyamuryango --</option>
                         @foreach($members as $member)
                             <option value="{{ $member->id }}" {{ old('member_id') == $member->id ? 'selected' : '' }}>
                                 {{ $member->user->name }} ({{ $member->user->email }})
@@ -50,7 +50,7 @@
                 <!-- Amount -->
                 <div>
                     <label for="amount" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Amount
+                        Amafaranga
                         <span class="text-red-600">*</span>
                     </label>
                     <div class="relative">
@@ -68,7 +68,7 @@
                 <!-- Transaction Date -->
                 <div>
                     <label for="transaction_date" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Transaction Date
+                        Itariki y'Igikorwa
                     </label>
                     <input type="date" name="transaction_date" id="transaction_date"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('transaction_date') border-red-500 @enderror"
@@ -81,11 +81,11 @@
                 <!-- Description -->
                 <div>
                     <label for="description" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Notes
+                        Ibisobanuro
                     </label>
                     <textarea name="description" id="description" rows="4"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('description') border-red-500 @enderror"
-                        placeholder="Optional notes about this savings deposit...">{{ old('description') }}</textarea>
+                        placeholder="Ibisobanuro ku bwizigame (Ntibisabwa)...">{{ old('description') }}</textarea>
                     @error('description')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -97,13 +97,13 @@
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
-                        Record Savings
+                        Andika Ubwizigame
                     </button>
                     <a href="{{ route('group-admin.dashboard') }}" class="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
-                        Cancel
+                        Hagarika
                     </a>
                 </div>
             </form>
@@ -111,13 +111,13 @@
 
         <!-- Info Box -->
         <div class="mt-8 bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-blue-900 mb-2">ℹ️ How to Record Savings</h3>
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">ℹ️ Uko Wandika Ubwizigame</h3>
             <ul class="text-blue-800 space-y-2 text-sm">
-                <li>• Select the member who is making the savings deposit</li>
-                <li>• Enter the amount being deposited in RWF</li>
-                <li>• Use the transaction date to record when the deposit was made</li>
-                <li>• Add any notes about the deposit in the Notes field (optional)</li>
-                <li>• Click "Record Savings" to confirm and save the transaction</li>
+                <li>• Hitamo umunyamuryango uri gushyira ubwizigame</li>
+                <li>• Andika amafaranga ashyizwe mu RWF</li>
+                <li>• Koresha itariki y'igikorwa kugirango wandike igihe ubwizigame bwashyizweho</li>
+                <li>• Ongeraho ibisobanuro byihariye (Ntibisabwa)</li>
+                <li>• Kanda "Andika Ubwizigame" kugirango wemeze</li>
             </ul>
         </div>
     </div>

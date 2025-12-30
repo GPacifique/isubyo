@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Chat Support')
+@section('title', 'Ubufasha bwo Kuganira')
 
 @section('content')
 <div class="container mx-auto py-8 px-4">
@@ -8,11 +8,11 @@
         <div class="bg-white rounded-lg shadow-lg">
             <div class="flex items-center justify-between border-b border-gray-200 p-6">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900">Chat Support</h1>
-                    <p class="text-sm text-gray-600 mt-1">Session {{ $chat->id }} • Started {{ $chat->created_at->format('M d, Y H:i') }}</p>
+                    <h1 class="text-2xl font-bold text-gray-900">Ubufasha bwo Kuganira</h1>
+                    <p class="text-sm text-gray-600 mt-1">Ikiganiro {{ $chat->id }} • Cyatangiye {{ $chat->created_at->format('M d, Y H:i') }}</p>
                 </div>
                 <span class="px-4 py-2 rounded-full text-sm font-semibold {{ $chat->status === 'closed' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800' }}">
-                    {{ ucfirst($chat->status) }}
+                    {{ $chat->status === 'open' ? 'Birakinguye' : ($chat->status === 'closed' ? 'Byarafunze' : ucfirst($chat->status)) }}
                 </span>
             </div>
 
@@ -28,23 +28,23 @@
                             </p>
                         </div>
                     @empty
-                        <p class="text-gray-500 text-center py-12">No messages yet. Start the conversation!</p>
+                        <p class="text-gray-500 text-center py-12">Nta butumwa buriho. Tangira ikiganiro!</p>
                     @endforelse
                 </div>
 
                 @if($chat->status !== 'closed')
                     <form id="messageForm" class="flex gap-2 mb-4">
                         @csrf
-                        <input type="text" id="messageInput" name="message" placeholder="Type your message..." 
+                        <input type="text" id="messageInput" name="message" placeholder="Andika ubutumwa bwawe..."
                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                required minlength="1" maxlength="1000" autocomplete="off">
                         <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
-                            Send
+                            Ohereza
                         </button>
                     </form>
                 @else
                     <div class="p-4 bg-red-50 border border-red-200 rounded-lg mb-4">
-                        <p class="text-red-800">This chat has been closed. <a href="{{ route('chat.show') }}" class="underline font-semibold">Start a new chat</a></p>
+                        <p class="text-red-800">Iki kiganiro cyarafunze. <a href="{{ route('chat.show') }}" class="underline font-semibold">Tangira ikiganiro gishya</a></p>
                     </div>
                 @endif
             </div>
@@ -61,7 +61,7 @@
     @if($chat->status !== 'closed')
         messageForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const messageInput = document.getElementById('messageInput');
             const message = messageInput.value.trim();
             if (!message) return;
@@ -94,7 +94,7 @@
                 messagesContainer.innerHTML = '';
 
                 if (messages.length === 0) {
-                    messagesContainer.innerHTML = '<p class="text-gray-500 text-center py-12">No messages yet</p>';
+                    messagesContainer.innerHTML = '<p class="text-gray-500 text-center py-12">Nta butumwa buriho</p>';
                     return;
                 }
 

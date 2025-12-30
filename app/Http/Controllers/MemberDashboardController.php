@@ -8,6 +8,7 @@ use App\Models\Saving;
 use App\Models\Transaction;
 use App\Models\SocialSupport;
 use App\Notifications\LoanPaymentRecordedNotification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MemberDashboardController extends Controller
