@@ -26,7 +26,7 @@
                     @endphp
 
                     @if($canAccessGroupAdmin)
-                        <div class="border-l border-green-300 pl-4">
+                        <div class="border-l border-green-300 pl-4 relative">
                             <button id="admin-switcher-btn" class="flex items-center gap-2 hover:text-green-200 transition text-sm font-medium">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
@@ -38,7 +38,7 @@
                                 </svg>
                             </button>
 
-                            <div id="admin-switcher-menu" class="absolute right-4 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
+                            <div id="admin-switcher-menu" class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
                                 <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
                                     <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
                                 </div>
