@@ -8,11 +8,15 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\SocialSupportController;
 use App\Http\Controllers\LoanRequestController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Language Switcher Route
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 // Chat Routes (accessible to all, with middleware on specific actions)
 Route::prefix('chat')->name('chat.')->group(function () {
