@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/switch-group/{group}', [GroupAdminDashboardController::class, 'switchGroup'])->name('switch-group');
         Route::get('/groups/{group}/loans', [GroupAdminDashboardController::class, 'loans'])->name('loans');
         Route::get('/groups/{group}/savings', [GroupAdminDashboardController::class, 'savings'])->name('savings');
+        Route::get('/groups/{group}/savings/{saving}/history', [GroupAdminDashboardController::class, 'savingsHistory'])->name('savings.history');
         Route::get('/groups/{group}/members', [GroupAdminDashboardController::class, 'members'])->name('members');
         Route::get('/groups/{group}/members/create', [GroupAdminDashboardController::class, 'createMember'])->name('members.create');
         Route::post('/groups/{group}/members', [GroupAdminDashboardController::class, 'storeMember'])->name('members.store');

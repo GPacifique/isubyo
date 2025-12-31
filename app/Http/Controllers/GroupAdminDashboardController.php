@@ -203,6 +203,26 @@ class GroupAdminDashboardController extends Controller
     }
 
     /**
+     * Show savings history for a member
+     */
+    public function savingsHistory(Group $group, Saving $saving)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        // Verify saving belongs to the group
+        if ($saving->group_id !== $group->id) {
+            abort(403);
+        }
+
+        // Get transaction history
+        $transactions = Transaction::where('saving_id', $saving->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
+        return view('dashboards.group-savings-history', compact('group', 'saving', 'transactions'));
+    }
+
+    /**
      * Show group members management
      */
     public function members(Group $group)

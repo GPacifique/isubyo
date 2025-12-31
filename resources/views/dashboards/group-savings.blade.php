@@ -72,7 +72,7 @@
                     </thead>
                     <tbody class="divide-y">
                         @forelse($savings as $saving)
-                            <tr class="hover:bg-gray-50 transition">
+                            <tr class="hover:bg-blue-50 transition cursor-pointer" onclick="window.location.href='{{ route('group-admin.savings.history', [$group, $saving]) }}'">
                                 <td class="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{{ $saving->member->user->name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">{{ number_format($saving->current_balance, 2) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ number_format($saving->total_deposits, 2) }}</td>
