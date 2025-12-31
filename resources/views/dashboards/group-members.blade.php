@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Group Members - ' . $group->name)
+@section('title', 'Abanyamuryango - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow">
         <div class="max-w-6xl mx-auto py-8 px-4">
-            <h1 class="text-3xl font-bold">Group Members</h1>
+            <h1 class="text-3xl font-bold">Abanyamuryango</h1>
             <p class="text-purple-100 mt-2">{{ $group->name }}</p>
         </div>
     </div>
@@ -19,13 +19,13 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Back to Dashboard
+                Subira ku Kibaho
             </a>
             <a href="{{ route('group-admin.members.create', $group) }}" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Add Member
+                Ongeraho Umunyamuryango
             </a>
         </div>
 
@@ -36,18 +36,18 @@
                     type="text"
                     name="search"
                     value="{{ request('search') }}"
-                    placeholder="Search by member name or email..."
+                    placeholder="Shakisha umunyamuryango ku izina cyangwa imeyili..."
                     class="flex-1 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
                 <button
                     type="submit"
                     class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
                 >
-                    Search
+                    Shakisha
                 </button>
                 @if(request('search'))
                     <a href="{{ route('group-admin.members', $group) }}" class="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition">
-                        Clear
+                        Siba
                     </a>
                 @endif
             </form>
@@ -56,17 +56,17 @@
         <!-- Members Table -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-bold text-gray-900">All Members</h2>
+                <h2 class="text-xl font-bold text-gray-900">Abanyamuryango Bose</h2>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-blue-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Name</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Role</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Joined</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Izina</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Imeyili</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Uruhare</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Imimerere</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Yinjiye</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y">
@@ -89,7 +89,7 @@
                         @empty
                             <tr>
                                 <td colspan="5" class="px-6 py-8 text-center text-gray-500">
-                                    No members found
+                                    Nta munyamuryango ubonetse
                                 </td>
                             </tr>
                         @endforelse

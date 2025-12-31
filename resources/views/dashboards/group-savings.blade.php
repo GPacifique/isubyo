@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Group Savings - ' . $group->name)
+@section('title', 'Imitungo y\'Itsinda - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-green-600 to-green-800 text-white shadow">
         <div class="max-w-6xl mx-auto py-8 px-4">
-            <h1 class="text-3xl font-bold">Group Savings</h1>
+            <h1 class="text-3xl font-bold">Imitungo y'Itsinda</h1>
             <p class="text-green-100 mt-2">{{ $group->name }}</p>
         </div>
     </div>
@@ -19,13 +19,13 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Back to Dashboard
+                Subira ku Kibaho
             </a>
             <a href="{{ route('group-admin.record-savings', $group) }}" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Record Savings
+                Andika Imitungo
             </a>
         </div>
 
@@ -36,18 +36,18 @@
                     type="text"
                     name="search"
                     value="{{ request('search') }}"
-                    placeholder="Search by member name or email..."
+                    placeholder="Shakisha ku izina cyangwa imeyili..."
                     class="flex-1 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
                 <button
                     type="submit"
                     class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
                 >
-                    Search
+                    Shakisha
                 </button>
                 @if(request('search'))
                     <a href="{{ route('group-admin.savings', $group) }}" class="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition">
-                        Clear
+                        Siba
                     </a>
                 @endif
             </form>
@@ -56,18 +56,18 @@
         <!-- Savings Table -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-bold text-gray-900">All Savings Accounts</h2>
+                <h2 class="text-xl font-bold text-gray-900">Konti z'Imitungo Zose</h2>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-blue-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Member</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Current Balance</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Total Deposits</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Total Withdrawn</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Interest Earned</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Last Updated</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Umunyamuryango</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Umutungo Uriho</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Imitungo Yose</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Byakuwe Byose</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Inyungu Yakuwe</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Byahinduwe</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y">
@@ -83,7 +83,7 @@
                         @empty
                             <tr>
                                 <td colspan="6" class="px-6 py-8 text-center text-gray-500">
-                                    No savings accounts found
+                                    Nta konti z'imitungo zabonetse
                                 </td>
                             </tr>
                         @endforelse

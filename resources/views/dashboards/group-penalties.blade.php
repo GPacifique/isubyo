@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Group Penalties - ' . $group->name)
+@section('title', 'Ibihano by\'Itsinda - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-red-600 to-red-800 text-white shadow">
         <div class="max-w-6xl mx-auto py-8 px-4">
-            <h1 class="text-3xl font-bold">Manage Penalties</h1>
+            <h1 class="text-3xl font-bold">Gucunga Ibihano</h1>
             <p class="text-red-100 mt-2">{{ $group->name }}</p>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Back to Dashboard
+                Subira ku Kibaho
             </a>
             <button
                 onclick="showCreatePenaltyModal()"
@@ -28,7 +28,7 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Add Penalty
+                Ongeraho Igihano
             </button>
         </div>
 
@@ -39,36 +39,36 @@
                     type="text"
                     name="search"
                     value="{{ request('search') }}"
-                    placeholder="Search by member name or email..."
+                    placeholder="Shakisha ku izina cyangwa imeyili..."
                     class="flex-1 min-w-48 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                 />
                 <select
                     name="status"
                     class="px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                 >
-                    <option value="">All Status</option>
-                    <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="waived" {{ request('status') === 'waived' ? 'selected' : '' }}>Waived</option>
+                    <option value="">Imimerere Yose</option>
+                    <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Gikorera</option>
+                    <option value="waived" {{ request('status') === 'waived' ? 'selected' : '' }}>Byakuweho</option>
                 </select>
                 <select
                     name="type"
                     class="px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none"
                 >
-                    <option value="">All Types</option>
-                    <option value="late_payment" {{ request('type') === 'late_payment' ? 'selected' : '' }}>Late Payment</option>
-                    <option value="violation" {{ request('type') === 'violation' ? 'selected' : '' }}>Violation</option>
-                    <option value="default" {{ request('type') === 'default' ? 'selected' : '' }}>Default</option>
-                    <option value="other" {{ request('type') === 'other' ? 'selected' : '' }}>Other</option>
+                    <option value="">Ubwoko Bwose</option>
+                    <option value="late_payment" {{ request('type') === 'late_payment' ? 'selected' : '' }}>Kutishyura ku Gihe</option>
+                    <option value="violation" {{ request('type') === 'violation' ? 'selected' : '' }}>Kwica Amategeko</option>
+                    <option value="default" {{ request('type') === 'default' ? 'selected' : '' }}>Kutishyura</option>
+                    <option value="other" {{ request('type') === 'other' ? 'selected' : '' }}>Ibindi</option>
                 </select>
                 <button
                     type="submit"
                     class="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
                 >
-                    Filter
+                    Shaka
                 </button>
                 @if(request('search') || request('status') || request('type'))
                     <a href="{{ route('group-admin.penalties', $group) }}" class="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition">
-                        Clear All
+                        Siba Byose
                     </a>
                 @endif
             </form>
@@ -82,15 +82,15 @@
         @endphp
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Active Penalties</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Ibihano Bikorera</h3>
                 <p class="text-3xl font-bold text-red-600">{{ $activePenalties }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Total Amount (Active)</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Amafaranga Yose (Bikorera)</h3>
                 <p class="text-3xl font-bold text-orange-600">{{ number_format($totalAmount, 2) }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Waived Penalties</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Ibihano Byakuweho</h3>
                 <p class="text-3xl font-bold text-green-600">{{ $waivedCount }}</p>
             </div>
         </div>
@@ -98,19 +98,19 @@
         <!-- Penalties Table -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-bold text-gray-900">All Penalties</h2>
+                <h2 class="text-xl font-bold text-gray-900">Ibihano Byose</h2>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-red-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Member</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Type</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Amount</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Reason</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Applied Date</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Actions</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Umunyamuryango</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Ubwoko</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Amafaranga</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Impamvu</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Itariki</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Imimerere</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Ibikorwa</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y">
@@ -136,11 +136,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($penalty->waived)
                                         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
-                                            ✓ Waived
+                                            ✓ Byakuweho
                                         </span>
                                     @else
                                         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
-                                            ⚠️ Active
+                                            ⚠️ Gikorera
                                         </span>
                                     @endif
                                 </td>
@@ -151,20 +151,20 @@
                                                 onclick="showWaivePenaltyModal({{ $penalty->id }}, '{{ $penalty->member->user->name }}', '{{ number_format($penalty->amount, 2) }}')"
                                                 class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 font-semibold rounded text-xs transition"
                                             >
-                                                Waive
+                                                Kuraho
                                             </button>
                                             <button
                                                 onclick="showEditPenaltyModal({{ $penalty->id }}, '{{ $penalty->type }}', '{{ $penalty->amount }}', '{{ $penalty->reason }}')"
                                                 class="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold rounded text-xs transition"
                                             >
-                                                Edit
+                                                Hindura
                                             </button>
                                         @endif
                                         <button
                                             onclick="showDeletePenaltyModal({{ $penalty->id }}, '{{ $penalty->member->user->name }}')"
                                             class="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-semibold rounded text-xs transition"
                                         >
-                                            Delete
+                                            Siba
                                         </button>
                                     </div>
                                 </td>
@@ -172,7 +172,7 @@
                         @empty
                             <tr>
                                 <td colspan="7" class="px-6 py-8 text-center text-gray-500">
-                                    No penalties found
+                                    Nta bihano byabonetse
                                 </td>
                             </tr>
                         @endforelse
@@ -194,14 +194,14 @@
 <div id="createPenaltyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto">
         <div class="bg-red-600 text-white p-6">
-            <h2 class="text-xl font-bold">Add New Penalty</h2>
+            <h2 class="text-xl font-bold">Ongeraho Igihano Gishya</h2>
         </div>
         <form method="POST" action="{{ route('group-admin.penalties.store', $group) }}" class="p-6 space-y-4">
             @csrf
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Member *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Umunyamuryango *</label>
                 <select name="member_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    <option value="">Select a member</option>
+                    <option value="">Hitamo umunyamuryango</option>
                     @foreach($group->members()->where('status', 'active')->with('user')->get() as $member)
                         <option value="{{ $member->id }}">{{ $member->user->name }}</option>
                     @endforeach
@@ -210,19 +210,19 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Penalty Type *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Ubwoko bw'Igihano *</label>
                 <select name="type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    <option value="">Select type</option>
-                    <option value="late_payment">Late Payment</option>
-                    <option value="violation">Violation</option>
-                    <option value="default">Default</option>
-                    <option value="other">Other</option>
+                    <option value="">Hitamo ubwoko</option>
+                    <option value="late_payment">Kutishyura ku Gihe</option>
+                    <option value="violation">Kwica Amategeko</option>
+                    <option value="default">Kutishyura</option>
+                    <option value="other">Ibindi</option>
                 </select>
                 @error('type') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Amafaranga *</label>
                 <input
                     type="number"
                     name="amount"
@@ -236,13 +236,13 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Reason *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Impamvu *</label>
                 <textarea
                     name="reason"
                     required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Description of the penalty..."
+                    placeholder="Ibisobanuro by'igihano..."
                 ></textarea>
                 @error('reason') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
@@ -253,13 +253,13 @@
                     onclick="hideModal('createPenaltyModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
                 >
-                    Create Penalty
+                    Kora Igihano
                 </button>
             </div>
         </form>
@@ -270,23 +270,23 @@
 <div id="waivePenaltyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="bg-green-600 text-white p-6">
-            <h2 class="text-xl font-bold">Waive Penalty</h2>
+            <h2 class="text-xl font-bold">Kuraho Igihano</h2>
         </div>
         <form id="waivePenaltyForm" method="POST" class="p-6 space-y-4">
             @csrf
             <p class="text-gray-600">
-                <strong>Member:</strong> <span id="waiveMemberName"></span><br>
-                <strong>Amount:</strong> <span id="waiveAmount"></span>
+                <strong>Umunyamuryango:</strong> <span id="waiveMemberName"></span><br>
+                <strong>Amafaranga:</strong> <span id="waiveAmount"></span>
             </p>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Waiver Reason *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Impamvu yo Gukuraho *</label>
                 <textarea
                     name="waived_reason"
                     required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Why is this penalty being waived?"
+                    placeholder="Kuki iki gihano gikuweho?"
                 ></textarea>
             </div>
 
@@ -296,13 +296,13 @@
                     onclick="hideModal('waivePenaltyModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
                 >
-                    Confirm Waiver
+                    Emeza Gukuraho
                 </button>
             </div>
         </form>
@@ -313,24 +313,24 @@
 <div id="editPenaltyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto">
         <div class="bg-blue-600 text-white p-6">
-            <h2 class="text-xl font-bold">Edit Penalty</h2>
+            <h2 class="text-xl font-bold">Hindura Igihano</h2>
         </div>
         <form id="editPenaltyForm" method="POST" class="p-6 space-y-4">
             @csrf
             @method('PUT')
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Penalty Type *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Ubwoko bw'Igihano *</label>
                 <select name="type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option value="late_payment">Late Payment</option>
-                    <option value="violation">Violation</option>
-                    <option value="default">Default</option>
-                    <option value="other">Other</option>
+                    <option value="late_payment">Kutishyura ku Gihe</option>
+                    <option value="violation">Kwica Amategeko</option>
+                    <option value="default">Kutishyura</option>
+                    <option value="other">Ibindi</option>
                 </select>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Amafaranga *</label>
                 <input
                     type="number"
                     name="amount"
@@ -343,13 +343,13 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Reason *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Impamvu *</label>
                 <textarea
                     name="reason"
                     required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Description of the penalty..."
+                    placeholder="Ibisobanuro by'igihano..."
                 ></textarea>
             </div>
 
@@ -359,13 +359,13 @@
                     onclick="hideModal('editPenaltyModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
                 >
-                    Update Penalty
+                    Hindura Igihano
                 </button>
             </div>
         </form>
@@ -376,15 +376,15 @@
 <div id="deletePenaltyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="bg-red-600 text-white p-6">
-            <h2 class="text-xl font-bold">Delete Penalty</h2>
+            <h2 class="text-xl font-bold">Siba Igihano</h2>
         </div>
         <form id="deletePenaltyForm" method="POST" class="p-6 space-y-4">
             @csrf
             @method('DELETE')
 
             <p class="text-gray-600">
-                Are you sure you want to delete the penalty for <strong id="deleteMemberName"></strong>?<br>
-                This action cannot be undone.
+                Uremeza ko ushaka gusiba igihano cya <strong id="deleteMemberName"></strong>?<br>
+                Iki gikorwa ntigishobora gusubirwaho.
             </p>
 
             <div class="flex gap-2 pt-4">
@@ -393,13 +393,13 @@
                     onclick="hideModal('deletePenaltyModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
                 >
-                    Delete
+                    Siba
                 </button>
             </div>
         </form>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Social Support - ' . $group->name)
+@section('title', 'Ubufasha bw\'Imibereho - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow">
         <div class="max-w-6xl mx-auto py-8 px-4">
-            <h1 class="text-3xl font-bold">Manage Social Support</h1>
+            <h1 class="text-3xl font-bold">Gucunga Ubufasha bw'Imibereho</h1>
             <p class="text-purple-100 mt-2">{{ $group->name }}</p>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Back to Dashboard
+                Subira ku Kibaho
             </a>
             <button
                 onclick="showCreateModal()"
@@ -28,26 +28,26 @@
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                New Support Request
+                Ubusabe Bushya
             </button>
         </div>
 
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Pending</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Bitegereje</h3>
                 <p class="text-3xl font-bold text-yellow-600">{{ $stats['pending'] }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Approved</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Byemejwe</h3>
                 <p class="text-3xl font-bold text-blue-600">{{ $stats['approved'] }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Disbursed</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Byatanzwe</h3>
                 <p class="text-3xl font-bold text-green-600">{{ $stats['disbursed'] }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500">
-                <h3 class="text-sm font-medium text-gray-600 mb-2">Total Disbursed</h3>
+                <h3 class="text-sm font-medium text-gray-600 mb-2">Amafaranga Yatanzwe</h3>
                 <p class="text-3xl font-bold text-purple-600">{{ number_format($stats['total_disbursed'], 2) }}</p>
             </div>
         </div>
@@ -59,37 +59,37 @@
                     type="text"
                     name="search"
                     value="{{ request('search') }}"
-                    placeholder="Search by member name or email..."
+                    placeholder="Shakisha ku izina cyangwa imeyili..."
                     class="flex-1 min-w-48 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 />
                 <select
                     name="status"
                     class="px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 >
-                    <option value="">All Status</option>
-                    <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
-                    <option value="approved" {{ request('status') === 'approved' ? 'selected' : '' }}>Approved</option>
-                    <option value="rejected" {{ request('status') === 'rejected' ? 'selected' : '' }}>Rejected</option>
-                    <option value="disbursed" {{ request('status') === 'disbursed' ? 'selected' : '' }}>Disbursed</option>
+                    <option value="">Imimerere Yose</option>
+                    <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Bitegereje</option>
+                    <option value="approved" {{ request('status') === 'approved' ? 'selected' : '' }}>Byemejwe</option>
+                    <option value="rejected" {{ request('status') === 'rejected' ? 'selected' : '' }}>Byanzwe</option>
+                    <option value="disbursed" {{ request('status') === 'disbursed' ? 'selected' : '' }}>Byatanzwe</option>
                 </select>
                 <select
                     name="type"
                     class="px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 >
-                    <option value="">All Types</option>
-                    <option value="death" {{ request('type') === 'death' ? 'selected' : '' }}>Death</option>
-                    <option value="marriage" {{ request('type') === 'marriage' ? 'selected' : '' }}>Marriage</option>
-                    <option value="sickness" {{ request('type') === 'sickness' ? 'selected' : '' }}>Sickness</option>
+                    <option value="">Ubwoko Bwose</option>
+                    <option value="death" {{ request('type') === 'death' ? 'selected' : '' }}>Urupfu</option>
+                    <option value="marriage" {{ request('type') === 'marriage' ? 'selected' : '' }}>Ubukwe</option>
+                    <option value="sickness" {{ request('type') === 'sickness' ? 'selected' : '' }}>Uburwayi</option>
                 </select>
                 <button
                     type="submit"
                     class="px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
                 >
-                    Filter
+                    Shaka
                 </button>
                 @if(request('search') || request('status') || request('type'))
                     <a href="{{ route('group-admin.social-supports', $group) }}" class="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition">
-                        Clear All
+                        Siba Byose
                     </a>
                 @endif
             </form>
@@ -98,19 +98,19 @@
         <!-- Social Supports Table -->
         <div class="bg-white rounded-lg shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-bold text-gray-900">Social Support Requests</h2>
+                <h2 class="text-xl font-bold text-gray-900">Ubusabe bw'Ubufasha</h2>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-purple-600 text-white">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Member</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Type</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Amount</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Reason</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Date</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Actions</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Umunyamuryango</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Ubwoko</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Amafaranga</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Impamvu</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Itariki</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Imimerere</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold uppercase">Ibikorwa</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y">
@@ -151,13 +151,13 @@
                                                 onclick="showApproveModal({{ $support->id }}, '{{ $support->member->user->name }}', '{{ number_format($support->amount, 2) }}')"
                                                 class="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 font-semibold rounded text-xs transition"
                                             >
-                                                Approve
+                                                Emeza
                                             </button>
                                             <button
                                                 onclick="showRejectModal({{ $support->id }}, '{{ $support->member->user->name }}')"
                                                 class="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-semibold rounded text-xs transition"
                                             >
-                                                Reject
+                                                Hakanira
                                             </button>
                                         @elseif($support->status === 'approved')
                                             <form
@@ -170,7 +170,7 @@
                                                     type="submit"
                                                     class="px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 font-semibold rounded text-xs transition"
                                                 >
-                                                    Disburse
+                                                    Tanga
                                                 </button>
                                             </form>
                                         @endif
@@ -179,7 +179,7 @@
                                                 onclick="showDeleteModal({{ $support->id }}, '{{ $support->member->user->name }}')"
                                                 class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded text-xs transition"
                                             >
-                                                Delete
+                                                Siba
                                             </button>
                                         @endif
                                     </div>
@@ -188,7 +188,7 @@
                         @empty
                             <tr>
                                 <td colspan="7" class="px-6 py-8 text-center text-gray-500">
-                                    No support requests found
+                                    Nta busabe bw'ubufasha bwabonetse
                                 </td>
                             </tr>
                         @endforelse
@@ -210,14 +210,14 @@
 <div id="createModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto">
         <div class="bg-purple-600 text-white p-6">
-            <h2 class="text-xl font-bold">New Support Request</h2>
+            <h2 class="text-xl font-bold">Ubusabe Bushya</h2>
         </div>
         <form method="POST" action="{{ route('group-admin.social-supports.store', $group) }}" class="p-6 space-y-4">
             @csrf
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Member *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Umunyamuryango *</label>
                 <select name="member_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <option value="">Select a member</option>
+                    <option value="">Hitamo umunyamuryango</option>
                     @foreach($group->members()->where('status', 'active')->with('user')->get() as $member)
                         <option value="{{ $member->id }}">{{ $member->user->name }}</option>
                     @endforeach
@@ -225,17 +225,17 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Support Type *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Ubwoko bw'Ubufasha *</label>
                 <select name="type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    <option value="">Select type</option>
-                    <option value="death">☠️ Death of Loved One</option>
-                    <option value="marriage">💍 Marriage</option>
-                    <option value="sickness">🏥 Sickness/Medical</option>
+                    <option value="">Hitamo ubwoko</option>
+                    <option value="death">☠️ Urupfu rw'Umukunzi</option>
+                    <option value="marriage">💍 Ubukwe</option>
+                    <option value="sickness">🏥 Uburwayi/Ubuvuzi</option>
                 </select>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Amafaranga *</label>
                 <input
                     type="number"
                     name="amount"
@@ -248,13 +248,13 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Reason/Description *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Impamvu/Ibisobanuro *</label>
                 <textarea
                     name="description"
                     required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Provide details about the support request..."
+                    placeholder="Tanga ibisobanuro ku busabe..."
                 ></textarea>
             </div>
 
@@ -264,13 +264,13 @@
                     onclick="hideModal('createModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
                 >
-                    Create Request
+                    Kora Ubusabe
                 </button>
             </div>
         </form>
@@ -281,22 +281,22 @@
 <div id="approveModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="bg-blue-600 text-white p-6">
-            <h2 class="text-xl font-bold">Approve Request</h2>
+            <h2 class="text-xl font-bold">Emeza Ubusabe</h2>
         </div>
         <form id="approveForm" method="POST" class="p-6 space-y-4">
             @csrf
             <p class="text-gray-600">
-                <strong>Member:</strong> <span id="approveMemberName"></span><br>
-                <strong>Amount:</strong> <span id="approveAmount"></span>
+                <strong>Umunyamuryango:</strong> <span id="approveMemberName"></span><br>
+                <strong>Amafaranga:</strong> <span id="approveAmount"></span>
             </p>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Approval Notes</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Inyandiko z'Kwemeza</label>
                 <textarea
                     name="approval_notes"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Optional notes about approval..."
+                    placeholder="Inyandiko zitari ngombwa ku kwemeza..."
                 ></textarea>
             </div>
 
@@ -306,13 +306,13 @@
                     onclick="hideModal('approveModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
                 >
-                    Approve
+                    Emeza
                 </button>
             </div>
         </form>
@@ -323,23 +323,23 @@
 <div id="rejectModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="bg-red-600 text-white p-6">
-            <h2 class="text-xl font-bold">Reject Request</h2>
+            <h2 class="text-xl font-bold">Hakanira Ubusabe</h2>
         </div>
         <form id="rejectForm" method="POST" class="p-6 space-y-4">
             @csrf
             <p class="text-gray-600 mb-4">
-                <strong>Member:</strong> <span id="rejectMemberName"></span><br>
-                You are about to reject this request.
+                <strong>Umunyamuryango:</strong> <span id="rejectMemberName"></span><br>
+                Urigiye guhakanira ubu busabe.
             </p>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Rejection Reason *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Impamvu yo Guhakanira *</label>
                 <textarea
                     name="approval_notes"
                     required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     rows="3"
-                    placeholder="Why is this request being rejected?"
+                    placeholder="Kuki ubu busabe bwahakaniwe?"
                 ></textarea>
             </div>
 
@@ -349,13 +349,13 @@
                     onclick="hideModal('rejectModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
                 >
-                    Reject
+                    Hakanira
                 </button>
             </div>
         </form>
@@ -366,15 +366,15 @@
 <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
         <div class="bg-red-600 text-white p-6">
-            <h2 class="text-xl font-bold">Delete Request</h2>
+            <h2 class="text-xl font-bold">Siba Ubusabe</h2>
         </div>
         <form id="deleteForm" method="POST" class="p-6 space-y-4">
             @csrf
             @method('DELETE')
 
             <p class="text-gray-600">
-                Are you sure you want to delete the support request for <strong id="deleteMemberName"></strong>?<br>
-                This action cannot be undone.
+                Uremeza ko ushaka gusiba ubusabe bw'ubufasha bwa <strong id="deleteMemberName"></strong>?<br>
+                Iki gikorwa ntigishobora gusubirwaho.
             </p>
 
             <div class="flex gap-2 pt-4">
@@ -383,13 +383,13 @@
                     onclick="hideModal('deleteModal')"
                     class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
                 >
-                    Cancel
+                    Hagarika
                 </button>
                 <button
                     type="submit"
                     class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
                 >
-                    Delete
+                    Siba
                 </button>
             </div>
         </form>

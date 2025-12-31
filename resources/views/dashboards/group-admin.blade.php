@@ -92,7 +92,7 @@
                 @elseif($adminGroups && count($adminGroups) > 0)
                     <div class="ml-6">
                         <div class="flex items-center gap-2">
-                            <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Group:</label>
+                            <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Itsinda:</label>
                             <select
                                 id="groupSelect"
                                 class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium cursor-pointer"
@@ -449,7 +449,7 @@
                         <svg class="w-5 h-5 mr-2 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
                         </svg>
-                        Social Support Actions
+                        Ibikorwa by'Ubufasha bw'Imibereho
                     </h3>
                     <div class="space-y-2">
                         <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-600 font-medium transition text-sm flex items-center">
