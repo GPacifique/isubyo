@@ -16,10 +16,56 @@
                     <p class="text-green-100 text-lg">Welcome back, <span class="font-semibold">{{ auth()->user()->name }}</span></p>
                     <p class="text-green-200 text-sm mt-1">You have full system access and control</p>
                 </div>
-                <div class="text-green-300 opacity-20">
-                    <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 17v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd"></path>
-                    </svg>
+                <div class="flex items-center gap-4">
+                    <!-- Dashboard Switcher Button -->
+                    @php
+                        $canAccessGroupAdmin = \App\Models\GroupMember::where('user_id', auth()->id())
+                            ->where('role', 'admin')
+                            ->where('status', 'active')
+                            ->exists();
+                    @endphp
+
+                    @if($canAccessGroupAdmin)
+                        <div class="border-l border-green-300 pl-4">
+                            <button id="admin-switcher-btn" class="flex items-center gap-2 hover:text-green-200 transition text-sm font-medium">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
+                                    <path d="M6.5 10.5h7M6.5 14h4"></path>
+                                </svg>
+                                Switch
+                                <svg id="admin-switcher-chevron" class="w-4 h-4 transition" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <div id="admin-switcher-menu" class="absolute right-4 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
+                                <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
+                                    <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
+                                </div>
+
+                                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 border-b transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-green-600">System Admin</div>
+                                        <p class="text-xs text-gray-500">Currently active</p>
+                                    </div>
+                                    <span class="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
+                                </a>
+
+                                <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition">
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-blue-600">Group Admin</div>
+                                        <p class="text-xs text-gray-500">Manage single group</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="text-green-300 opacity-20">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 17v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -403,4 +449,45 @@
         </div>
     </div>
     </div>
+
+<script>
+    // Admin Dashboard Switcher
+    document.addEventListener('DOMContentLoaded', function() {
+        const adminSwitcherBtn = document.getElementById('admin-switcher-btn');
+        const adminSwitcherMenu = document.getElementById('admin-switcher-menu');
+        const adminSwitcherChevron = document.getElementById('admin-switcher-chevron');
+
+        if (adminSwitcherBtn && adminSwitcherMenu) {
+            adminSwitcherBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                adminSwitcherMenu.classList.toggle('hidden');
+                adminSwitcherChevron.style.transform = adminSwitcherMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+
+            const adminSwitcherLinks = adminSwitcherMenu.querySelectorAll('a');
+            adminSwitcherLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    adminSwitcherMenu.classList.add('hidden');
+                    adminSwitcherChevron.style.transform = 'rotate(0deg)';
+                });
+            });
+
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = adminSwitcherMenu.contains(event.target);
+                const isClickInsideButton = adminSwitcherBtn.contains(event.target);
+                if (!isClickInsideMenu && !isClickInsideButton) {
+                    adminSwitcherMenu.classList.add('hidden');
+                    adminSwitcherChevron.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    adminSwitcherMenu.classList.add('hidden');
+                    adminSwitcherChevron.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    });
+</script>
 @endsection
