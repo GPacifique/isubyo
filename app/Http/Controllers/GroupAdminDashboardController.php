@@ -226,6 +226,54 @@ class GroupAdminDashboardController extends Controller
     }
 
     /**
+     * Show form to create a new member
+     */
+    public function createMember(Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        return view('dashboards.group-members-create', compact('group'));
+    }
+
+    /**
+     * Store a new member in the group
+     */
+    public function storeMember(Request $request, Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'nullable|string|max:20',
+            'role' => 'required|in:member,admin',
+        ]);
+
+        // Create user first
+        $user = \App\Models\User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'password' => bcrypt('password123'), // Default password, should be changed
+        ]);
+
+        // Create group member
+        GroupMember::create([
+            'group_id' => $group->id,
+            'user_id' => $user->id,
+            'role' => $validated['role'],
+            'status' => 'active',
+            'joined_at' => now(),
+        ]);
+
+        // Update group member count
+        $group->increment('member_numbers');
+
+        return redirect()->route('group-admin.members', $group)
+            ->with('success', 'Umunyamuryango yongeywe neza. Ijambo ry\'ibanga ni: password123');
+    }
+
+    /**
      * Show group transactions
      */
     public function transactions(Group $group)
