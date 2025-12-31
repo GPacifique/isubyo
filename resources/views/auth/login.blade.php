@@ -53,7 +53,7 @@
 
             <!-- Elegant Heading -->
             <div class="mb-10">
-                <p class="text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-4">Welcome to the future of finance</p>
+                <p class="text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-4">Murakaza neza mu bukungu bw'ejo</p>
                 <h1 class="text-5xl xl:text-6xl font-bold text-white leading-[1.1] tracking-tight">
                     Elevate Your<br>
                     <span class="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">Financial Journey</span>
@@ -142,8 +142,8 @@
 
             <!-- Welcome Text -->
             <div class="text-center lg:text-left mb-10">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">Welcome back</h2>
-                <p class="text-slate-500 dark:text-slate-400">Enter your credentials to access your account</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">Murakaza neza</h2>
+                <p class="text-slate-500 dark:text-slate-400">Injiza amakuru yawe kugira ngo winjire kuri konti yawe</p>
             </div>
 
             <!-- Session Status -->

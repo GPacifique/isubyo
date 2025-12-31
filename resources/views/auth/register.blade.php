@@ -53,7 +53,7 @@
 
             <!-- Elegant Heading -->
             <div class="mb-10">
-                <p class="text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-4">Start your journey today</p>
+                <p class="text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-4">Tangira urugendo rwawe uyu munsi</p>
                 <h1 class="text-5xl xl:text-6xl font-bold text-white leading-[1.1] tracking-tight">
                     Join Our<br>
                     <span class="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">Financial Community</span>
@@ -142,8 +142,8 @@
 
             <!-- Welcome Text -->
             <div class="text-center lg:text-left mb-8">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">Create account</h2>
-                <p class="text-slate-500 dark:text-slate-400">Fill in your details to get started</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">Fungura konti</h2>
+                <p class="text-slate-500 dark:text-slate-400">Uzuza amakuru yawe kugira ngo utangire</p>
             </div>
 
             <!-- Register Form -->
