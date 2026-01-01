@@ -29,6 +29,9 @@
     <body class="font-sans text-gray-900 antialiased">
         @yield('content')
 
+        <!-- Footer -->
+        @include('components.footer')
+
         @stack('scripts')
     </body>
 </html>

@@ -47,6 +47,9 @@
             </main>
         </div>
 
+        <!-- Footer -->
+        @include('components.footer')
+
         @yield('chat-widget')
         @yield('scripts')
         @stack('scripts')
