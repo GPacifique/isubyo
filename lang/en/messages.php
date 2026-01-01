@@ -353,14 +353,14 @@ return [
 
     // Email Verification Success
     'email_verified_successfully' => 'Email Verified Successfully',
-    'your_email_is_now_verified' => 'Your email address is now verified',
-    'you_can_now_access_full_features' => 'You can now access all features of your account',
-    'what_you_can_do_now' => 'What You Can Do Now',
-    'access_your_dashboard' => 'Access your personalized dashboard',
-    'manage_your_account' => 'Manage your account settings and preferences',
-    'use_all_features' => 'Use all available system features',
+    'your_email_has_been_confirmed' => 'Your email address has been confirmed and verified',
+    'you_can_now_access_your_account' => 'You can now access your full account with all features',
+    'what_to_do_next' => 'What to Do Next',
+    'your_email_is_now_verified' => 'Your email is now verified and confirmed',
+    'click_below_to_access_dashboard' => 'Click the button below to go to your dashboard',
+    'enjoy_full_platform_access' => 'You now have full access to all platform features',
     'go_to_dashboard' => 'Go to Dashboard',
-    'view_profile' => 'View Profile',
-    'verified' => 'Verified',
-    'your_email_address_is_verified' => 'Your email address is verified',
+    'email_verification_tip' => 'Keep your email address up to date in your profile settings to ensure you receive important account notifications.',
+    'tip' => 'Tip',
 ];
+
