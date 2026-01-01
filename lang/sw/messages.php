@@ -350,7 +350,20 @@ return [
     'confirm_password' => 'Thibitisha Neno la Siri',
     'remember_password' => 'Unakumbuka neno lako la siri?',
     'reset_link_expires_in_60_minutes' => 'Hii kiungo cha kuweka upya neno la siri kitakufa katika dakika 60',
-];
+
+    // Email Verification Success
+    'email_verified_successfully' => 'Barua Pepe Imelinganiwa Kwa Mafanikio',
+    'your_email_is_now_verified' => 'Anwani yako ya barua pepe sasa imelinganiwa',
+    'you_can_now_access_full_features' => 'Sasa unaweza kufikia vipengele vyote vya akaunti yako',
+    'what_you_can_do_now' => 'Nini Unaweza Kufanya Sasa',
+    'access_your_dashboard' => 'Fikia ubao wako wa bei unaobadilika',
+    'manage_your_account' => 'Dhibiti mipango na mapendeleo ya akaunti yako',
+    'use_all_features' => 'Tumia vipengele vyote vilivyo vya jumla ya mfumo',
+    'go_to_dashboard' => 'Nenda kwa Ubao',
+    'view_profile' => 'Angalia Wasifu',
+    'verified' => 'Imelinganiwa',
+    'your_email_address_is_verified' => 'Anwani yako ya barua pepe imelinganiwa',
+
     'submit' => 'Wasilisha',
     'close' => 'Funga',
     'view' => 'Angalia',

@@ -350,6 +350,19 @@ return [
     'confirm_password' => 'Confirmer le mot de passe',
     'remember_password' => 'Vous vous souvenez de votre mot de passe?',
     'reset_link_expires_in_60_minutes' => 'Ce lien de réinitialisation de mot de passe expirera dans 60 minutes',
+
+    // Email Verification Success
+    'email_verified_successfully' => 'Email Vérifié Avec Succès',
+    'your_email_is_now_verified' => 'Votre adresse e-mail est maintenant vérifiée',
+    'you_can_now_access_full_features' => 'Vous pouvez maintenant accéder à toutes les fonctionnalités de votre compte',
+    'what_you_can_do_now' => 'Ce Que Vous Pouvez Faire Maintenant',
+    'access_your_dashboard' => 'Accédez à votre tableau de bord personnalisé',
+    'manage_your_account' => 'Gérez les paramètres et préférences de votre compte',
+    'use_all_features' => 'Utilisez toutes les fonctionnalités disponibles du système',
+    'go_to_dashboard' => 'Aller au Tableau de Bord',
+    'view_profile' => 'Voir le Profil',
+    'verified' => 'Vérifié',
+    'your_email_address_is_verified' => 'Votre adresse e-mail est vérifiée',
 ];
     'notes' => 'Notes',
     'balance' => 'Solde',

@@ -350,4 +350,17 @@ return [
     'confirm_password' => 'Confirm Password',
     'remember_password' => 'Remember your password?',
     'reset_link_expires_in_60_minutes' => 'This password reset link will expire in 60 minutes',
+
+    // Email Verification Success
+    'email_verified_successfully' => 'Email Verified Successfully',
+    'your_email_is_now_verified' => 'Your email address is now verified',
+    'you_can_now_access_full_features' => 'You can now access all features of your account',
+    'what_you_can_do_now' => 'What You Can Do Now',
+    'access_your_dashboard' => 'Access your personalized dashboard',
+    'manage_your_account' => 'Manage your account settings and preferences',
+    'use_all_features' => 'Use all available system features',
+    'go_to_dashboard' => 'Go to Dashboard',
+    'view_profile' => 'View Profile',
+    'verified' => 'Verified',
+    'your_email_address_is_verified' => 'Your email address is verified',
 ];

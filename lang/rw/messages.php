@@ -351,6 +351,19 @@ return [
     'remember_password' => 'Wukumbura ijambobanga ryawe?',
     'reset_link_expires_in_60_minutes' => 'Iyi kiyungo cy\'ubwakintiko bw\'ijambobanga izoheretsa mu myaka 60',
 
+    // Email Verification Success
+    'email_verified_successfully' => 'Imeyili Yemeranywe Neza',
+    'your_email_is_now_verified' => 'Aderesi yawe y\'imeyili noneho yemeranywe',
+    'you_can_now_access_full_features' => 'Noneho urashobora kufikira imikorere yose y\'akonte yawe',
+    'what_you_can_do_now' => 'Ibyo Urashobora Gukora Noneho',
+    'access_your_dashboard' => 'Fikira ubao wawe usibuka',
+    'manage_your_account' => 'Munyurange imitume nibyateganyo by\'akonte yawe',
+    'use_all_features' => 'Koresha imikorere yose ifatika wa sisitemu',
+    'go_to_dashboard' => 'Komeza kuri Ubao',
+    'view_profile' => 'Reba Umuhuza',
+    'verified' => 'Yemeranywe',
+    'your_email_address_is_verified' => 'Aderesi yawe y\'imeyili yemeranywe',
+
     'confirm' => 'Emeza',
     'submit' => 'Ohereza',
     'close' => 'Funga',
