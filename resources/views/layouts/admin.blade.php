@@ -15,7 +15,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', 'Admin Dashboard') - isubyo">
     <meta property="og:description" content="@yield('description', 'isubyo Admin Dashboard - Manage users, groups, loans, savings, and transactions')">
-    <meta property="og:image" content="{{ asset('images/isubyo.svg') }}">
+    <meta property="og:image" content="{{ asset('images/isubyo.png') }}">
     <meta property="og:site_name" content="isubyo">
 
     <!-- Twitter Card -->
@@ -23,7 +23,7 @@
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', 'Admin Dashboard') - isubyo">
     <meta property="twitter:description" content="@yield('description', 'isubyo Admin Dashboard - Manage users, groups, loans, savings, and transactions')">
-    <meta property="twitter:image" content="{{ asset('images/isubyo.svg') }}">
+    <meta property="twitter:image" content="{{ asset('images/isubyo.png') }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
@@ -42,7 +42,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
-                    <img src="{{ asset('images/isubyo.svg') }}" alt="Ikirango cya isubyo" class="h-12 w-12">
+                    <img src="{{ asset('images/isubyo.png') }}" alt="Ikirango cya isubyo" class="h-12 w-12 rounded-full">
                     <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold text-green-100">
                         isubyo Admin
                     </a>

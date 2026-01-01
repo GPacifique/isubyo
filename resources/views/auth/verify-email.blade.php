@@ -38,9 +38,7 @@
                 <div class="flex items-center space-x-4">
                     <div class="relative">
                         <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-emerald-500/25">
-                            <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
+                            <img src="{{ asset('images/isubyo.png') }}" alt="isubyo Logo" class="w-10 h-10 rounded-full object-contain">
                         </div>
                         <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-400 rounded-full border-4 border-slate-900"></div>
                     </div>
@@ -108,9 +106,7 @@
             <div class="lg:hidden text-center mb-10">
                 <div class="inline-flex items-center space-x-3 mb-2">
                     <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-xl shadow-emerald-500/20">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        <img src="{{ asset('images/isubyo.png') }}" alt="isubyo Logo" class="w-9 h-9 rounded-full object-contain">
                     </div>
                     <span class="text-2xl font-bold text-slate-800 dark:text-white">{{ config('app.name', 'itSinda') }}</span>
                 </div>

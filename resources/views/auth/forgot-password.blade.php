@@ -7,7 +7,7 @@
     <div class="w-full sm:max-w-md mt-6 px-6 py-8 bg-white shadow-2xl overflow-hidden sm:rounded-2xl">
         <!-- Logo -->
         <div class="flex justify-center mb-6">
-            <img src="{{ asset('images/isubyo.svg') }}" alt="isubyo Logo" class="h-16 w-16">
+            <img src="{{ asset('images/isubyo.png') }}" alt="isubyo Logo" class="h-16 w-16 rounded-full">
         </div>
 
         <!-- Title -->
