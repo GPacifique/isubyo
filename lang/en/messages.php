@@ -1,13 +1,72 @@
 <?php
 
 return [
-    // Navigation
+    // Navigation & Header
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
     'logout' => 'Log Out',
     'login' => 'Login',
     'register' => 'Register',
-    
+    'settings' => 'Settings',
+    'home' => 'Home',
+    'help' => 'Help',
+    'about' => 'About',
+    'contact' => 'Contact',
+
+    // Admin Dashboard
+    'system_administration' => 'System Administration',
+    'system_admin_dashboard' => 'System Admin Dashboard',
+    'system_overview' => 'System Overview',
+    'real_time_statistics' => 'Real-time statistics and key metrics',
+    'last_updated' => 'Last updated',
+    'system_administrator' => 'System Administrator',
+    'welcome_back' => 'Welcome back',
+    'full_system_access' => 'Full system access with complete control',
+    'last_login' => 'Last login',
+
+    // Group Admin Dashboard
+    'group_admin_dashboard' => 'Group Admin Dashboard',
+    'group_admin' => 'Group Admin',
+    'group_management' => 'Group Management',
+    'manage_group_members' => 'Manage group members, loans, and savings',
+    'view_your_account' => 'View your account',
+
+    // Member Dashboard
+    'member_dashboard' => 'Member Dashboard',
+    'member' => 'Member',
+    'my_financial_overview' => 'My Financial Overview',
+    'track_loans_and_savings' => 'Track your loans, savings, and financial health',
+
+    // KPI Cards & Stats
+    'total_users' => 'Total Users',
+    'active_system_users' => 'Active system users',
+    'groups' => 'Groups',
+    'active_groups' => 'Active Groups',
+    'total_groups' => 'Total Groups',
+    'total_members' => 'Total Members',
+    'active' => 'Active',
+    'total_transactions' => 'Total Transactions',
+    'total_loans_amount' => 'Total Loans Amount',
+    'total_savings_amount' => 'Total Savings Amount',
+    'system_health' => 'System Health',
+    'status_normal' => 'Status Normal',
+    'total_amount_in_circulation' => 'Total amount in circulation',
+
+    // Group Stats
+    'group_name' => 'Group Name',
+    'group_type' => 'Group Type',
+    'created_on' => 'Created on',
+    'members_count' => 'Members',
+    'total_loans' => 'Total Loans',
+    'total_savings' => 'Total Savings',
+    'member_role' => 'Member Role',
+    'join_date' => 'Join Date',
+    'financial_standing' => 'Financial Standing',
+    'good' => 'Good',
+    'current_balance' => 'Current Balance',
+    'active_loans' => 'Active Loans',
+    'upcoming_deadlines' => 'Upcoming Deadlines',
+
     // Common Actions
     'save' => 'Save',
     'cancel' => 'Cancel',
@@ -23,12 +82,24 @@ return [
     'close' => 'Close',
     'view' => 'View',
     'view_all' => 'View All',
+    'view_details' => 'View Details',
     'actions' => 'Actions',
     'select' => 'Select',
     'filter' => 'Filter',
     'export' => 'Export',
     'print' => 'Print',
-    
+    'add' => 'Add',
+    'add_new' => 'Add New',
+    'download' => 'Download',
+    'upload' => 'Upload',
+    'manage' => 'Manage',
+    'assign' => 'Assign',
+    'approve' => 'Approve',
+    'reject' => 'Reject',
+    'pending_review' => 'Pending Review',
+    'show_more' => 'Show More',
+    'show_less' => 'Show Less',
+
     // Status
     'status' => 'Status',
     'active' => 'Active',
@@ -40,103 +111,156 @@ return [
     'completed' => 'Completed',
     'disbursed' => 'Disbursed',
     'waived' => 'Waived',
-    
+    'overdue' => 'Overdue',
+    'paid' => 'Paid',
+    'partial' => 'Partial',
+
     // Common Fields
     'name' => 'Name',
     'email' => 'Email',
     'phone' => 'Phone',
     'date' => 'Date',
+    'date_from' => 'Date From',
+    'date_to' => 'Date To',
     'amount' => 'Amount',
     'type' => 'Type',
     'description' => 'Description',
     'notes' => 'Notes',
     'balance' => 'Balance',
     'total' => 'Total',
-    
+    'account' => 'Account',
+    'username' => 'Username',
+    'password' => 'Password',
+    'address' => 'Address',
+    'city' => 'City',
+    'country' => 'Country',
+    'zip_code' => 'Zip Code',
+
     // Group Related
     'group' => 'Group',
     'groups' => 'Groups',
-    'group_name' => 'Group Name',
-    'group_type' => 'Group Type',
-    'group_settings' => 'Group Settings',
+    'my_group' => 'My Group',
     'group_info' => 'Group Information',
-    
-    // Member Related
-    'member' => 'Member',
-    'members' => 'Members',
-    'total_members' => 'Total Members',
-    'select_member' => 'Select Member',
-    'member_role' => 'Member Role',
-    
+    'group_members' => 'Group Members',
+    'group_loans' => 'Group Loans',
+    'group_savings' => 'Group Savings',
+    'group_settings' => 'Group Settings',
+    'group_details' => 'Group Details',
+    'join_group' => 'Join Group',
+    'leave_group' => 'Leave Group',
+    'member_since' => 'Member Since',
+
     // Loan Related
     'loan' => 'Loan',
     'loans' => 'Loans',
+    'my_loans' => 'My Loans',
+    'new_loan' => 'New Loan',
+    'loan_request' => 'Loan Request',
+    'loan_requests' => 'Loan Requests',
     'active_loans' => 'Active Loans',
     'loan_amount' => 'Loan Amount',
     'principal_amount' => 'Principal Amount',
     'loan_duration' => 'Loan Duration',
     'monthly_charge' => 'Monthly Charge',
+    'interest_charge' => 'Interest Charge',
     'due_date' => 'Due Date',
     'maturity_date' => 'Maturity Date',
+    'start_date' => 'Start Date',
     'remaining_balance' => 'Remaining Balance',
     'overdue_loans' => 'Overdue Loans',
     'upcoming_loans' => 'Upcoming Deadlines',
-    'record_loan' => 'Record Loan',
     'loan_summary' => 'Loan Summary',
     'total_payback' => 'Total Payback',
-    
+    'loan_term' => 'Loan Term',
+    'months' => 'Months',
+    'days' => 'Days',
+    'days_left' => 'Days Left',
+    'days_overdue' => 'Days Overdue',
+    'payment_status' => 'Payment Status',
+    'amount_due' => 'Amount Due',
+    'repay_loan' => 'Repay Loan',
+    'loan_details' => 'Loan Details',
+
     // Savings Related
     'savings' => 'Savings',
+    'my_savings' => 'My Savings',
     'total_savings' => 'Total Savings',
+    'savings_balance' => 'Savings Balance',
     'daily_savings' => 'Daily Savings',
     'monthly_savings' => 'Monthly Savings',
     'record_savings' => 'Record Savings',
-    'savings_balance' => 'Savings Balance',
+    'withdraw_savings' => 'Withdraw Savings',
     'member_shares' => 'Member Shares',
-    
+    'share_capital' => 'Share Capital',
+    'savings_details' => 'Savings Details',
+
     // Interest Related
     'interest' => 'Interest',
     'total_interest' => 'Total Interest',
     'record_interest' => 'Record Interest',
     'interest_rate' => 'Interest Rate',
-    
+    'interest_earned' => 'Interest Earned',
+
     // Penalty Related
     'penalty' => 'Penalty',
     'penalties' => 'Penalties',
     'total_penalties' => 'Total Penalties',
     'waive_penalty' => 'Waive Penalty',
     'penalty_reason' => 'Penalty Reason',
-    
+    'penalty_amount' => 'Penalty Amount',
+
     // Social Support Related
     'social_support' => 'Social Support',
     'support_fund' => 'Support Fund',
     'support_available' => 'Available Support',
     'support_disbursed' => 'Support Disbursed',
     'support_type' => 'Support Type',
+    'support_request' => 'Support Request',
+    'new_support_request' => 'New Support Request',
     'death' => 'Death',
     'marriage' => 'Marriage',
     'sickness' => 'Sickness/Medical',
-    'new_support_request' => 'New Support Request',
-    
+    'emergency' => 'Emergency',
+    'support_details' => 'Support Details',
+
     // Transaction Related
     'transaction' => 'Transaction',
     'transactions' => 'Transactions',
     'recent_transactions' => 'Recent Transactions',
-    
+    'transaction_history' => 'Transaction History',
+    'transaction_type' => 'Transaction Type',
+    'transaction_amount' => 'Amount',
+    'transaction_date' => 'Transaction Date',
+    'from' => 'From',
+    'to' => 'To',
+    'receiver' => 'Receiver',
+    'sender' => 'Sender',
+
     // Report Related
     'reports' => 'Reports',
     'financial_report' => 'Financial Report',
     'statistics' => 'Statistics',
-    
+    'report' => 'Report',
+    'reports_summary' => 'Reports Summary',
+    'generate_report' => 'Generate Report',
+    'export_report' => 'Export Report',
+
     // Time Related
     'today' => 'Today',
-    'days' => 'days',
-    'months' => 'months',
-    'days_left' => 'Days Left',
-    'days_overdue' => 'Days Overdue',
+    'yesterday' => 'Yesterday',
+    'this_week' => 'This Week',
+    'this_month' => 'This Month',
+    'this_year' => 'This Year',
+    'last_7_days' => 'Last 7 Days',
+    'last_30_days' => 'Last 30 Days',
+    'last_90_days' => 'Last 90 Days',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
-    
+    'deleted_at' => 'Deleted At',
+    'year' => 'Year',
+    'month' => 'Month',
+    'week' => 'Week',
+
     // Messages
     'no_data' => 'No data available',
     'no_members' => 'No members found',
@@ -144,28 +268,60 @@ return [
     'no_savings' => 'No savings recorded',
     'no_transactions' => 'No transactions found',
     'no_penalties' => 'No penalties found',
+    'no_results' => 'No results found',
     'success' => 'Success',
     'error' => 'Error',
+    'warning' => 'Warning',
+    'info' => 'Information',
     'validation_errors' => 'Validation Errors',
     'confirm_delete' => 'Are you sure you want to delete?',
     'operation_successful' => 'Operation completed successfully',
-    
+    'loading' => 'Loading...',
+    'please_wait' => 'Please wait...',
+    'processing' => 'Processing...',
+    'something_went_wrong' => 'Something went wrong',
+    'try_again' => 'Try Again',
+    'page_not_found' => 'Page Not Found',
+    'unauthorized' => 'Unauthorized',
+    'forbidden' => 'Forbidden',
+
     // Dashboards
-    'admin_dashboard' => 'Admin Dashboard',
-    'group_admin_dashboard' => 'Group Admin Dashboard',
-    'member_dashboard' => 'Member Dashboard',
-    'system_admin' => 'System Admin',
-    'group_admin' => 'Group Admin',
     'available_dashboards' => 'Available Dashboards',
     'switch' => 'Switch',
+    'switch_dashboard' => 'Switch Dashboard',
     'currently_active' => 'Currently Active',
-    'view_your_account' => 'View your account',
     'manage_entire_system' => 'Manage entire system',
-    
+    'switch_to_dashboard' => 'Switch to Dashboard',
+
+    // User Management
+    'users' => 'Users',
+    'user' => 'User',
+    'add_user' => 'Add User',
+    'edit_user' => 'Edit User',
+    'user_details' => 'User Details',
+    'user_role' => 'User Role',
+    'user_status' => 'User Status',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'full_name' => 'Full Name',
+    'role' => 'Role',
+    'roles' => 'Roles',
+    'permissions' => 'Permissions',
+    'system_admin' => 'System Admin',
+    'group_admin' => 'Group Admin',
+    'member' => 'Member',
+
     // Language
     'language' => 'Language',
     'english' => 'English',
-    'french' => 'French',
-    'swahili' => 'Swahili',
-    'kinyarwanda' => 'Kinyarwanda',
+    'french' => 'Français',
+    'swahili' => 'Kiswahili',
+    'kinyarwanda' => 'Ikinyarwanda',
+    'select_language' => 'Select Language',
+
+    // Theme
+    'theme' => 'Theme',
+    'dark_mode' => 'Dark Mode',
+    'light_mode' => 'Light Mode',
+    'system_theme' => 'System Theme',
 ];

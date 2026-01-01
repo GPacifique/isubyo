@@ -1,13 +1,72 @@
 <?php
 
 return [
-    // Navigation
+    // Navigation & Header
     'dashboard' => 'Tableau de bord',
     'profile' => 'Profil',
     'logout' => 'Déconnexion',
     'login' => 'Connexion',
     'register' => 'S\'inscrire',
-    
+    'settings' => 'Paramètres',
+    'home' => 'Accueil',
+    'help' => 'Aide',
+    'about' => 'À propos',
+    'contact' => 'Contact',
+
+    // Admin Dashboard
+    'system_administration' => 'Administration du système',
+    'system_admin_dashboard' => 'Tableau de bord Administrateur système',
+    'system_overview' => 'Aperçu du système',
+    'real_time_statistics' => 'Statistiques en temps réel et métriques clés',
+    'last_updated' => 'Dernière mise à jour',
+    'system_administrator' => 'Administrateur système',
+    'welcome_back' => 'Bienvenue',
+    'full_system_access' => 'Accès complet au système avec contrôle total',
+    'last_login' => 'Dernière connexion',
+
+    // Group Admin Dashboard
+    'group_admin_dashboard' => 'Tableau de bord Administrateur du groupe',
+    'group_admin' => 'Administrateur du groupe',
+    'group_management' => 'Gestion des groupes',
+    'manage_group_members' => 'Gérer les membres du groupe, les prêts et l\'épargne',
+    'view_your_account' => 'Afficher votre compte',
+
+    // Member Dashboard
+    'member_dashboard' => 'Tableau de bord du membre',
+    'member' => 'Membre',
+    'my_financial_overview' => 'Aperçu financier personnel',
+    'track_loans_and_savings' => 'Suivez vos prêts, épargne et santé financière',
+
+    // KPI Cards & Stats
+    'total_users' => 'Nombre total d\'utilisateurs',
+    'active_system_users' => 'Utilisateurs système actifs',
+    'groups' => 'Groupes',
+    'active_groups' => 'Groupes actifs',
+    'total_groups' => 'Nombre total de groupes',
+    'total_members' => 'Nombre total de membres',
+    'active' => 'Actif',
+    'total_transactions' => 'Nombre total de transactions',
+    'total_loans_amount' => 'Montant total des prêts',
+    'total_savings_amount' => 'Montant total de l\'épargne',
+    'system_health' => 'Santé du système',
+    'status_normal' => 'État normal',
+    'total_amount_in_circulation' => 'Montant total en circulation',
+
+    // Group Stats
+    'group_name' => 'Nom du groupe',
+    'group_type' => 'Type de groupe',
+    'created_on' => 'Créé le',
+    'members_count' => 'Membres',
+    'total_loans' => 'Nombre total de prêts',
+    'total_savings' => 'Épargne totale',
+    'member_role' => 'Rôle du membre',
+    'join_date' => 'Date d\'adhésion',
+    'financial_standing' => 'Situation financière',
+    'good' => 'Bien',
+    'current_balance' => 'Solde actuel',
+    'active_loans' => 'Prêts actifs',
+    'upcoming_deadlines' => 'Échéances à venir',
+
     // Common Actions
     'save' => 'Enregistrer',
     'cancel' => 'Annuler',
@@ -21,14 +80,26 @@ return [
     'confirm' => 'Confirmer',
     'submit' => 'Soumettre',
     'close' => 'Fermer',
-    'view' => 'Voir',
-    'view_all' => 'Voir tout',
+    'view' => 'Afficher',
+    'view_all' => 'Afficher tout',
+    'view_details' => 'Afficher les détails',
     'actions' => 'Actions',
     'select' => 'Sélectionner',
     'filter' => 'Filtrer',
     'export' => 'Exporter',
     'print' => 'Imprimer',
-    
+    'add' => 'Ajouter',
+    'add_new' => 'Ajouter nouveau',
+    'download' => 'Télécharger',
+    'upload' => 'Téléverser',
+    'manage' => 'Gérer',
+    'assign' => 'Assigner',
+    'approve' => 'Approuver',
+    'reject' => 'Rejeter',
+    'pending_review' => 'En attente d\'examen',
+    'show_more' => 'Afficher plus',
+    'show_less' => 'Afficher moins',
+
     // Status
     'status' => 'Statut',
     'active' => 'Actif',
@@ -40,19 +111,225 @@ return [
     'completed' => 'Terminé',
     'disbursed' => 'Décaissé',
     'waived' => 'Annulé',
-    
+    'overdue' => 'En retard',
+    'paid' => 'Payé',
+    'partial' => 'Partiel',
+
     // Common Fields
     'name' => 'Nom',
     'email' => 'Email',
     'phone' => 'Téléphone',
     'date' => 'Date',
+    'date_from' => 'Date de',
+    'date_to' => 'Date à',
     'amount' => 'Montant',
     'type' => 'Type',
     'description' => 'Description',
     'notes' => 'Notes',
     'balance' => 'Solde',
     'total' => 'Total',
-    
+    'account' => 'Compte',
+    'username' => 'Nom d\'utilisateur',
+    'password' => 'Mot de passe',
+    'address' => 'Adresse',
+    'city' => 'Ville',
+    'country' => 'Pays',
+    'zip_code' => 'Code postal',
+
+    // Group Related
+    'group' => 'Groupe',
+    'groups' => 'Groupes',
+    'my_group' => 'Mon groupe',
+    'group_info' => 'Informations sur le groupe',
+    'group_members' => 'Membres du groupe',
+    'group_loans' => 'Prêts du groupe',
+    'group_savings' => 'Épargne du groupe',
+    'group_settings' => 'Paramètres du groupe',
+    'group_details' => 'Détails du groupe',
+    'join_group' => 'Rejoindre le groupe',
+    'leave_group' => 'Quitter le groupe',
+    'member_since' => 'Membre depuis',
+
+    // Loan Related
+    'loan' => 'Prêt',
+    'loans' => 'Prêts',
+    'my_loans' => 'Mes prêts',
+    'new_loan' => 'Nouveau prêt',
+    'loan_request' => 'Demande de prêt',
+    'loan_requests' => 'Demandes de prêt',
+    'active_loans' => 'Prêts actifs',
+    'loan_amount' => 'Montant du prêt',
+    'principal_amount' => 'Montant principal',
+    'loan_duration' => 'Durée du prêt',
+    'monthly_charge' => 'Frais mensuels',
+    'interest_charge' => 'Frais d\'intérêt',
+    'due_date' => 'Date d\'échéance',
+    'maturity_date' => 'Date d\'expiration',
+    'start_date' => 'Date de début',
+    'remaining_balance' => 'Solde restant',
+    'overdue_loans' => 'Prêts en retard',
+    'upcoming_loans' => 'Échéances à venir',
+    'loan_summary' => 'Résumé du prêt',
+    'total_payback' => 'Total à rembourser',
+    'loan_term' => 'Terme du prêt',
+    'months' => 'Mois',
+    'days' => 'Jours',
+    'days_left' => 'Jours restants',
+    'days_overdue' => 'Jours en retard',
+    'payment_status' => 'État du paiement',
+    'amount_due' => 'Montant dû',
+    'repay_loan' => 'Rembourser le prêt',
+    'loan_details' => 'Détails du prêt',
+
+    // Savings Related
+    'savings' => 'Épargne',
+    'my_savings' => 'Mon épargne',
+    'total_savings' => 'Épargne totale',
+    'savings_balance' => 'Solde d\'épargne',
+    'daily_savings' => 'Épargne quotidienne',
+    'monthly_savings' => 'Épargne mensuelle',
+    'record_savings' => 'Enregistrer l\'épargne',
+    'withdraw_savings' => 'Retirer l\'épargne',
+    'member_shares' => 'Parts des membres',
+    'share_capital' => 'Capital-actions',
+    'savings_details' => 'Détails d\'épargne',
+
+    // Interest Related
+    'interest' => 'Intérêt',
+    'total_interest' => 'Intérêt total',
+    'record_interest' => 'Enregistrer l\'intérêt',
+    'interest_rate' => 'Taux d\'intérêt',
+    'interest_earned' => 'Intérêt gagné',
+
+    // Penalty Related
+    'penalty' => 'Pénalité',
+    'penalties' => 'Pénalités',
+    'total_penalties' => 'Pénalités totales',
+    'waive_penalty' => 'Renoncer à la pénalité',
+    'penalty_reason' => 'Raison de la pénalité',
+    'penalty_amount' => 'Montant de la pénalité',
+
+    // Social Support Related
+    'social_support' => 'Aide sociale',
+    'support_fund' => 'Fonds d\'aide',
+    'support_available' => 'Aide disponible',
+    'support_disbursed' => 'Aide décaissée',
+    'support_type' => 'Type d\'aide',
+    'support_request' => 'Demande d\'aide',
+    'new_support_request' => 'Nouvelle demande d\'aide',
+    'death' => 'Décès',
+    'marriage' => 'Mariage',
+    'sickness' => 'Maladie/Médical',
+    'emergency' => 'Urgence',
+    'support_details' => 'Détails de l\'aide',
+
+    // Transaction Related
+    'transaction' => 'Transaction',
+    'transactions' => 'Transactions',
+    'recent_transactions' => 'Transactions récentes',
+    'transaction_history' => 'Historique des transactions',
+    'transaction_type' => 'Type de transaction',
+    'transaction_amount' => 'Montant',
+    'transaction_date' => 'Date de la transaction',
+    'from' => 'De',
+    'to' => 'À',
+    'receiver' => 'Destinataire',
+    'sender' => 'Expéditeur',
+
+    // Report Related
+    'reports' => 'Rapports',
+    'financial_report' => 'Rapport financier',
+    'statistics' => 'Statistiques',
+    'report' => 'Rapport',
+    'reports_summary' => 'Résumé des rapports',
+    'generate_report' => 'Générer un rapport',
+    'export_report' => 'Exporter le rapport',
+
+    // Time Related
+    'today' => 'Aujourd\'hui',
+    'yesterday' => 'Hier',
+    'this_week' => 'Cette semaine',
+    'this_month' => 'Ce mois',
+    'this_year' => 'Cette année',
+    'last_7_days' => 'Derniers 7 jours',
+    'last_30_days' => 'Derniers 30 jours',
+    'last_90_days' => 'Derniers 90 jours',
+    'created_at' => 'Créé à',
+    'updated_at' => 'Mis à jour à',
+    'deleted_at' => 'Supprimé à',
+    'year' => 'Année',
+    'month' => 'Mois',
+    'week' => 'Semaine',
+
+    // Messages
+    'no_data' => 'Aucune donnée disponible',
+    'no_members' => 'Aucun membre trouvé',
+    'no_loans' => 'Aucun prêt trouvé',
+    'no_savings' => 'Aucune épargne enregistrée',
+    'no_transactions' => 'Aucune transaction trouvée',
+    'no_penalties' => 'Aucune pénalité trouvée',
+    'no_results' => 'Aucun résultat trouvé',
+    'success' => 'Succès',
+    'error' => 'Erreur',
+    'warning' => 'Avertissement',
+    'info' => 'Information',
+    'validation_errors' => 'Erreurs de validation',
+    'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer?',
+    'operation_successful' => 'Opération terminée avec succès',
+    'loading' => 'Chargement...',
+    'please_wait' => 'Veuillez patienter...',
+    'processing' => 'Traitement...',
+    'something_went_wrong' => 'Quelque chose s\'est mal passé',
+    'try_again' => 'Réessayer',
+    'page_not_found' => 'Page non trouvée',
+    'unauthorized' => 'Non autorisé',
+    'forbidden' => 'Interdit',
+
+    // Dashboards
+    'available_dashboards' => 'Tableaux de bord disponibles',
+    'switch' => 'Basculer',
+    'switch_dashboard' => 'Basculer le tableau de bord',
+    'currently_active' => 'Actuellement actif',
+    'manage_entire_system' => 'Gérer l\'ensemble du système',
+    'switch_to_dashboard' => 'Basculer vers le tableau de bord',
+
+    // User Management
+    'users' => 'Utilisateurs',
+    'user' => 'Utilisateur',
+    'add_user' => 'Ajouter un utilisateur',
+    'edit_user' => 'Modifier l\'utilisateur',
+    'user_details' => 'Détails de l\'utilisateur',
+    'user_role' => 'Rôle de l\'utilisateur',
+    'user_status' => 'État de l\'utilisateur',
+    'first_name' => 'Prénom',
+    'last_name' => 'Nom',
+    'full_name' => 'Nom complet',
+    'role' => 'Rôle',
+    'roles' => 'Rôles',
+    'permissions' => 'Permissions',
+    'system_admin' => 'Administrateur système',
+    'group_admin' => 'Administrateur du groupe',
+    'member' => 'Membre',
+
+    // Language
+    'language' => 'Langue',
+    'english' => 'Anglais',
+    'french' => 'Français',
+    'swahili' => 'Kiswahili',
+    'kinyarwanda' => 'Ikinyarwanda',
+    'select_language' => 'Sélectionner la langue',
+
+    // Theme
+    'theme' => 'Thème',
+    'dark_mode' => 'Mode sombre',
+    'light_mode' => 'Mode clair',
+    'system_theme' => 'Thème système',
+];
+    'description' => 'Description',
+    'notes' => 'Notes',
+    'balance' => 'Solde',
+    'total' => 'Total',
+
     // Group Related
     'group' => 'Groupe',
     'groups' => 'Groupes',
@@ -60,14 +337,14 @@ return [
     'group_type' => 'Type de groupe',
     'group_settings' => 'Paramètres du groupe',
     'group_info' => 'Informations du groupe',
-    
+
     // Member Related
     'member' => 'Membre',
     'members' => 'Membres',
     'total_members' => 'Total des membres',
     'select_member' => 'Sélectionner un membre',
     'member_role' => 'Rôle du membre',
-    
+
     // Loan Related
     'loan' => 'Prêt',
     'loans' => 'Prêts',
@@ -84,7 +361,7 @@ return [
     'record_loan' => 'Enregistrer un prêt',
     'loan_summary' => 'Résumé du prêt',
     'total_payback' => 'Remboursement total',
-    
+
     // Savings Related
     'savings' => 'Épargne',
     'total_savings' => 'Épargne totale',
@@ -93,20 +370,20 @@ return [
     'record_savings' => 'Enregistrer l\'épargne',
     'savings_balance' => 'Solde d\'épargne',
     'member_shares' => 'Parts des membres',
-    
+
     // Interest Related
     'interest' => 'Intérêt',
     'total_interest' => 'Intérêt total',
     'record_interest' => 'Enregistrer l\'intérêt',
     'interest_rate' => 'Taux d\'intérêt',
-    
+
     // Penalty Related
     'penalty' => 'Pénalité',
     'penalties' => 'Pénalités',
     'total_penalties' => 'Total des pénalités',
     'waive_penalty' => 'Annuler la pénalité',
     'penalty_reason' => 'Raison de la pénalité',
-    
+
     // Social Support Related
     'social_support' => 'Aide sociale',
     'support_fund' => 'Fonds de soutien',
@@ -117,17 +394,17 @@ return [
     'marriage' => 'Mariage',
     'sickness' => 'Maladie/Médical',
     'new_support_request' => 'Nouvelle demande de soutien',
-    
+
     // Transaction Related
     'transaction' => 'Transaction',
     'transactions' => 'Transactions',
     'recent_transactions' => 'Transactions récentes',
-    
+
     // Report Related
     'reports' => 'Rapports',
     'financial_report' => 'Rapport financier',
     'statistics' => 'Statistiques',
-    
+
     // Time Related
     'today' => 'Aujourd\'hui',
     'days' => 'jours',
@@ -136,7 +413,7 @@ return [
     'days_overdue' => 'Jours de retard',
     'created_at' => 'Créé le',
     'updated_at' => 'Mis à jour le',
-    
+
     // Messages
     'no_data' => 'Aucune donnée disponible',
     'no_members' => 'Aucun membre trouvé',
@@ -149,7 +426,7 @@ return [
     'validation_errors' => 'Erreurs de validation',
     'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer?',
     'operation_successful' => 'Opération réussie',
-    
+
     // Dashboards
     'admin_dashboard' => 'Tableau de bord Admin',
     'group_admin_dashboard' => 'Tableau de bord Admin Groupe',
@@ -161,7 +438,7 @@ return [
     'currently_active' => 'Actuellement actif',
     'view_your_account' => 'Voir votre compte',
     'manage_entire_system' => 'Gérer tout le système',
-    
+
     // Language
     'language' => 'Langue',
     'english' => 'Anglais',

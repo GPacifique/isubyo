@@ -1,23 +1,329 @@
 <?php
 
 return [
-    // Navigation
-    'dashboard' => 'Ikibaho',
+    // Navigation & Header
+    'dashboard' => 'Igitorero',
     'profile' => 'Umwirondoro',
-    'logout' => 'Gusohoka',
-    'login' => 'Kwinjira',
-    'register' => 'Kwiyandikisha',
-    
+    'logout' => 'Reka',
+    'login' => 'Injira',
+    'register' => 'Iyandikishe',
+    'settings' => 'Igenamiterere',
+    'home' => 'Aho',
+    'help' => 'Ubufasha',
+    'about' => 'Kuri iri',
+    'contact' => 'Guhamagara',
+
+    // Admin Dashboard
+    'system_administration' => 'Ubutegetsi bw\'Isi',
+    'system_admin_dashboard' => 'Igitorero rya Umutegetsi w\'Isi',
+    'system_overview' => 'Ibirango by\'Isi',
+    'real_time_statistics' => 'Imibare y\'igihe kandi igipimo cyingenzi',
+    'last_updated' => 'Yavuguruwe mu gihe kigera',
+    'system_administrator' => 'Umutegetsi w\'Isi',
+    'welcome_back' => 'Karibu',
+    'full_system_access' => 'Iyambu ry\'isi iyoye hamwe n\'ambuzi yose',
+    'last_login' => 'Kwinjira kwa hera',
+
+    // Group Admin Dashboard
+    'group_admin_dashboard' => 'Igitorero rya Umutegetsi w\'Itsinda',
+    'group_admin' => 'Umutegetsi w\'Itsinda',
+    'group_management' => 'Ubutegetsi bw\'Itsinda',
+    'manage_group_members' => 'Tegetsa abanyaitsinda, inguzanyo, n\'ubwiyunge',
+    'view_your_account' => 'Reba konti yawe',
+
+    // Member Dashboard
+    'member_dashboard' => 'Igitorero ry\'Umwanitsinda',
+    'member' => 'Umwanitsinda',
+    'my_financial_overview' => 'Ibirango by\'Imari Yanjye',
+    'track_loans_and_savings' => 'Kunkurikiza inguzanyo zawe, ubwiyunge, n\'ubwiyunge bw\'imari',
+
+    // KPI Cards & Stats
+    'total_users' => 'Umubare Wose w\'Abakoresha',
+    'active_system_users' => 'Abakoresha b\'Isi Bacu',
+    'groups' => 'Itsinda',
+    'active_groups' => 'Itsinda Riyoborako',
+    'total_groups' => 'Umubare Wose w\'Itsinda',
+    'total_members' => 'Umubare Wose w\'Abanyaitsinda',
+    'active' => 'Riyoborako',
+    'total_transactions' => 'Umubare Wose w\'Imikorere',
+    'total_loans_amount' => 'Umukoro Wose w\'Inguzanyo',
+    'total_savings_amount' => 'Umukoro Wose w\'Ubwiyunge',
+    'system_health' => 'Ubwiyunge bw\'Isi',
+    'status_normal' => 'Aho ahagaze',
+    'total_amount_in_circulation' => 'Umukoro wose mugihe kinini',
+
+    // Group Stats
+    'group_name' => 'Izina ry\'Itsinda',
+    'group_type' => 'Ubwoko bw\'Itsinda',
+    'created_on' => 'Wabonetse',
+    'members_count' => 'Abanyaitsinda',
+    'total_loans' => 'Umubare Wose w\'Inguzanyo',
+    'total_savings' => 'Ubwiyunge Bwose',
+    'member_role' => 'Urwango rw\'Umwanitsinda',
+    'join_date' => 'Umunsi w\'Injira',
+    'financial_standing' => 'Aho Ihema Imari',
+    'good' => 'Neza',
+    'current_balance' => 'Aho Ihema Kuri Iki',
+    'active_loans' => 'Inguzanyo Zibaraka',
+    'upcoming_deadlines' => 'Iminsi y\'Iherezo Ijajya',
+
     // Common Actions
-    'save' => 'Bika',
-    'cancel' => 'Hagarika',
-    'delete' => 'Siba',
-    'edit' => 'Hindura',
+    'save' => 'Kubika',
+    'cancel' => 'Guhagarika',
+    'delete' => 'Gutsiba',
+    'edit' => 'Guhindura',
     'create' => 'Kurema',
-    'update' => 'Kuvugurura',
-    'search' => 'Shakisha',
-    'clear' => 'Siba',
+    'update' => 'Guvugurura',
+    'search' => 'Gushaka',
+    'clear' => 'Gutsiba',
     'back' => 'Subira',
+    'confirm' => 'Kwemeza',
+    'submit' => 'Kohereza',
+    'close' => 'Gufunga',
+    'view' => 'Kureba',
+    'view_all' => 'Kureba Iyose',
+    'view_details' => 'Kureba Ibisobanuro',
+    'actions' => 'Imikorere',
+    'select' => 'Musange',
+    'filter' => 'Gukurikanya',
+    'export' => 'Gusudura',
+    'print' => 'Gucapa',
+    'add' => 'Kongeza',
+    'add_new' => 'Kongeza Igipya',
+    'download' => 'Kurota',
+    'upload' => 'Kurema',
+    'manage' => 'Tegetsa',
+    'assign' => 'Habira',
+    'approve' => 'Kwemeza',
+    'reject' => 'Kwanga',
+    'pending_review' => 'Iriteganya',
+    'show_more' => 'Kwerekana Byinshi',
+    'show_less' => 'Kwerekana Bike',
+
+    // Status
+    'status' => 'Aho',
+    'active' => 'Riyoborako',
+    'inactive' => 'Itibarika',
+    'pending' => 'Iriteganya',
+    'approved' => 'Kwemezwe',
+    'rejected' => 'Kwangwe',
+    'suspended' => 'Guhaguruka',
+    'completed' => 'Kumara',
+    'disbursed' => 'Kubukira',
+    'waived' => 'Gukoma',
+    'overdue' => 'Kumara Umwaka',
+    'paid' => 'Kubaliwe',
+    'partial' => 'Ingingo',
+
+    // Common Fields
+    'name' => 'Izina',
+    'email' => 'Email',
+    'phone' => 'Terefone',
+    'date' => 'Umunsi',
+    'date_from' => 'Umunsi Uhereye',
+    'date_to' => 'Umunsi Kugeza',
+    'amount' => 'Umukoro',
+    'type' => 'Ubwoko',
+    'description' => 'Isobanuro',
+    'notes' => 'Ibinyamakuru',
+    'balance' => 'Aho Ihema',
+    'total' => 'Uwose',
+    'account' => 'Konti',
+    'username' => 'Izina ry\'Umukoresha',
+    'password' => 'Ijambo Ryibinga',
+    'address' => 'Aderesi',
+    'city' => 'Umujyi',
+    'country' => 'Igihugu',
+    'zip_code' => 'Kode y\'Aho',
+
+    // Group Related
+    'group' => 'Itsinda',
+    'groups' => 'Itsinda',
+    'my_group' => 'Itsinda Ryanjye',
+    'group_info' => 'Ubuyobozi bw\'Itsinda',
+    'group_members' => 'Abanyaitsinda',
+    'group_loans' => 'Inguzanyo z\'Itsinda',
+    'group_savings' => 'Ubwiyunge bw\'Itsinda',
+    'group_settings' => 'Igenamiterere y\'Itsinda',
+    'group_details' => 'Ibisobanuro by\'Itsinda',
+    'join_group' => 'Injira mu Itsinda',
+    'leave_group' => 'Kuva mu Itsinda',
+    'member_since' => 'Umwanitsinda Kuva',
+
+    // Loan Related
+    'loan' => 'Inguzanyo',
+    'loans' => 'Inguzanyo',
+    'my_loans' => 'Inguzanyo Zanjye',
+    'new_loan' => 'Inguzanyo Igipya',
+    'loan_request' => 'Ishakiro ry\'Inguzanyo',
+    'loan_requests' => 'Ishakiro ry\'Inguzanyo',
+    'active_loans' => 'Inguzanyo Zibaraka',
+    'loan_amount' => 'Umukoro w\'Inguzanyo',
+    'principal_amount' => 'Umukoro Mwakabuye',
+    'loan_duration' => 'Igipindi cy\'Inguzanyo',
+    'monthly_charge' => 'Amafaranga ya Buri Kwezi',
+    'interest_charge' => 'Amafaranga y\'Intama',
+    'due_date' => 'Umunsi w\'Ibyakira',
+    'maturity_date' => 'Umunsi w\'Impeza',
+    'start_date' => 'Umunsi w\'Itangira',
+    'remaining_balance' => 'Aho Ihema Igisigaye',
+    'overdue_loans' => 'Inguzanyo Yitumye',
+    'upcoming_loans' => 'Iminsi y\'Iherezo Ijajya',
+    'loan_summary' => 'Inyigyira ry\'Inguzanyo',
+    'total_payback' => 'Uwose w\'Ibyakira',
+    'loan_term' => 'Igipindi cy\'Inguzanyo',
+    'months' => 'Amezi',
+    'days' => 'Iminsi',
+    'days_left' => 'Iminsi Igisigaye',
+    'days_overdue' => 'Iminsi Yitumye',
+    'payment_status' => 'Aho Ihema y\'Ibyakira',
+    'amount_due' => 'Umukoro Ukagira Ibyakira',
+    'repay_loan' => 'Suubira Inguzanyo',
+    'loan_details' => 'Ibisobanuro by\'Inguzanyo',
+
+    // Savings Related
+    'savings' => 'Ubwiyunge',
+    'my_savings' => 'Ubwiyunge Bwanjye',
+    'total_savings' => 'Ubwiyunge Bwose',
+    'savings_balance' => 'Aho Ihema y\'Ubwiyunge',
+    'daily_savings' => 'Ubwiyunge bwa Buri Munsi',
+    'monthly_savings' => 'Ubwiyunge bwa Buri Kwezi',
+    'record_savings' => 'Kubika Ubwiyunge',
+    'withdraw_savings' => 'Gukura Ubwiyunge',
+    'member_shares' => 'Inginga z\'Umwanitsinda',
+    'share_capital' => 'Imari y\'Inginga',
+    'savings_details' => 'Ibisobanuro by\'Ubwiyunge',
+
+    // Interest Related
+    'interest' => 'Intama',
+    'total_interest' => 'Intama Iose',
+    'record_interest' => 'Kubika Intama',
+    'interest_rate' => 'Igipimo cy\'Intama',
+    'interest_earned' => 'Intama Yashiriwe',
+
+    // Penalty Related
+    'penalty' => 'Ihano',
+    'penalties' => 'Ihano',
+    'total_penalties' => 'Ihano Riose',
+    'waive_penalty' => 'Gukoma Ihano',
+    'penalty_reason' => 'Impamvu y\'Ihano',
+    'penalty_amount' => 'Umukoro w\'Ihano',
+
+    // Social Support Related
+    'social_support' => 'Ubufasha bw\'Imbonerahamwe',
+    'support_fund' => 'Akandagiye y\'Ubufasha',
+    'support_available' => 'Ubufasha Buhari',
+    'support_disbursed' => 'Ubufasha Bwatanzwe',
+    'support_type' => 'Ubwoko bw\'Ubufasha',
+    'support_request' => 'Ishakiro ry\'Ubufasha',
+    'new_support_request' => 'Ishakiro Rigipya ry\'Ubufasha',
+    'death' => 'Kufa',
+    'marriage' => 'Ubwiyunge',
+    'sickness' => 'Indwara/Ije',
+    'emergency' => 'Igihe Nyakuri',
+    'support_details' => 'Ibisobanuro by\'Ubufasha',
+
+    // Transaction Related
+    'transaction' => 'Imikorere',
+    'transactions' => 'Imikorere',
+    'recent_transactions' => 'Imikorere y\'Vuba',
+    'transaction_history' => 'Intambara y\'Imikorere',
+    'transaction_type' => 'Ubwoko bw\'Imikorere',
+    'transaction_amount' => 'Umukoro',
+    'transaction_date' => 'Umunsi w\'Imikorere',
+    'from' => 'Bivuye',
+    'to' => 'Kugera',
+    'receiver' => 'Wafashe',
+    'sender' => 'Waratanze',
+
+    // Report Related
+    'reports' => 'Raporo',
+    'financial_report' => 'Raporo y\'Imari',
+    'statistics' => 'Imibare',
+    'report' => 'Raporo',
+    'reports_summary' => 'Inyigyira y\'Raporo',
+    'generate_report' => 'Kurema Raporo',
+    'export_report' => 'Gusudura Raporo',
+
+    // Time Related
+    'today' => 'Uyu Munsi',
+    'yesterday' => 'Ejo',
+    'this_week' => 'Icyo gihe cyose',
+    'this_month' => 'Ukwezi kuno',
+    'this_year' => 'Umwaka uno',
+    'last_7_days' => 'Iminsi 7 Ishize',
+    'last_30_days' => 'Iminsi 30 Ishize',
+    'last_90_days' => 'Iminsi 90 Ishize',
+    'created_at' => 'Rwabonetse',
+    'updated_at' => 'Rwavuguruwe',
+    'deleted_at' => 'Rwafashwe',
+    'year' => 'Umwaka',
+    'month' => 'Ukwezi',
+    'week' => 'Icyo gihe',
+
+    // Messages
+    'no_data' => 'Nta mahoro',
+    'no_members' => 'Nta bantu',
+    'no_loans' => 'Nta nguzanyo',
+    'no_savings' => 'Nta bwiyunge',
+    'no_transactions' => 'Nta mikorere',
+    'no_penalties' => 'Nta ihano',
+    'no_results' => 'Nta bisubizo',
+    'success' => 'Inyungu',
+    'error' => 'Ikosa',
+    'warning' => 'Ibimenyetso',
+    'info' => 'Ubuyobozi',
+    'validation_errors' => 'Amakosa yo Kwemeza',
+    'confirm_delete' => 'Ese uri mahoro ko gutsa?',
+    'operation_successful' => 'Imikorere yagenze neza',
+    'loading' => 'Iratunzura...',
+    'please_wait' => 'Karibu subira...',
+    'processing' => 'Irinzira...',
+    'something_went_wrong' => 'Kintu kibi cyahise',
+    'try_again' => 'Ongera Wagerageza',
+    'page_not_found' => 'Ipaji Ntabwo Hari',
+    'unauthorized' => 'Ntatuzigire',
+    'forbidden' => 'Ntatugezekanise',
+
+    // Dashboards
+    'available_dashboards' => 'Igitorero Kihari',
+    'switch' => 'Guhindura',
+    'switch_dashboard' => 'Guhindura Igitorero',
+    'currently_active' => 'Riyoborako Kuri Iki',
+    'manage_entire_system' => 'Tegetsa Isi yose',
+    'switch_to_dashboard' => 'Guhindura Kugera Igitorero',
+
+    // User Management
+    'users' => 'Abakoresha',
+    'user' => 'Umukoresha',
+    'add_user' => 'Kongeza Umukoresha',
+    'edit_user' => 'Guhindura Umukoresha',
+    'user_details' => 'Ibisobanuro by\'Umukoresha',
+    'user_role' => 'Urwango rw\'Umukoresha',
+    'user_status' => 'Aho Ihema y\'Umukoresha',
+    'first_name' => 'Izina Ryambere',
+    'last_name' => 'Izina Ryasimbuka',
+    'full_name' => 'Izina Ryose',
+    'role' => 'Urwango',
+    'roles' => 'Inzira',
+    'permissions' => 'Uruhushya',
+    'system_admin' => 'Umutegetsi w\'Isi',
+    'group_admin' => 'Umutegetsi w\'Itsinda',
+    'member' => 'Umwanitsinda',
+
+    // Language
+    'language' => 'Ururimi',
+    'english' => 'Icyingereza',
+    'french' => 'Icyafaransa',
+    'swahili' => 'Ikisuwahili',
+    'kinyarwanda' => 'Ikinyarwanda',
+    'select_language' => 'Musange Ururimi',
+
+    // Theme
+    'theme' => 'Ishusho',
+    'dark_mode' => 'Ijambo rya Mwijima',
+    'light_mode' => 'Ijambo rya Tegezo',
+    'system_theme' => 'Ishusho y\'Isi',
     'confirm' => 'Emeza',
     'submit' => 'Ohereza',
     'close' => 'Funga',
@@ -28,7 +334,7 @@ return [
     'filter' => 'Shungura',
     'export' => 'Kohereza',
     'print' => 'Gucapa',
-    
+
     // Status
     'status' => 'Imimerere',
     'active' => 'Birakora',
@@ -40,7 +346,7 @@ return [
     'completed' => 'Byarangiye',
     'disbursed' => 'Byatanzwe',
     'waived' => 'Byakuweho',
-    
+
     // Common Fields
     'name' => 'Izina',
     'email' => 'Imeyili',
@@ -52,7 +358,7 @@ return [
     'notes' => 'Inyandiko',
     'balance' => 'Umutungo',
     'total' => 'Igiteranyo',
-    
+
     // Group Related
     'group' => 'Itsinda',
     'groups' => 'Amatsinda',
@@ -60,14 +366,14 @@ return [
     'group_type' => 'Ubwoko bw\'Itsinda',
     'group_settings' => 'Igenamiterere ry\'Itsinda',
     'group_info' => 'Ibisobanuro by\'Itsinda',
-    
+
     // Member Related
     'member' => 'Umunyamuryango',
     'members' => 'Abanyamuryango',
     'total_members' => 'Abanyamuryango Bose',
     'select_member' => 'Hitamo Umunyamuryango',
     'member_role' => 'Umwanya w\'Umunyamuryango',
-    
+
     // Loan Related
     'loan' => 'Inguzanyo',
     'loans' => 'Inguzanyo',
@@ -84,7 +390,7 @@ return [
     'record_loan' => 'Andika Inguzanyo',
     'loan_summary' => 'Incamake y\'Inguzanyo',
     'total_payback' => 'Amafaranga Yose',
-    
+
     // Savings Related
     'savings' => 'Ubwizigame',
     'total_savings' => 'Ubwizigame Bwose',
@@ -93,20 +399,20 @@ return [
     'record_savings' => 'Andika Ubwizigame',
     'savings_balance' => 'Umutungo w\'Ubwizigame',
     'member_shares' => 'Imigabane y\'Abanyamuryango',
-    
+
     // Interest Related
     'interest' => 'Inyungu',
     'total_interest' => 'Inyungu Zose',
     'record_interest' => 'Andika Inyungu',
     'interest_rate' => 'Igipimo cy\'Inyungu',
-    
+
     // Penalty Related
     'penalty' => 'Igihano',
     'penalties' => 'Ibihano',
     'total_penalties' => 'Ibihano Byose',
     'waive_penalty' => 'Kuraho Igihano',
     'penalty_reason' => 'Impamvu y\'Igihano',
-    
+
     // Social Support Related
     'social_support' => 'Ubufasha bw\'Imibereho',
     'support_fund' => 'Isanduku y\'Ubufasha',
@@ -117,17 +423,17 @@ return [
     'marriage' => 'Ubukwe',
     'sickness' => 'Uburwayi/Ubuvuzi',
     'new_support_request' => 'Icyifuzo Gishya cy\'Ubufasha',
-    
+
     // Transaction Related
     'transaction' => 'Igikorwa',
     'transactions' => 'Ibikorwa',
     'recent_transactions' => 'Ibikorwa bya Vuba',
-    
+
     // Report Related
     'reports' => 'Raporo',
     'financial_report' => 'Raporo y\'Imari',
     'statistics' => 'Imibare',
-    
+
     // Time Related
     'today' => 'Uyu Munsi',
     'days' => 'iminsi',
@@ -136,7 +442,7 @@ return [
     'days_overdue' => 'Iminsi Irenze',
     'created_at' => 'Byaremwe',
     'updated_at' => 'Byavuguruwe',
-    
+
     // Messages
     'no_data' => 'Nta makuru ahari',
     'no_members' => 'Nta munyamuryango abonetse',
@@ -149,7 +455,7 @@ return [
     'validation_errors' => 'Amakosa y\'Igenzura',
     'confirm_delete' => 'Uremeza ko ushaka gusiba?',
     'operation_successful' => 'Igikorwa cyagenze neza',
-    
+
     // Dashboards
     'admin_dashboard' => 'Ikibaho cy\'Umuyobozi',
     'group_admin_dashboard' => 'Ikibaho cy\'Umuyobozi w\'Itsinda',
@@ -161,7 +467,7 @@ return [
     'currently_active' => 'Bikoreshwa Ubu',
     'view_your_account' => 'Reba konti yawe',
     'manage_entire_system' => 'Kuyobora sisitemu yose',
-    
+
     // Language
     'language' => 'Ururimi',
     'english' => 'Icyongereza',

@@ -1,13 +1,72 @@
 <?php
 
 return [
-    // Navigation
+    // Navigation & Header
     'dashboard' => 'Dashibodi',
     'profile' => 'Wasifu',
     'logout' => 'Ondoka',
     'login' => 'Ingia',
     'register' => 'Jisajili',
-    
+    'settings' => 'Mipangilio',
+    'home' => 'Nyumbani',
+    'help' => 'Msaada',
+    'about' => 'Kuhusu',
+    'contact' => 'Wasiliana',
+
+    // Admin Dashboard
+    'system_administration' => 'Usimamizi wa Mfumo',
+    'system_admin_dashboard' => 'Dashibodi ya Msimamizi wa Mfumo',
+    'system_overview' => 'Muhtasari wa Mfumo',
+    'real_time_statistics' => 'Takwimu za muda halisi na vigezo muhimu',
+    'last_updated' => 'Ilisasishwa mwisho',
+    'system_administrator' => 'Msimamizi wa Mfumo',
+    'welcome_back' => 'Karibu tena',
+    'full_system_access' => 'Ufikiaji kamili wa mfumo na udhibiti kamili',
+    'last_login' => 'Kuingia kwa mwisho',
+
+    // Group Admin Dashboard
+    'group_admin_dashboard' => 'Dashibodi ya Msimamizi wa Kundi',
+    'group_admin' => 'Msimamizi wa Kundi',
+    'group_management' => 'Usimamizi wa Kundi',
+    'manage_group_members' => 'Simamia wanakundi, mikakati, na akiba',
+    'view_your_account' => 'Angalia akaunti yako',
+
+    // Member Dashboard
+    'member_dashboard' => 'Dashibodi ya Mwanakundi',
+    'member' => 'Mwanakundi',
+    'my_financial_overview' => 'Muhtasari wa Fedha Yangu',
+    'track_loans_and_savings' => 'Fuatilia mikakati yako, akiba, na afya ya kifedha',
+
+    // KPI Cards & Stats
+    'total_users' => 'Jumla ya Watumiaji',
+    'active_system_users' => 'Watumiaji wa mfumo wenye kazi',
+    'groups' => 'Vikundi',
+    'active_groups' => 'Vikundi Vya Kazi',
+    'total_groups' => 'Jumla ya Vikundi',
+    'total_members' => 'Jumla ya Wanakundi',
+    'active' => 'Kazi',
+    'total_transactions' => 'Jumla ya Miamala',
+    'total_loans_amount' => 'Jumla ya Kiasi cha Mikakati',
+    'total_savings_amount' => 'Jumla ya Kiasi cha Akiba',
+    'system_health' => 'Afya ya Mfumo',
+    'status_normal' => 'Hali ya Kawaida',
+    'total_amount_in_circulation' => 'Jumla ya kiasi katika mzunguko',
+
+    // Group Stats
+    'group_name' => 'Jina la Kundi',
+    'group_type' => 'Aina ya Kundi',
+    'created_on' => 'Iundwa tarehe',
+    'members_count' => 'Wanakundi',
+    'total_loans' => 'Jumla ya Mikakati',
+    'total_savings' => 'Jumla ya Akiba',
+    'member_role' => 'Jukumu la Mwanakundi',
+    'join_date' => 'Tarehe ya Kujiandikisha',
+    'financial_standing' => 'Hali ya Kifedha',
+    'good' => 'Nzuri',
+    'current_balance' => 'Salio la Sasa',
+    'active_loans' => 'Mikakati Inayofanya Kazi',
+    'upcoming_deadlines' => 'Tarehe za Mwisho Zinazokuja',
+
     // Common Actions
     'save' => 'Hifadhi',
     'cancel' => 'Ghairi',
@@ -23,12 +82,260 @@ return [
     'close' => 'Funga',
     'view' => 'Angalia',
     'view_all' => 'Angalia Zote',
+    'view_details' => 'Angalia Maelezo',
     'actions' => 'Vitendo',
     'select' => 'Chagua',
     'filter' => 'Chuja',
     'export' => 'Hamisha',
     'print' => 'Chapisha',
-    
+    'add' => 'Ongeza',
+    'add_new' => 'Ongeza Mpya',
+    'download' => 'Pakua',
+    'upload' => 'Pakia',
+    'manage' => 'Simamia',
+    'assign' => 'Kopesha',
+    'approve' => 'Kubali',
+    'reject' => 'Kataa',
+    'pending_review' => 'Inakubaliwa',
+    'show_more' => 'Onyesha Zaidi',
+    'show_less' => 'Onyesha Chini',
+
+    // Status
+    'status' => 'Hali',
+    'active' => 'Kazi',
+    'inactive' => 'Bila Kazi',
+    'pending' => 'Inakubaliwa',
+    'approved' => 'Kamkubali',
+    'rejected' => 'Kamataa',
+    'suspended' => 'Kusitishwa',
+    'completed' => 'Kumalizwa',
+    'disbursed' => 'Kutolewa',
+    'waived' => 'Kuachwa',
+    'overdue' => 'Kuchelewa',
+    'paid' => 'Kulipiwa',
+    'partial' => 'Sehemu',
+
+    // Common Fields
+    'name' => 'Jina',
+    'email' => 'Barua Pepe',
+    'phone' => 'Simu',
+    'date' => 'Tarehe',
+    'date_from' => 'Tarehe Kutoka',
+    'date_to' => 'Tarehe Hadi',
+    'amount' => 'Kiasi',
+    'type' => 'Aina',
+    'description' => 'Maelezo',
+    'notes' => 'Vidokezo',
+    'balance' => 'Salio',
+    'total' => 'Jumla',
+    'account' => 'Akaunti',
+    'username' => 'Jina la Mtumiaji',
+    'password' => 'Neno la Siri',
+    'address' => 'Anwani',
+    'city' => 'Jiji',
+    'country' => 'Nchi',
+    'zip_code' => 'Namba ya Posta',
+
+    // Group Related
+    'group' => 'Kundi',
+    'groups' => 'Vikundi',
+    'my_group' => 'Kundi Langu',
+    'group_info' => 'Taarifa za Kundi',
+    'group_members' => 'Wanakundi',
+    'group_loans' => 'Mikakati ya Kundi',
+    'group_savings' => 'Akiba ya Kundi',
+    'group_settings' => 'Mipangilio ya Kundi',
+    'group_details' => 'Maelezo ya Kundi',
+    'join_group' => 'Jiunge na Kundi',
+    'leave_group' => 'Acha Kundi',
+    'member_since' => 'Mwanakundi Tangu',
+
+    // Loan Related
+    'loan' => 'Mkakati',
+    'loans' => 'Mikakati',
+    'my_loans' => 'Mikakati Yangu',
+    'new_loan' => 'Mkakati Mpya',
+    'loan_request' => 'Ombi la Mkakati',
+    'loan_requests' => 'Maombi ya Mikakati',
+    'active_loans' => 'Mikakati Inayofanya Kazi',
+    'loan_amount' => 'Kiasi cha Mkakati',
+    'principal_amount' => 'Kiasi Kuu',
+    'loan_duration' => 'Kipindi cha Mkakati',
+    'monthly_charge' => 'Gharama za Kila Mwezi',
+    'interest_charge' => 'Gharama ya Faida',
+    'due_date' => 'Tarehe ya Kulipwa',
+    'maturity_date' => 'Tarehe ya Kumalizika',
+    'start_date' => 'Tarehe ya Kuanza',
+    'remaining_balance' => 'Salio Lililobaki',
+    'overdue_loans' => 'Mikakati Iliyochelewa',
+    'upcoming_loans' => 'Tarehe za Mwisho Zinazokuja',
+    'loan_summary' => 'Muhtasari wa Mkakati',
+    'total_payback' => 'Jumla ya Kulipwa',
+    'loan_term' => 'Kipindi cha Mkakati',
+    'months' => 'Miezi',
+    'days' => 'Siku',
+    'days_left' => 'Siku Zilizobaki',
+    'days_overdue' => 'Siku Zilizochelewa',
+    'payment_status' => 'Hali ya Malipo',
+    'amount_due' => 'Kiasi Kinachokufa',
+    'repay_loan' => 'Lipisha Mkakati',
+    'loan_details' => 'Maelezo ya Mkakati',
+
+    // Savings Related
+    'savings' => 'Akiba',
+    'my_savings' => 'Akiba Yangu',
+    'total_savings' => 'Akiba Jumla',
+    'savings_balance' => 'Salio la Akiba',
+    'daily_savings' => 'Akiba ya Kila Siku',
+    'monthly_savings' => 'Akiba ya Kila Mwezi',
+    'record_savings' => 'Rekodi ya Akiba',
+    'withdraw_savings' => 'Toa Akiba',
+    'member_shares' => 'Sehemu za Mwanakundi',
+    'share_capital' => 'Mtaji wa Hisa',
+    'savings_details' => 'Maelezo ya Akiba',
+
+    // Interest Related
+    'interest' => 'Faida',
+    'total_interest' => 'Faida Jumla',
+    'record_interest' => 'Rekodi ya Faida',
+    'interest_rate' => 'Kiwango cha Faida',
+    'interest_earned' => 'Faida Iliyopatikana',
+
+    // Penalty Related
+    'penalty' => 'Adhabu',
+    'penalties' => 'Adhabu',
+    'total_penalties' => 'Adhabu Jumla',
+    'waive_penalty' => 'Achana na Adhabu',
+    'penalty_reason' => 'Sababu ya Adhabu',
+    'penalty_amount' => 'Kiasi cha Adhabu',
+
+    // Social Support Related
+    'social_support' => 'Msaada wa Kijamii',
+    'support_fund' => 'Mfuko wa Msaada',
+    'support_available' => 'Msaada Unapatikana',
+    'support_disbursed' => 'Msaada Utoliewayo',
+    'support_type' => 'Aina ya Msaada',
+    'support_request' => 'Ombi la Msaada',
+    'new_support_request' => 'Ombi Jipya la Msaada',
+    'death' => 'Kifo',
+    'marriage' => 'Harusi',
+    'sickness' => 'Ugonjwa/Tiba',
+    'emergency' => 'Dharura',
+    'support_details' => 'Maelezo ya Msaada',
+
+    // Transaction Related
+    'transaction' => 'Muamala',
+    'transactions' => 'Miamala',
+    'recent_transactions' => 'Miamala ya Karibuni',
+    'transaction_history' => 'Historia ya Miamala',
+    'transaction_type' => 'Aina ya Muamala',
+    'transaction_amount' => 'Kiasi',
+    'transaction_date' => 'Tarehe ya Muamala',
+    'from' => 'Kutoka',
+    'to' => 'Kwa',
+    'receiver' => 'Mpokeaji',
+    'sender' => 'Mtumaji',
+
+    // Report Related
+    'reports' => 'Ripoti',
+    'financial_report' => 'Ripoti ya Kifedha',
+    'statistics' => 'Takwimu',
+    'report' => 'Ripoti',
+    'reports_summary' => 'Muhtasari wa Ripoti',
+    'generate_report' => 'Tengeneza Ripoti',
+    'export_report' => 'Hamisha Ripoti',
+
+    // Time Related
+    'today' => 'Leo',
+    'yesterday' => 'Jana',
+    'this_week' => 'Wiki hii',
+    'this_month' => 'Mwezi huu',
+    'this_year' => 'Mwaka huu',
+    'last_7_days' => 'Siku 7 Zilizopita',
+    'last_30_days' => 'Siku 30 Zilizopita',
+    'last_90_days' => 'Siku 90 Zilizopita',
+    'created_at' => 'Iloundwa',
+    'updated_at' => 'Ilisasishwa',
+    'deleted_at' => 'Ilifutwa',
+    'year' => 'Mwaka',
+    'month' => 'Mwezi',
+    'week' => 'Wiki',
+
+    // Messages
+    'no_data' => 'Hakuna data',
+    'no_members' => 'Hakuna wanakundi',
+    'no_loans' => 'Hakuna mikakati',
+    'no_savings' => 'Hakuna akiba',
+    'no_transactions' => 'Hakuna miamala',
+    'no_penalties' => 'Hakuna adhabu',
+    'no_results' => 'Hakuna matokeo',
+    'success' => 'Mafanikio',
+    'error' => 'Kosa',
+    'warning' => 'Onyo',
+    'info' => 'Taarifa',
+    'validation_errors' => 'Hitilafu za Uthibitishaji',
+    'confirm_delete' => 'Je, una hakika kuwa unataka kufuta?',
+    'operation_successful' => 'Operesheni ilifanikiwa',
+    'loading' => 'Inapakia...',
+    'please_wait' => 'Karibu subiri...',
+    'processing' => 'Inasindika...',
+    'something_went_wrong' => 'Kitu kimefeli',
+    'try_again' => 'Jaribu Tena',
+    'page_not_found' => 'Ukurasa Haupatikani',
+    'unauthorized' => 'Hairuhusiwi',
+    'forbidden' => 'Haruhusiwi',
+
+    // Dashboards
+    'available_dashboards' => 'Dashibodi Zinazopatikana',
+    'switch' => 'Badili',
+    'switch_dashboard' => 'Badili Dashibodi',
+    'currently_active' => 'Kazi Kwa Sasa',
+    'manage_entire_system' => 'Simamia mfumo mzima',
+    'switch_to_dashboard' => 'Badili Hadi Dashibodi',
+
+    // User Management
+    'users' => 'Watumiaji',
+    'user' => 'Mtumiaji',
+    'add_user' => 'Ongeza Mtumiaji',
+    'edit_user' => 'Hariri Mtumiaji',
+    'user_details' => 'Maelezo ya Mtumiaji',
+    'user_role' => 'Jukumu la Mtumiaji',
+    'user_status' => 'Hali ya Mtumiaji',
+    'first_name' => 'Jina la Kwanza',
+    'last_name' => 'Jina la Mwisho',
+    'full_name' => 'Jina Kamili',
+    'role' => 'Jukumu',
+    'roles' => 'Majukumu',
+    'permissions' => 'Ruhusa',
+    'system_admin' => 'Msimamizi wa Mfumo',
+    'group_admin' => 'Msimamizi wa Kundi',
+    'member' => 'Mwanakundi',
+
+    // Language
+    'language' => 'Lugha',
+    'english' => 'Kiingereza',
+    'french' => 'Kifaransa',
+    'swahili' => 'Kiswahili',
+    'kinyarwanda' => 'Kinyarwanda',
+    'select_language' => 'Chagua Lugha',
+
+    // Theme
+    'theme' => 'Mandhari',
+    'dark_mode' => 'Hali ya Giza',
+    'light_mode' => 'Hali ya Nuru',
+    'system_theme' => 'Mandhari ya Mfumo',
+];
+    'confirm' => 'Thibitisha',
+    'submit' => 'Wasilisha',
+    'close' => 'Funga',
+    'view' => 'Angalia',
+    'view_all' => 'Angalia Zote',
+    'actions' => 'Vitendo',
+    'select' => 'Chagua',
+    'filter' => 'Chuja',
+    'export' => 'Hamisha',
+    'print' => 'Chapisha',
+
     // Status
     'status' => 'Hali',
     'active' => 'Hai',
@@ -40,7 +347,7 @@ return [
     'completed' => 'Imekamilika',
     'disbursed' => 'Imetolewa',
     'waived' => 'Imeondolewa',
-    
+
     // Common Fields
     'name' => 'Jina',
     'email' => 'Barua pepe',
@@ -52,7 +359,7 @@ return [
     'notes' => 'Maelezo',
     'balance' => 'Salio',
     'total' => 'Jumla',
-    
+
     // Group Related
     'group' => 'Kikundi',
     'groups' => 'Vikundi',
@@ -60,14 +367,14 @@ return [
     'group_type' => 'Aina ya Kikundi',
     'group_settings' => 'Mipangilio ya Kikundi',
     'group_info' => 'Maelezo ya Kikundi',
-    
+
     // Member Related
     'member' => 'Mwanachama',
     'members' => 'Wanachama',
     'total_members' => 'Jumla ya Wanachama',
     'select_member' => 'Chagua Mwanachama',
     'member_role' => 'Jukumu la Mwanachama',
-    
+
     // Loan Related
     'loan' => 'Mkopo',
     'loans' => 'Mikopo',
@@ -84,7 +391,7 @@ return [
     'record_loan' => 'Rekodi Mkopo',
     'loan_summary' => 'Muhtasari wa Mkopo',
     'total_payback' => 'Jumla ya Kulipa',
-    
+
     // Savings Related
     'savings' => 'Akiba',
     'total_savings' => 'Jumla ya Akiba',
@@ -93,20 +400,20 @@ return [
     'record_savings' => 'Rekodi Akiba',
     'savings_balance' => 'Salio la Akiba',
     'member_shares' => 'Hisa za Wanachama',
-    
+
     // Interest Related
     'interest' => 'Riba',
     'total_interest' => 'Jumla ya Riba',
     'record_interest' => 'Rekodi Riba',
     'interest_rate' => 'Kiwango cha Riba',
-    
+
     // Penalty Related
     'penalty' => 'Adhabu',
     'penalties' => 'Adhabu',
     'total_penalties' => 'Jumla ya Adhabu',
     'waive_penalty' => 'Ondoa Adhabu',
     'penalty_reason' => 'Sababu ya Adhabu',
-    
+
     // Social Support Related
     'social_support' => 'Msaada wa Kijamii',
     'support_fund' => 'Mfuko wa Msaada',
@@ -117,17 +424,17 @@ return [
     'marriage' => 'Ndoa',
     'sickness' => 'Ugonjwa/Matibabu',
     'new_support_request' => 'Ombi Jipya la Msaada',
-    
+
     // Transaction Related
     'transaction' => 'Shughuli',
     'transactions' => 'Shughuli',
     'recent_transactions' => 'Shughuli za Hivi Karibuni',
-    
+
     // Report Related
     'reports' => 'Ripoti',
     'financial_report' => 'Ripoti ya Fedha',
     'statistics' => 'Takwimu',
-    
+
     // Time Related
     'today' => 'Leo',
     'days' => 'siku',
@@ -136,7 +443,7 @@ return [
     'days_overdue' => 'Siku za Ucheleweshaji',
     'created_at' => 'Iliundwa',
     'updated_at' => 'Ilisasishwa',
-    
+
     // Messages
     'no_data' => 'Hakuna data',
     'no_members' => 'Hakuna wanachama',
@@ -149,7 +456,7 @@ return [
     'validation_errors' => 'Makosa ya Uthibitishaji',
     'confirm_delete' => 'Una uhakika unataka kufuta?',
     'operation_successful' => 'Operesheni imefanikiwa',
-    
+
     // Dashboards
     'admin_dashboard' => 'Dashibodi ya Msimamizi',
     'group_admin_dashboard' => 'Dashibodi ya Msimamizi wa Kikundi',
@@ -161,7 +468,7 @@ return [
     'currently_active' => 'Inatumika Sasa',
     'view_your_account' => 'Angalia akaunti yako',
     'manage_entire_system' => 'Simamia mfumo wote',
-    
+
     // Language
     'language' => 'Lugha',
     'english' => 'Kiingereza',
