@@ -33,6 +33,10 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+
+    Route::get('password-reset-success', function () {
+        return view('auth.password-reset-success');
+    })->name('password-reset-success');
 });
 
 Route::middleware('auth')->group(function () {

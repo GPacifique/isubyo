@@ -324,4 +324,20 @@ return [
     'dark_mode' => 'Dark Mode',
     'light_mode' => 'Light Mode',
     'system_theme' => 'System Theme',
+
+    // Password Reset Success
+    'password_reset_successful' => 'Password Reset Successful',
+    'your_password_has_been_reset' => 'Your password has been reset successfully',
+    'you_can_now_login' => 'You can now login with your new password',
+    'with_your_new_password' => 'with your new password',
+    'what_happens_next' => 'What Happens Next',
+    'your_password_is_now_updated' => 'Your password is now updated and secure',
+    'click_below_to_login' => 'Click the button below to login to your account',
+    'use_your_email_and_new_password' => 'Use your email and new password to access your account',
+    'continue_to_login' => 'Continue to Login',
+    'back_to_login' => 'Back to Login',
+    'security_note' => 'Security Note',
+    'password_reset_security_message' => 'For your security, we recommend logging in from a secure device. If you did not request this password reset, please contact support immediately.',
+    'having_trouble' => 'Having trouble?',
+    'contact_support' => 'Contact Support',
 ];

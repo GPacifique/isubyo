@@ -324,6 +324,23 @@ return [
     'dark_mode' => 'Ijambo rya Mwijima',
     'light_mode' => 'Ijambo rya Tegezo',
     'system_theme' => 'Ishusho y\'Isi',
+
+    // Password Reset Success
+    'password_reset_successful' => 'Sezeranyo ry\'Ijambobanga Byari Byomeze',
+    'your_password_has_been_reset' => 'Ijambobanga ryawe ryasijeweho neza',
+    'you_can_now_login' => 'Noneho urashobora kwinjira',
+    'with_your_new_password' => 'hamwe nijambobanga ryawe ripya',
+    'what_happens_next' => 'Ibyo Bizavuka',
+    'your_password_is_now_updated' => 'Ijambobanga ryawe noneho ryakozweho neza kandi rikunze',
+    'click_below_to_login' => 'Kanda icyengejero hano munsi kwinjira muri konte yawe',
+    'use_your_email_and_new_password' => 'Koresha imeyili yawe nijambobanga ripya kwinjira muri konte yawe',
+    'continue_to_login' => 'Komeza kuri Kwinjira',
+    'back_to_login' => 'Garuka kuri Kwinjira',
+    'security_note' => 'Ikimonyo cy\'Umutekano',
+    'password_reset_security_message' => 'Kugira ngo uzimuhe umutekano, dusaba kwinjira muva kuri hijuru yumutekano. Niba utagombye gahunda iri sijeweho ry\'ijambobanga, mwishuri ubwinjira n\'ubwisanzuriw vuba.',
+    'having_trouble' => 'Wese wose mu bukunzi?',
+    'contact_support' => 'Menya Isango ry\'Ubwisanzuriw',
+
     'confirm' => 'Emeza',
     'submit' => 'Ohereza',
     'close' => 'Funga',
