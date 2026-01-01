@@ -314,4 +314,54 @@ class SeoHelper
 
         return $tags;
     }
+
+    /**
+     * Generate Open Graph meta tags with logo image
+     */
+    public static function openGraphTags(
+        string $title,
+        string $description = null,
+        string $image = null,
+        string $url = null,
+        string $type = 'website'
+    ): string {
+        $url = $url ?? url()->current();
+        $image = $image ?? asset('images/isubyo.png');
+        $description = $description ?? 'Smart group savings and loans management platform';
+        $siteName = config('app.name', 'isubyo');
+
+        $tags = [];
+        $tags[] = '<meta property="og:title" content="' . htmlspecialchars($title) . '" />';
+        $tags[] = '<meta property="og:description" content="' . htmlspecialchars($description) . '" />';
+        $tags[] = '<meta property="og:image" content="' . htmlspecialchars($image) . '" />';
+        $tags[] = '<meta property="og:url" content="' . htmlspecialchars($url) . '" />';
+        $tags[] = '<meta property="og:type" content="' . htmlspecialchars($type) . '" />';
+        $tags[] = '<meta property="og:site_name" content="' . htmlspecialchars($siteName) . '" />';
+        $tags[] = '<meta property="og:locale" content="en_US" />';
+        $tags[] = '<meta property="og:locale:alternate" content="rw_RW" />';
+
+        // Twitter Card tags
+        $tags[] = '<meta name="twitter:card" content="summary_large_image" />';
+        $tags[] = '<meta name="twitter:title" content="' . htmlspecialchars($title) . '" />';
+        $tags[] = '<meta name="twitter:description" content="' . htmlspecialchars($description) . '" />';
+        $tags[] = '<meta name="twitter:image" content="' . htmlspecialchars($image) . '" />';
+
+        return implode("\n", $tags);
+    }
+
+    /**
+     * Get logo URL for SEO meta tags
+     */
+    public static function logoUrl(): string
+    {
+        return asset('images/isubyo.png');
+    }
+
+    /**
+     * Get OG image URL for SEO meta tags
+     */
+    public static function ogImageUrl(): string
+    {
+        return asset('images/isubyo-og.png');
+    }
 }
