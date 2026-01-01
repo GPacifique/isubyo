@@ -26,8 +26,8 @@
     <meta property="twitter:image" content="{{ asset('images/isubyo.png') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/isubyo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/isubyo.png') }}">
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
