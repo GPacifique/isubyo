@@ -340,4 +340,14 @@ return [
     'password_reset_security_message' => 'For your security, we recommend logging in from a secure device. If you did not request this password reset, please contact support immediately.',
     'having_trouble' => 'Having trouble?',
     'contact_support' => 'Contact Support',
+
+    // Reset Password Form
+    'reset_password' => 'Reset Password',
+    'enter_new_password_below' => 'Enter your new password below',
+    'email_address' => 'Email Address',
+    'new_password' => 'New Password',
+    'password_requirements' => 'Must be at least 8 characters with uppercase, lowercase, numbers, and symbols',
+    'confirm_password' => 'Confirm Password',
+    'remember_password' => 'Remember your password?',
+    'reset_link_expires_in_60_minutes' => 'This password reset link will expire in 60 minutes',
 ];

@@ -340,6 +340,16 @@ return [
     'password_reset_security_message' => 'Pour votre sécurité, nous vous recommandons de vous connecter à partir d\'un appareil sécurisé. Si vous n\'avez pas demandé cette réinitialisation de mot de passe, veuillez contacter le support immédiatement.',
     'having_trouble' => 'Besoin d\'aide?',
     'contact_support' => 'Contacter le support',
+
+    // Reset Password Form
+    'reset_password' => 'Réinitialiser le mot de passe',
+    'enter_new_password_below' => 'Entrez votre nouveau mot de passe ci-dessous',
+    'email_address' => 'Adresse e-mail',
+    'new_password' => 'Nouveau mot de passe',
+    'password_requirements' => 'Doit contenir au moins 8 caractères avec des majuscules, minuscules, des chiffres et des symboles',
+    'confirm_password' => 'Confirmer le mot de passe',
+    'remember_password' => 'Vous vous souvenez de votre mot de passe?',
+    'reset_link_expires_in_60_minutes' => 'Ce lien de réinitialisation de mot de passe expirera dans 60 minutes',
 ];
     'notes' => 'Notes',
     'balance' => 'Solde',

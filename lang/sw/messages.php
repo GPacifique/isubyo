@@ -340,6 +340,16 @@ return [
     'password_reset_security_message' => 'Kwa usalama wako, tunapendekeza kuingia kutoka kwenye kifaa salama. Ikiwa haukuomba kuweka upya hili la neno la siri, tafadhali wasiliana na msaada mara moja.',
     'having_trouble' => 'Unatatizika?',
     'contact_support' => 'Wasiliana na Msaada',
+
+    // Reset Password Form
+    'reset_password' => 'Kuweka upya Neno la Siri',
+    'enter_new_password_below' => 'Ingiza neno lako jipya la siri hapa chini',
+    'email_address' => 'Anwani ya Barua pepe',
+    'new_password' => 'Neno jipya la Siri',
+    'password_requirements' => 'Lazima liwe na angalau herufi 8 zenye herufi kubwa, herufi ndogo, nambari na alama',
+    'confirm_password' => 'Thibitisha Neno la Siri',
+    'remember_password' => 'Unakumbuka neno lako la siri?',
+    'reset_link_expires_in_60_minutes' => 'Hii kiungo cha kuweka upya neno la siri kitakufa katika dakika 60',
 ];
     'submit' => 'Wasilisha',
     'close' => 'Funga',

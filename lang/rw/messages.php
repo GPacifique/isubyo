@@ -341,6 +341,16 @@ return [
     'having_trouble' => 'Wese wose mu bukunzi?',
     'contact_support' => 'Menya Isango ry\'Ubwisanzuriw',
 
+    // Reset Password Form
+    'reset_password' => 'Sezeranyo ry\'Ijambobanga',
+    'enter_new_password_below' => 'Andika ijambobanga ryawe ripya hano munsi',
+    'email_address' => 'Aderesi y\'Imeyili',
+    'new_password' => 'Ijambobanga ripya',
+    'password_requirements' => 'Igomba kubamo nimwe munsi muranga 8 hamwe nibigize binini, binini, imibare nigisimbiti',
+    'confirm_password' => 'Emeza Ijambobanga',
+    'remember_password' => 'Wukumbura ijambobanga ryawe?',
+    'reset_link_expires_in_60_minutes' => 'Iyi kiyungo cy\'ubwakintiko bw\'ijambobanga izoheretsa mu myaka 60',
+
     'confirm' => 'Emeza',
     'submit' => 'Ohereza',
     'close' => 'Funga',
