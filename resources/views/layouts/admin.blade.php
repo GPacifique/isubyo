@@ -77,68 +77,6 @@
                     <a href="{{ route('admin.activity-logs') }}" class="hover:text-green-200 transition font-medium {{ request()->routeIs('admin.activity-logs') ? 'text-green-200 border-b-2 border-green-200' : '' }}">
                         Logs
                     </a>
-
-                    <!-- Dashboard Switcher Dropdown -->
-                    @php
-                        $canAccessGroupAdmin = auth()->user()->isGroupAdminOfAny();
-                        $canAccessMember = auth()->user()->isMemberOfGroup();
-                    @endphp
-
-                    @if($canAccessGroupAdmin || $canAccessMember)
-                        <div class="relative ml-6 border-l border-green-500 pl-6">
-                            <button id="dashboard-switcher-btn" class="hover:text-green-200 transition font-medium flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
-                                    <path d="M6.5 10.5h7M6.5 14h4"></path>
-                                </svg>
-                                Switch
-                                <svg id="switcher-chevron" class="w-4 h-4 transition" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-
-                            <!-- Dropdown Menu -->
-                            <div id="dashboard-switcher-menu" class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
-                                <div class="px-4 py-3 border-b border-gray-200">
-                                    <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
-                                </div>
-
-                                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 border-b transition">
-                                    <div class="flex-1">
-                                        <div class="font-semibold text-blue-600">System Admin</div>
-                                        <p class="text-xs text-gray-500">System-wide management</p>
-                                    </div>
-                                    @if(request()->routeIs('admin.*'))
-                                        <span class="inline-block w-3 h-3 bg-blue-600 rounded-full"></span>
-                                    @endif
-                                </a>
-
-                                @if($canAccessGroupAdmin)
-                                    <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 border-b transition">
-                                        <div class="flex-1">
-                                            <div class="font-semibold text-green-600">Group Admin</div>
-                                            <p class="text-xs text-gray-500">Manage assigned groups</p>
-                                        </div>
-                                        @if(request()->routeIs('group-admin.*'))
-                                            <span class="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
-                                        @endif
-                                    </a>
-                                @endif
-
-                                @if($canAccessMember)
-                                    <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 transition">
-                                        <div class="flex-1">
-                                            <div class="font-semibold text-purple-600">Member</div>
-                                            <p class="text-xs text-gray-500">View your account</p>
-                                        </div>
-                                        @if(request()->routeIs('member.*'))
-                                            <span class="inline-block w-3 h-3 bg-purple-600 rounded-full"></span>
-                                        @endif
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    @endif
                 </div>
 
                 <!-- Search Box -->
@@ -295,48 +233,6 @@
                 document.addEventListener('keydown', function(event) {
                     if (event.key === 'Escape') {
                         userMenuDropdown.classList.add('hidden');
-                    }
-                });
-            }
-
-            // Dashboard Switcher Menu
-            const switcherBtn = document.getElementById('dashboard-switcher-btn');
-            const switcherMenu = document.getElementById('dashboard-switcher-menu');
-            const switcherChevron = document.getElementById('switcher-chevron');
-
-            if (switcherBtn && switcherMenu) {
-                // Toggle switcher on button click
-                switcherBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    switcherMenu.classList.toggle('hidden');
-                    switcherChevron.style.transform = switcherMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-                });
-
-                // Close switcher when clicking on menu items
-                const switcherLinks = switcherMenu.querySelectorAll('a');
-                switcherLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        switcherMenu.classList.add('hidden');
-                        switcherChevron.style.transform = 'rotate(0deg)';
-                    });
-                });
-
-                // Close switcher when clicking outside
-                document.addEventListener('click', function(event) {
-                    const isClickInsideMenu = switcherMenu.contains(event.target);
-                    const isClickInsideButton = switcherBtn.contains(event.target);
-
-                    if (!isClickInsideMenu && !isClickInsideButton) {
-                        switcherMenu.classList.add('hidden');
-                        switcherChevron.style.transform = 'rotate(0deg)';
-                    }
-                });
-
-                // Close switcher with Escape key
-                document.addEventListener('keydown', function(event) {
-                    if (event.key === 'Escape') {
-                        switcherMenu.classList.add('hidden');
-                        switcherChevron.style.transform = 'rotate(0deg)';
                     }
                 });
             }
