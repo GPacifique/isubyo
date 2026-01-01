@@ -40,7 +40,14 @@ class SetLocale
             $browserLocale = substr($request->header('Accept-Language'), 0, 2);
             if (in_array($browserLocale, $this->locales)) {
                 App::setLocale($browserLocale);
+            } else {
+                // Default to Kinyarwanda if browser locale not in supported list
+                App::setLocale('rw');
             }
+        }
+        // Default to Kinyarwanda as fallback
+        else {
+            App::setLocale('rw');
         }
 
         return $next($request);
