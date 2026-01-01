@@ -5,12 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        {{-- SEO Meta Tags (noindex for dashboard pages) --}}
-        <x-seo
-            :title="View::yieldContent('title', 'Dashboard')"
-            :description="View::yieldContent('description', 'isubyo Dashboard - Manage your savings groups, loans, and transactions securely.')"
-            :noindex="true"
-        />
+        {{-- Minimal SEO for admin pages (temporarily disabled complex SEO component to avoid parse errors on production). --}}
+        <title>{{ config('app.name', 'isubyo') }} - @yield('title', 'Dashboard')</title>
+        <meta name="robots" content="noindex, nofollow">
 
         <title>{{ config('app.name', 'isubyo') }}</title>
 

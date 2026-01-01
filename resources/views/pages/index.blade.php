@@ -73,37 +73,40 @@
 
 {{-- FAQ Schema for SEO --}}
 @push('head')
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "What is isubyo?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "isubyo is a comprehensive savings and loans management platform designed for community groups, SACCOs, ikimina, and tontine. It helps groups manage member contributions, loans, and financial records with complete transparency."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Is isubyo secure for financial data?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, isubyo uses bank-level encryption and security measures to protect all financial data. We comply with international data protection standards to ensure your community's financial information is safe."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Can I try isubyo for free?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, isubyo offers a free tier that allows you to manage your savings group with essential features. You can upgrade to premium plans for advanced features as your group grows."
-            }
-        }
+@php
+$faqSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => [
+        [
+            '@type' => 'Question',
+            'name' => 'What is isubyo?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'isubyo is a comprehensive savings and loans management platform designed for community groups, SACCOs, ikimina, and tontine. It helps groups manage member contributions, loans, and financial records with complete transparency.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Is isubyo secure for financial data?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Yes, isubyo uses bank-level encryption and security measures to protect all financial data. We comply with international data protection standards to ensure your community\'s financial information is safe.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Can I try isubyo for free?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Yes, isubyo offers a free tier that allows you to manage your savings group with essential features. You can upgrade to premium plans for advanced features as your group grows.'
+            ]
+        ]
     ]
-}
+];
+@endphp
+<script type="application/ld+json">
+{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 @endsection

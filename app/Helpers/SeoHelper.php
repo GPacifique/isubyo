@@ -19,24 +19,67 @@ class SeoHelper
     }
 
     /**
+     * Generate SEO-optimized page title (max 60 characters)
+     */
+    public static function title(string $title, string $siteName = null, string $separator = '|'): string
+    {
+        $siteName = $siteName ?? config('app.name', 'isubyo');
+        $fullTitle = trim($title . ' ' . $separator . ' ' . $siteName);
+
+        if (strlen($fullTitle) <= 60) {
+            return $fullTitle;
+        }
+
+        // Truncate title to fit within 60 characters
+        $maxTitleLength = 60 - strlen(' ' . $separator . ' ' . $siteName) - 3;
+        $truncatedTitle = substr($title, 0, $maxTitleLength);
+        $lastSpace = strrpos($truncatedTitle, ' ');
+
+        if ($lastSpace !== false) {
+            $truncatedTitle = substr($truncatedTitle, 0, $lastSpace);
+        }
+
+        return $truncatedTitle . '... ' . $separator . ' ' . $siteName;
+    }
+
+    /**
+     * Generate SEO-friendly page title without site name
+     */
+    public static function pageTitle(string $title, int $maxLength = 60): string
+    {
+        if (strlen($title) <= $maxLength) {
+            return $title;
+        }
+
+        $truncated = substr($title, 0, $maxLength - 3);
+        $lastSpace = strrpos($truncated, ' ');
+
+        if ($lastSpace !== false) {
+            $truncated = substr($truncated, 0, $lastSpace);
+        }
+
+        return $truncated . '...';
+    }
+
+    /**
      * Truncate text for meta description (max 160 characters)
      */
     public static function metaDescription(string $text, int $maxLength = 160): string
     {
         $text = strip_tags($text);
         $text = preg_replace('/\s+/', ' ', $text);
-        
+
         if (strlen($text) <= $maxLength) {
             return $text;
         }
-        
+
         $truncated = substr($text, 0, $maxLength - 3);
         $lastSpace = strrpos($truncated, ' ');
-        
+
         if ($lastSpace !== false) {
             $truncated = substr($truncated, 0, $lastSpace);
         }
-        
+
         return $truncated . '...';
     }
 
@@ -130,7 +173,7 @@ class SeoHelper
     public static function faqSchema(array $faqs): array
     {
         $mainEntity = [];
-        
+
         foreach ($faqs as $faq) {
             $mainEntity[] = [
                 '@type' => 'Question',
@@ -141,7 +184,7 @@ class SeoHelper
                 ],
             ];
         }
-        
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'FAQPage',
@@ -155,7 +198,7 @@ class SeoHelper
     public static function breadcrumbSchema(array $items): array
     {
         $itemListElement = [];
-        
+
         foreach ($items as $index => $item) {
             $itemListElement[] = [
                 '@type' => 'ListItem',
@@ -164,7 +207,7 @@ class SeoHelper
                 'item' => $item['url'] ?? url()->current(),
             ];
         }
-        
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'BreadcrumbList',
@@ -212,7 +255,7 @@ class SeoHelper
         string $totalTime = 'PT10M'
     ): array {
         $stepList = [];
-        
+
         foreach ($steps as $index => $step) {
             $stepList[] = [
                 '@type' => 'HowToStep',
@@ -222,7 +265,7 @@ class SeoHelper
                 'url' => $step['url'] ?? null,
             ];
         }
-        
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'HowTo',
@@ -238,8 +281,8 @@ class SeoHelper
      */
     public static function toJsonLd(array $schema): string
     {
-        return '<script type="application/ld+json">' . 
-               json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . 
+        return '<script type="application/ld+json">' .
+               json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) .
                '</script>';
     }
 
@@ -251,7 +294,7 @@ class SeoHelper
         if ($path) {
             return rtrim(config('app.url'), '/') . '/' . ltrim($path, '/');
         }
-        
+
         return url()->current();
     }
 
@@ -262,13 +305,13 @@ class SeoHelper
     {
         $tags = '';
         $currentUrl = url()->current();
-        
+
         foreach ($languages as $lang) {
             $tags .= '<link rel="alternate" hreflang="' . $lang . '" href="' . $currentUrl . '" />' . "\n";
         }
-        
+
         $tags .= '<link rel="alternate" hreflang="x-default" href="' . $currentUrl . '" />';
-        
+
         return $tags;
     }
 }
