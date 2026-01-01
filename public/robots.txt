@@ -1,2 +1,87 @@
+# isubyo Robots.txt
+# Comprehensive SEO Configuration
+# https://isubyo.com
+
+# Default rules for all crawlers
 User-agent: *
-Disallow:
+Allow: /
+
+# Block authenticated/admin areas
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /group-admin
+Disallow: /member
+Disallow: /profile
+Disallow: /chat
+Disallow: /api/
+Disallow: /_debugbar/
+
+# Block utility/system pages
+Disallow: /password/
+Disallow: /email/
+Disallow: /logout
+Disallow: /sanctum/
+Disallow: /storage/
+Disallow: /telescope/
+Disallow: /horizon/
+
+# Allow important public pages
+Allow: /login
+Allow: /register
+Allow: /about
+Allow: /features
+Allow: /pricing
+Allow: /blog
+Allow: /contact
+Allow: /products
+Allow: /support
+Allow: /legal
+
+# Polite crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://isubyo.com/sitemap.xml
+
+# Google Bot - optimized settings
+User-agent: Googlebot
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /group-admin
+Disallow: /member
+Disallow: /api/
+
+# Googlebot for images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /storage/
+Disallow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /group-admin
+Disallow: /member
+Disallow: /api/
+
+# Block aggressive/unwanted bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SearchmetricsBot
+Disallow: /

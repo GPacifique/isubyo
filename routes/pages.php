@@ -128,4 +128,8 @@ Route::middleware('web')->group(function () {
             return view('pages.legal.cookie-policy');
         })->name('cookie-policy');
     });
+
+    // SEO Routes - Sitemap and Robots
+    Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+    Route::get('/robots.txt', [\App\Http\Controllers\SitemapController::class, 'robots'])->name('robots');
 });

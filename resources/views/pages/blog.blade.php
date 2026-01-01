@@ -1,25 +1,40 @@
 @extends('layouts.guest')
 
-@section('title', 'Blog - isubyo')
+@section('title', 'Blog - Financial Insights & Community Stories')
+@section('description', 'Expert insights on group savings, loan management, financial literacy, and inspiring community success stories. Learn best practices for managing your savings group or SACCO.')
+@section('keywords', 'savings group blog, financial literacy, loan management tips, community finance stories, SACCO best practices, microfinance education, ikimina guides')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
     <!-- Header with enhanced styling -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white py-24">
-        <div class="absolute inset-0 opacity-10">
+    <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 text-white py-24">
+        <div class="absolute inset-0 opacity-10" aria-hidden="true">
             <div class="absolute top-0 right-0 w-96 h-96 bg-green-500 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
         <div class="max-w-7xl mx-auto px-4 relative">
+            <nav aria-label="Breadcrumb" class="mb-6">
+                <ol class="flex items-center space-x-2 text-sm text-slate-300" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="{{ route('pages.index') }}" itemprop="item" class="hover:text-white"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li><span aria-hidden="true">/</span></li>
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name" class="text-white">Blog</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </nav>
             <div class="space-y-2 mb-6">
                 <span class="inline-block px-3 py-1 bg-green-500 bg-opacity-20 text-green-300 text-xs font-semibold rounded-full border border-green-500 border-opacity-30">Knowledge Hub</span>
             </div>
             <h1 class="text-6xl lg:text-7xl font-black mb-4 tracking-tight">isubyo Blog</h1>
             <p class="text-xl text-slate-200 max-w-2xl">Expert insights, inspiring community stories, and actionable financial wisdom for group savings and lending</p>
         </div>
-    </div>
+    </header>
 
-    <div class="max-w-7xl mx-auto py-20 px-4">
+    <main class="max-w-7xl mx-auto py-20 px-4">
         <!-- Featured Post - Enhanced -->
         <div class="group mb-20 cursor-pointer">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-slate-100">
@@ -29,7 +44,7 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black"></div>
                         </div>
                         <div class="text-center text-white relative z-10">
-                            <svg class="w-40 h-40 mx-auto opacity-70 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-40 h-40 mx-auto opacity-70 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
