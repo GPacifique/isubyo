@@ -33,7 +33,16 @@
         </div>
 
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+            <!-- Social Support Fund Balance - Highlighted -->
+            <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg shadow-lg p-6 text-white md:col-span-2 lg:col-span-1">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-medium text-emerald-100">Ikigega cy'Ubufasha</h3>
+                    <span class="text-2xl">💰</span>
+                </div>
+                <p class="text-3xl font-bold">{{ number_format($stats['fund_balance'], 0) }}</p>
+                <p class="text-xs text-emerald-100 mt-2">Amafaranga ahari ku byihutirwa</p>
+            </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
                 <h3 class="text-sm font-medium text-gray-600 mb-2">Bitegereje</h3>
                 <p class="text-3xl font-bold text-yellow-600">{{ $stats['pending'] }}</p>
@@ -48,7 +57,98 @@
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500">
                 <h3 class="text-sm font-medium text-gray-600 mb-2">Amafaranga Yatanzwe</h3>
-                <p class="text-3xl font-bold text-purple-600">{{ number_format($stats['total_disbursed'], 2) }}</p>
+                <p class="text-3xl font-bold text-purple-600">{{ number_format($stats['total_disbursed'], 0) }}</p>
+            </div>
+        </div>
+
+        <!-- Fund Management Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Add Contribution Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-gray-900">Ongeramo mu Kigega</h3>
+                    <span class="text-2xl">➕</span>
+                </div>
+                <form method="POST" action="{{ route('group-admin.social-support-contributions.store', $group) }}" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Umunyamuryango</label>
+                        <select name="member_id" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                            <option value="">Hitamo...</option>
+                            @foreach($group->members()->where('status', 'active')->with('user')->get() as $member)
+                                <option value="{{ $member->id }}">{{ $member->user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Amafaranga</label>
+                        <input type="number" name="amount" step="1" min="1" required
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="0" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Inyandiko (ntibisabwa)</label>
+                        <input type="text" name="notes"
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="Urugero: Umusanzu wa Mutarama" />
+                    </div>
+                    <button type="submit" class="w-full px-4 py-2 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition">
+                        Emeza Umusanzu
+                    </button>
+                </form>
+            </div>
+
+            <!-- Fund Summary Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-gray-900">Incamake y'Ikigega</h3>
+                    <span class="text-2xl">📊</span>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+                        <span class="text-sm text-gray-600">Ikigega Gihari</span>
+                        <span class="font-bold text-emerald-600">{{ number_format($stats['fund_balance'], 0) }} RWF</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                        <span class="text-sm text-gray-600">Imisanzu Yose</span>
+                        <span class="font-bold text-blue-600">{{ number_format($stats['total_contributions'], 0) }} RWF</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                        <span class="text-sm text-gray-600">Imisanzu y'Uku Kwezi</span>
+                        <span class="font-bold text-purple-600">{{ number_format($stats['contributions_this_month'], 0) }} RWF</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                        <span class="text-sm text-gray-600">Byatanzwe Byose</span>
+                        <span class="font-bold text-red-600">{{ number_format($stats['total_disbursed'], 0) }} RWF</span>
+                    </div>
+                </div>
+                <a href="{{ route('group-admin.social-support-contributions', $group) }}"
+                    class="block mt-4 text-center text-sm text-emerald-600 hover:text-emerald-800 font-semibold">
+                    Reba Imisanzu Yose →
+                </a>
+            </div>
+
+            <!-- Recent Contributions Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-gray-900">Imisanzu Mishya</h3>
+                    <span class="text-2xl">📝</span>
+                </div>
+                @if(isset($recentContributions) && $recentContributions->count() > 0)
+                    <div class="space-y-3 max-h-64 overflow-y-auto">
+                        @foreach($recentContributions->take(5) as $contribution)
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg text-sm">
+                                <div>
+                                    <p class="font-medium text-gray-900">{{ $contribution->member->user->name }}</p>
+                                    <p class="text-xs text-gray-500">{{ $contribution->created_at->format('M d, Y') }}</p>
+                                </div>
+                                <span class="font-bold text-emerald-600">+{{ number_format($contribution->amount, 0) }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-gray-500 text-sm text-center py-8">Nta misanzu irahari</p>
+                @endif
             </div>
         </div>
 

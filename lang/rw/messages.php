@@ -211,6 +211,7 @@ return [
 
     // Social Support Related
     'social_support' => 'Ubufasha bw\'Imbonerahamwe',
+    'social_support_fund' => 'Ikigega cy\'Ubufasha bw\'Imibereho',
     'support_fund' => 'Akandagiye y\'Ubufasha',
     'support_available' => 'Ubufasha Buhari',
     'support_disbursed' => 'Ubufasha Bwatanzwe',
@@ -222,6 +223,17 @@ return [
     'sickness' => 'Indwara/Ije',
     'emergency' => 'Igihe Nyakuri',
     'support_details' => 'Ibisobanuro by\'Ubufasha',
+    'fund_balance' => 'Amafaranga mu Kigega',
+    'add_contribution' => 'Ongeramo Umusanzu',
+    'contribution' => 'Umusanzu',
+    'contributions' => 'Imisanzu',
+    'contribution_history' => 'Amateka y\'Imisanzu',
+    'total_contributions' => 'Imisanzu Yose',
+    'contributions_this_month' => 'Imisanzu y\'Uku Kwezi',
+    'emergency_fund' => 'Ikigega cy\'Ibyihutirwa',
+    'available_for_emergency' => 'Ahari ku Byihutirwa',
+    'record_contribution' => 'Andika Umusanzu',
+    'insufficient_fund' => 'Amafaranga Adahagije',
 
     // Transaction Related
     'transaction' => 'Imikorere',

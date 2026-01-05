@@ -211,6 +211,7 @@ return [
 
     // Social Support Related
     'social_support' => 'Social Support',
+    'social_support_fund' => 'Social Support Fund',
     'support_fund' => 'Support Fund',
     'support_available' => 'Available Support',
     'support_disbursed' => 'Support Disbursed',
@@ -222,6 +223,17 @@ return [
     'sickness' => 'Sickness/Medical',
     'emergency' => 'Emergency',
     'support_details' => 'Support Details',
+    'fund_balance' => 'Fund Balance',
+    'add_contribution' => 'Add Contribution',
+    'contribution' => 'Contribution',
+    'contributions' => 'Contributions',
+    'contribution_history' => 'Contribution History',
+    'total_contributions' => 'Total Contributions',
+    'contributions_this_month' => 'Contributions This Month',
+    'emergency_fund' => 'Emergency Fund',
+    'available_for_emergency' => 'Available for Emergency',
+    'record_contribution' => 'Record Contribution',
+    'insufficient_fund' => 'Insufficient Fund',
 
     // Transaction Related
     'transaction' => 'Transaction',
@@ -374,7 +386,7 @@ return [
     'get_started' => 'Get Started',
     'sign_up' => 'Sign Up',
     'sign_in' => 'Sign In',
-    
+
     // User Profile
     'profile_information' => 'Profile Information',
     'update_profile' => 'Update your account\'s profile information and email address',
@@ -408,7 +420,7 @@ return [
     'assign_revoke_roles' => 'Assign or revoke roles for this user',
     'available_roles' => 'Available Roles',
     'current_roles' => 'Current Roles',
-    
+
     // Transaction Types
     'deposit' => 'Deposit',
     'withdrawal' => 'Withdrawal',
@@ -417,7 +429,7 @@ return [
     'loan_repayment' => 'Loan Repayment',
     'charge' => 'Charge',
     'adjustment' => 'Adjustment',
-    
+
     // Transaction Placeholders
     'transaction_reference_placeholder' => 'Loan #123, Check #456, etc.',
     'transaction_details_placeholder' => 'Add transaction details...',
@@ -428,7 +440,7 @@ return [
     'permission_name_placeholder' => 'e.g., reports.export',
     'permission_display_placeholder' => 'e.g., Export Reports',
     'permission_description_placeholder' => 'Describe what this permission allows...',
-    
+
     // Group Related
     'enter_group_name' => 'Enter group name',
     'enter_group_description' => 'Enter group description',
@@ -440,7 +452,7 @@ return [
     'defaulted' => 'Defaulted',
     'cancelled' => 'Cancelled',
     'enter_loan_details' => 'Enter loan details...',
-    
+
     // Payment Methods
     'cash' => 'Cash',
     'bank_transfer' => 'Bank Transfer',
@@ -448,7 +460,7 @@ return [
     'mobile_money' => 'Mobile Money',
     'other' => 'Other',
     'add_additional_notes' => 'Add any additional notes...',
-    
+
     // Activity Logs
     'all_actions' => 'All Actions',
     'all_users' => 'All Users',
@@ -459,7 +471,7 @@ return [
     'loan_payment' => 'Loan Payment',
     'add_member' => 'Add Member',
     'remove_member' => 'Remove Member',
-    
+
     // Chat/Support
     'open' => 'Open',
     'waiting' => 'Waiting',
@@ -468,7 +480,7 @@ return [
     'medium' => 'Medium',
     'high' => 'High',
     'type_your_reply' => 'Type your reply...',
-    
+
     // Settlements
     'total_due' => 'Total Due',
     'amount_paid' => 'Amount Paid',
@@ -492,7 +504,7 @@ return [
     'settlement_periods' => 'Settlement Periods',
     'create_settlement_period' => 'Create Settlement Period',
     'additional_notes_placeholder' => 'Any additional notes...',
-    
+
     // Loan Requests
     'enter_amount' => 'Enter amount',
     'number_of_months' => 'Number of months to repay',
@@ -502,7 +514,7 @@ return [
     'rejection_reason_placeholder' => 'Explain why you\'re rejecting this request...',
     'approve_loan' => 'Approve Loan',
     'reject_request' => 'Reject Request',
-    
+
     // Welcome/Home Page
     'smart_financial_management' => 'Smart Financial Management for Groups',
     'total_group_balance' => 'Total Group Balance',
@@ -530,7 +542,7 @@ return [
     'savings_growth' => 'Savings Growth',
     'loan_distribution' => 'Loan Distribution',
     'everything_you_need' => 'Everything You Need',
-    
+
     // Features
     'smart_loan_management' => 'Smart Loan Management',
     'customizable_interest_rates' => 'Customizable interest rates',
@@ -551,12 +563,12 @@ return [
     'custom_notifications' => 'Custom notifications',
     'bank_level_security' => 'Bank-Level Security',
     'complete_audit_trails' => 'Complete audit trails',
-    
+
     // Testimonials
     'group_administrator' => 'Group Administrator',
     'group_member' => 'Group Member',
     'ready_to_transform' => 'Ready to Transform Your Group?',
-    
+
     // Contact
     'contact_us' => 'Contact Us',
     'wed_love_to_hear' => 'We\'d love to hear from you. Get in touch with us today.',
@@ -568,14 +580,14 @@ return [
     'sales_inquiry' => 'Sales Inquiry',
     'partnership' => 'Partnership',
     'feedback' => 'Feedback',
-    
+
     // About
     'about_isubyo' => 'About isubyo',
     'empowering_communities' => 'Empowering Communities Through Financial Transparency',
     'our_mission' => 'Our Mission',
     'our_core_values' => 'Our Core Values',
     'transparency' => 'Transparency',
-    
+
     // Pricing
     'simple_transparent_pricing' => 'Simple, Transparent Pricing',
     'starter' => 'Starter',
@@ -585,7 +597,7 @@ return [
     'can_cancel_anytime' => 'Can I cancel anytime?',
     'annual_billing_discount' => 'Do you offer discounts for annual billing?',
     'is_free_trial' => 'Is there a free trial?',
-    
+
     // Help Center
     'help_center' => 'Help Center',
     'getting_started' => 'Getting Started',
@@ -595,7 +607,7 @@ return [
     'popular_articles' => 'Popular Articles',
     'search_faq' => 'Search FAQ...',
     'still_need_help' => 'Still need help?',
-    
+
     // System Status
     'system_status' => 'System Status',
     'overall_status' => 'Overall Status',
@@ -608,7 +620,7 @@ return [
     'recent_incidents' => 'Recent Incidents',
     'scheduled_maintenance' => 'Scheduled Maintenance',
     'stay_updated' => 'Stay Updated',
-    
+
     // Legal
     'terms_of_service' => 'Terms of Service',
     'privacy_policy' => 'Privacy Policy',
@@ -617,7 +629,7 @@ return [
     'questions_about_terms' => 'Questions About Our Terms?',
     'personal_data' => 'Personal Data',
     'usage_data' => 'Usage Data',
-    
+
     // Footer
     'quick_links' => 'Quick Links',
     'products' => 'Products',

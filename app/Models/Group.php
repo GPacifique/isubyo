@@ -26,12 +26,14 @@ class Group extends Model
         'total_savings',
         'total_loans_issued',
         'total_interest_earned',
+        'social_support_fund',
     ];
 
     protected $casts = [
         'total_savings' => 'decimal:2',
         'total_loans_issued' => 'decimal:2',
         'total_interest_earned' => 'decimal:2',
+        'social_support_fund' => 'decimal:2',
         'approved_at' => 'datetime',
     ];
 
@@ -84,6 +86,11 @@ class Group extends Model
     public function socialSupports(): HasMany
     {
         return $this->hasMany(SocialSupport::class);
+    }
+
+    public function socialSupportContributions(): HasMany
+    {
+        return $this->hasMany(SocialSupportContribution::class);
     }
 
     public function activeLoanCount(): int

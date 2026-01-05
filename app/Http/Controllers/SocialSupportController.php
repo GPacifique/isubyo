@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\GroupMember;
 use App\Models\SocialSupport;
+use App\Models\SocialSupportContribution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SocialSupportController extends Controller
 {
@@ -46,9 +48,19 @@ class SocialSupportController extends Controller
             'approved' => $group->socialSupports()->where('status', 'approved')->count(),
             'disbursed' => $group->socialSupports()->where('status', 'disbursed')->count(),
             'total_disbursed' => $group->socialSupports()->where('status', 'disbursed')->sum('amount'),
+            'fund_balance' => $group->social_support_fund ?? 0,
+            'total_contributions' => $group->socialSupportContributions()->sum('amount'),
+            'contributions_this_month' => $group->socialSupportContributions()->thisMonth()->sum('amount'),
         ];
 
-        return view('dashboards.group-social-supports', compact('group', 'supports', 'stats'));
+        // Get recent contributions for display
+        $recentContributions = $group->socialSupportContributions()
+            ->with(['member.user', 'recordedBy'])
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('dashboards.group-social-supports', compact('group', 'supports', 'stats', 'recentContributions'));
     }
 
     /**
@@ -155,12 +167,83 @@ class SocialSupportController extends Controller
             return back()->with('error', 'Only approved requests can be disbursed.');
         }
 
-        $support->update([
-            'status' => 'disbursed',
-            'disbursed_at' => now(),
+        $fundBalance = (float) ($group->social_support_fund ?? 0);
+        $requestAmount = (float) $support->amount;
+
+        // Check if there's enough fund balance
+        if ($fundBalance < $requestAmount) {
+            return back()->with('error', 'Insufficient social support fund. Available: ' . number_format($fundBalance, 2) . ', Required: ' . number_format($requestAmount, 2));
+        }
+
+        DB::transaction(function () use ($group, $requestAmount, $support) {
+            // Deduct from the fund
+            $group->decrement('social_support_fund', $requestAmount);
+
+            // Mark as disbursed
+            $support->update([
+                'status' => 'disbursed',
+                'disbursed_at' => now(),
+            ]);
+        });
+
+        return back()->with('success', 'Support disbursed successfully. Fund balance updated.');
+    }
+
+    /**
+     * Store a new contribution to the social support fund
+     */
+    public function storeContribution(Request $request, Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $validated = $request->validate([
+            'member_id' => 'required|exists:group_members,id',
+            'amount' => 'required|numeric|min:0.01',
+            'notes' => 'nullable|string|max:500',
         ]);
 
-        return back()->with('success', 'Support disbursed successfully.');
+        // Verify member belongs to group
+        $member = GroupMember::findOrFail($validated['member_id']);
+        if ($member->group_id !== $group->id) {
+            return back()->with('error', 'Member does not belong to this group.');
+        }
+
+        DB::transaction(function () use ($group, $validated) {
+            // Create contribution record
+            $group->socialSupportContributions()->create([
+                'member_id' => $validated['member_id'],
+                'amount' => $validated['amount'],
+                'notes' => $validated['notes'] ?? null,
+                'recorded_by' => Auth::id(),
+            ]);
+
+            // Update fund balance
+            $group->increment('social_support_fund', $validated['amount']);
+        });
+
+        return back()->with('success', 'Contribution recorded successfully. Fund balance updated.');
+    }
+
+    /**
+     * Show contribution history
+     */
+    public function contributions(Group $group)
+    {
+        $this->authorizeGroupAdmin($group);
+
+        $contributions = $group->socialSupportContributions()
+            ->with(['member.user', 'recordedBy'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
+        $stats = [
+            'fund_balance' => $group->social_support_fund ?? 0,
+            'total_contributions' => $group->socialSupportContributions()->sum('amount'),
+            'contributions_this_month' => $group->socialSupportContributions()->thisMonth()->sum('amount'),
+            'contributors_count' => $group->socialSupportContributions()->distinct('member_id')->count('member_id'),
+        ];
+
+        return view('dashboards.group-social-support-contributions', compact('group', 'contributions', 'stats'));
     }
 
     /**

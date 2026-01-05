@@ -59,6 +59,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/groups/{group}/social-supports/{support}/reject', [SocialSupportController::class, 'reject'])->name('social-supports.reject');
         Route::post('/groups/{group}/social-supports/{support}/disburse', [SocialSupportController::class, 'disburse'])->name('social-supports.disburse');
         Route::delete('/groups/{group}/social-supports/{support}', [SocialSupportController::class, 'destroy'])->name('social-supports.destroy');
+        Route::post('/groups/{group}/social-support-contributions', [SocialSupportController::class, 'storeContribution'])->name('social-support-contributions.store');
+        Route::get('/groups/{group}/social-support-contributions', [SocialSupportController::class, 'contributions'])->name('social-support-contributions');
         Route::get('/groups/{group}/reports', [GroupAdminDashboardController::class, 'reports'])->name('reports');
         Route::get('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'recordSavings'])->name('record-savings');
         Route::post('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'storeSavings'])->name('store-savings');
