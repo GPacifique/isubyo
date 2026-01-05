@@ -370,6 +370,180 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Social Support Fund Section -->
+                <div class="bg-white rounded-lg shadow-sm mt-6">
+                    <div class="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">❤️ Social Support Fund</h2>
+                            <p class="text-sm text-gray-600 mt-1">Fund balance, contributions & disbursements</p>
+                        </div>
+                        <a href="{{ route('group-admin.social-supports', $group) }}" class="text-pink-500 hover:text-pink-700 font-semibold text-sm">View All</a>
+                    </div>
+
+                    <!-- Social Support Stats -->
+                    @if(isset($socialSupportStats))
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg p-4 text-white">
+                                <p class="text-xs font-medium text-emerald-100 mb-1">Fund Balance</p>
+                                <p class="text-2xl font-bold">{{ number_format($socialSupportStats['fund_balance'], 0) }}</p>
+                                <p class="text-xs text-emerald-100">RWF</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <p class="text-xs font-medium text-gray-500 mb-1">Total Contributions</p>
+                                <p class="text-xl font-bold text-blue-600">{{ number_format($socialSupportStats['total_contributions'], 0) }}</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <p class="text-xs font-medium text-gray-500 mb-1">Total Disbursed</p>
+                                <p class="text-xl font-bold text-red-600">{{ number_format($socialSupportStats['total_disbursed'], 0) }}</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <p class="text-xs font-medium text-gray-500 mb-1">Pending Requests</p>
+                                <p class="text-xl font-bold text-yellow-600">{{ $socialSupportStats['pending_requests'] }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Breakdown -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- This Month Summary -->
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-900 mb-3">📅 This Month</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Contributions</span>
+                                        <span class="font-semibold text-green-600">+{{ number_format($socialSupportStats['contributions_this_month'], 0) }}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Disbursements</span>
+                                        <span class="font-semibold text-red-600">-{{ number_format($socialSupportStats['disbursed_this_month'], 0) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Support Type Breakdown -->
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-900 mb-3">📊 By Type (Disbursed)</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-600">☠️ Death</span>
+                                        <span class="font-semibold">{{ number_format($socialSupportStats['death_amount'], 0) }} <span class="text-xs text-gray-400">({{ $socialSupportStats['death_count'] }})</span></span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-600">💍 Marriage</span>
+                                        <span class="font-semibold">{{ number_format($socialSupportStats['marriage_amount'], 0) }} <span class="text-xs text-gray-400">({{ $socialSupportStats['marriage_count'] }})</span></span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-600">🏥 Sickness</span>
+                                        <span class="font-semibold">{{ number_format($socialSupportStats['sickness_amount'], 0) }} <span class="text-xs text-gray-400">({{ $socialSupportStats['sickness_count'] }})</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monthly History Chart Data -->
+                        @if(isset($socialSupportHistory) && $socialSupportHistory->count() > 0)
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">📈 12-Month History</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs">
+                                    <thead>
+                                        <tr class="bg-gray-100">
+                                            <th class="px-2 py-2 text-left font-semibold text-gray-600">Month</th>
+                                            @foreach($socialSupportHistory as $month)
+                                                <th class="px-2 py-2 text-center font-semibold text-gray-600">{{ $month['month_short'] }}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="px-2 py-2 text-green-600 font-medium">In</td>
+                                            @foreach($socialSupportHistory as $month)
+                                                <td class="px-2 py-2 text-center {{ $month['contributions'] > 0 ? 'text-green-600 font-semibold' : 'text-gray-400' }}">
+                                                    {{ $month['contributions'] > 0 ? number_format($month['contributions']/1000, 0).'K' : '-' }}
+                                                </td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <td class="px-2 py-2 text-red-600 font-medium">Out</td>
+                                            @foreach($socialSupportHistory as $month)
+                                                <td class="px-2 py-2 text-center {{ $month['disbursements'] > 0 ? 'text-red-600 font-semibold' : 'text-gray-400' }}">
+                                                    {{ $month['disbursements'] > 0 ? number_format($month['disbursements']/1000, 0).'K' : '-' }}
+                                                </td>
+                                            @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @endif
+
+                        <!-- Recent Activity -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <!-- Recent Contributions -->
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <h4 class="font-semibold text-gray-900">Recent Contributions</h4>
+                                    <a href="{{ route('group-admin.social-support-contributions', $group) }}" class="text-xs text-emerald-600 hover:text-emerald-800">View All →</a>
+                                </div>
+                                @if(isset($recentSocialContributions) && $recentSocialContributions->count() > 0)
+                                <div class="space-y-2 max-h-48 overflow-y-auto">
+                                    @foreach($recentSocialContributions as $contribution)
+                                    <div class="flex items-center justify-between p-2 bg-green-50 rounded text-sm">
+                                        <div>
+                                            <p class="font-medium text-gray-900">{{ $contribution->member->user->name }}</p>
+                                            <p class="text-xs text-gray-500">{{ $contribution->created_at->format('M d') }}</p>
+                                        </div>
+                                        <span class="font-bold text-green-600">+{{ number_format($contribution->amount, 0) }}</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                @else
+                                <p class="text-gray-500 text-sm text-center py-4">No contributions yet</p>
+                                @endif
+                            </div>
+
+                            <!-- Recent Requests -->
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <h4 class="font-semibold text-gray-900">Recent Requests</h4>
+                                    <a href="{{ route('group-admin.social-supports', $group) }}" class="text-xs text-pink-600 hover:text-pink-800">View All →</a>
+                                </div>
+                                @if(isset($recentSocialSupports) && $recentSocialSupports->count() > 0)
+                                <div class="space-y-2 max-h-48 overflow-y-auto">
+                                    @foreach($recentSocialSupports as $support)
+                                    <div class="flex items-center justify-between p-2 rounded text-sm {{ $support->status === 'pending' ? 'bg-yellow-50' : ($support->status === 'disbursed' ? 'bg-green-50' : 'bg-gray-50') }}">
+                                        <div>
+                                            <p class="font-medium text-gray-900">{{ $support->member->user->name }}</p>
+                                            <p class="text-xs text-gray-500">{{ App\Models\SocialSupport::getTypeLabel($support->type) }}</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="font-bold text-gray-900">{{ number_format($support->amount, 0) }}</span>
+                                            <p class="text-xs {{ $support->status === 'pending' ? 'text-yellow-600' : ($support->status === 'disbursed' ? 'text-green-600' : 'text-gray-500') }}">
+                                                {{ ucfirst($support->status) }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                @else
+                                <p class="text-gray-500 text-sm text-center py-4">No requests yet</p>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="flex gap-3 mt-6 pt-4 border-t border-gray-200">
+                            <a href="{{ route('group-admin.social-support-contributions', $group) }}" class="flex-1 px-4 py-2 bg-emerald-600 text-white text-center font-semibold rounded-lg hover:bg-emerald-700 transition text-sm">
+                                + Add Contribution
+                            </a>
+                            <a href="{{ route('group-admin.social-supports', $group) }}" class="flex-1 px-4 py-2 bg-pink-600 text-white text-center font-semibold rounded-lg hover:bg-pink-700 transition text-sm">
+                                + New Request
+                            </a>
+                        </div>
+                    </div>
+                    @endif
+                </div>
             </div>
 
             <!-- Sidebar (Right 1/3) -->

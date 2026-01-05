@@ -8,6 +8,7 @@ use App\Models\Loan;
 use App\Models\Penalty;
 use App\Models\Saving;
 use App\Models\SocialSupport;
+use App\Models\SocialSupportContribution;
 use App\Models\Transaction;
 use App\Services\LoanService;
 use App\Notifications\SavingsTransactionNotification;
@@ -59,7 +60,10 @@ class GroupAdminDashboardController extends Controller
         $totalDisbursed = $group->socialSupports()
             ->where('status', 'disbursed')
             ->sum('amount');
-        $supportFundAvailable = $totalPenalties + $totalInterests - $totalDisbursed;
+
+        // Social Support Fund Calculations (from contributions)
+        $socialSupportContributions = $group->socialSupportContributions()->sum('amount');
+        $socialSupportFundBalance = $group->social_support_fund ?? 0;
 
         // Daily and Monthly Savings
         $todaySavings = Transaction::where('group_id', $group->id)
@@ -73,6 +77,40 @@ class GroupAdminDashboardController extends Controller
             ->whereMonth('transaction_date', now()->month)
             ->sum('amount');
 
+        // Social Support Statistics
+        $socialSupportStats = [
+            'fund_balance' => $socialSupportFundBalance,
+            'total_contributions' => $socialSupportContributions,
+            'contributions_this_month' => $group->socialSupportContributions()
+                ->whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
+                ->sum('amount'),
+            'contributions_this_year' => $group->socialSupportContributions()
+                ->whereYear('created_at', now()->year)
+                ->sum('amount'),
+            'pending_requests' => $group->socialSupports()->where('status', 'pending')->count(),
+            'approved_requests' => $group->socialSupports()->where('status', 'approved')->count(),
+            'disbursed_requests' => $group->socialSupports()->where('status', 'disbursed')->count(),
+            'rejected_requests' => $group->socialSupports()->where('status', 'rejected')->count(),
+            'total_disbursed' => $totalDisbursed,
+            'disbursed_this_month' => $group->socialSupports()
+                ->where('status', 'disbursed')
+                ->whereMonth('disbursed_at', now()->month)
+                ->whereYear('disbursed_at', now()->year)
+                ->sum('amount'),
+            'disbursed_this_year' => $group->socialSupports()
+                ->where('status', 'disbursed')
+                ->whereYear('disbursed_at', now()->year)
+                ->sum('amount'),
+            // Breakdown by type
+            'death_count' => $group->socialSupports()->where('type', 'death')->count(),
+            'death_amount' => $group->socialSupports()->where('type', 'death')->where('status', 'disbursed')->sum('amount'),
+            'marriage_count' => $group->socialSupports()->where('type', 'marriage')->count(),
+            'marriage_amount' => $group->socialSupports()->where('type', 'marriage')->where('status', 'disbursed')->sum('amount'),
+            'sickness_count' => $group->socialSupports()->where('type', 'sickness')->count(),
+            'sickness_amount' => $group->socialSupports()->where('type', 'sickness')->where('status', 'disbursed')->sum('amount'),
+        ];
+
         $stats = [
             'total_members' => $members->count(),
             'active_loans' => $group->loans()->where('status', 'active')->count(),
@@ -85,7 +123,7 @@ class GroupAdminDashboardController extends Controller
             'total_penalties' => $totalPenalties,
             'total_interests' => $totalInterests,
             'total_support_disbursed' => $totalDisbursed,
-            'support_fund_available' => max(0, $supportFundAvailable),
+            'support_fund_available' => $socialSupportFundBalance,
             'overdue_loans' => $group->loans()->where('status', 'active')->where('maturity_date', '<', now())->count(),
             'pending_charges' => $group->loans()->get()->sum(function($loan) {
                 return optional($loan->pendingCharges())->sum('charge_amount') ?? 0;
@@ -143,15 +181,55 @@ class GroupAdminDashboardController extends Controller
             ];
         });
 
+        // Get recent social support requests
+        $recentSocialSupports = $group->socialSupports()
+            ->with(['member.user', 'approvedBy'])
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        // Get recent social support contributions
+        $recentSocialContributions = $group->socialSupportContributions()
+            ->with(['member.user', 'recordedBy'])
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        // Monthly social support history (last 12 months)
+        $socialSupportHistory = collect();
+        for ($i = 11; $i >= 0; $i--) {
+            $month = now()->subMonths($i);
+            $monthContributions = $group->socialSupportContributions()
+                ->whereMonth('created_at', $month->month)
+                ->whereYear('created_at', $month->year)
+                ->sum('amount');
+            $monthDisbursements = $group->socialSupports()
+                ->where('status', 'disbursed')
+                ->whereMonth('disbursed_at', $month->month)
+                ->whereYear('disbursed_at', $month->year)
+                ->sum('amount');
+            $socialSupportHistory->push([
+                'month' => $month->format('M Y'),
+                'month_short' => $month->format('M'),
+                'contributions' => $monthContributions,
+                'disbursements' => $monthDisbursements,
+                'net' => $monthContributions - $monthDisbursements,
+            ]);
+        }
+
         return view('dashboards.group-admin', compact(
             'group',
             'stats',
+            'socialSupportStats',
             'members',
             'member_details',
             'upcoming_loans',
             'overdue_loans',
             'recent_loans',
             'recent_savings',
+            'recentSocialSupports',
+            'recentSocialContributions',
+            'socialSupportHistory',
             'adminGroups'
         ));
     }
