@@ -3,131 +3,309 @@
 @section('title', 'Group Admin Dashboard - ' . $group->name)
 
 @section('content')
-<div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white shadow">
-        <div class="max-w-7xl mx-auto py-8 px-4">
-            <div class="flex items-center space-x-4 mb-4">
-                <img src="{{ asset('images/isubyo.png') }}" alt="Isubyo Logo" class="h-12 w-12 rounded-full">
-                <span class="text-sm font-semibold text-indigo-100">ISUBYO</span>
-            </div>
-            <div class="flex items-center justify-between mb-4">
-                <div class="flex-1">
-                    <h1 class="text-4xl font-bold">{{ $group->name }} - Admin Dashboard</h1>
-                    <p class="text-indigo-100 mt-2">Manage members, loans, savings, and financial records</p>
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Left: Logo & Brand -->
+                <div class="flex items-center space-x-4">
+                    <a href="{{ route('group-admin.dashboard') }}" class="flex items-center space-x-3">
+                        <img src="{{ asset('images/isubyo.png') }}" alt="isubyo" class="h-10 w-10 rounded-xl shadow-sm">
+                        <div class="hidden sm:block">
+                            <span class="text-lg font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">isubyo</span>
+                            <span class="text-xs text-gray-500 block -mt-1">Group Admin</span>
+                        </div>
+                    </a>
+
+                    <!-- Group Selector -->
+                    @if($adminGroups && count($adminGroups) > 0)
+                    <div class="hidden md:block border-l border-gray-200 pl-4 ml-4">
+                        <select id="groupSelect" onchange="switchGroup(this.value)"
+                            class="text-sm font-medium text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent cursor-pointer transition">
+                            @foreach($adminGroups as $availableGroup)
+                                <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
+                                    {{ $availableGroup->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                 </div>
 
-                <!-- Dashboard Switcher -->
-                @php
-                    $canAccessSystemAdmin = auth()->user()->is_admin;
-                    $canAccessMember = auth()->user()->isMemberOfGroup();
-                @endphp
+                <!-- Center: Main Navigation -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="{{ route('group-admin.dashboard') }}" class="px-4 py-2 rounded-lg text-sm font-medium text-indigo-600 bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+                        Dashboard
+                    </a>
+                    <a href="{{ route('group-admin.members', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+                        Members
+                    </a>
+                    <a href="{{ route('group-admin.loans', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                        Loans
+                    </a>
+                    <a href="{{ route('group-admin.savings', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg>
+                        Savings
+                    </a>
+                    <a href="{{ route('group-admin.social-supports', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+                        Support
+                    </a>
+                    <a href="{{ route('group-admin.transactions', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+                        Transactions
+                    </a>
+                    <a href="{{ route('group-admin.reports', $group) }}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm2 10a1 1 0 10-2 0v3a1 1 0 102 0v-3zm2-3a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1zm4-1a1 1 0 10-2 0v7a1 1 0 102 0V8z" clip-rule="evenodd"/></svg>
+                        Reports
+                    </a>
+                </div>
 
-                @if($canAccessSystemAdmin || $canAccessMember)
-                    <div class="ml-6 flex items-center gap-4">
-                        @if($adminGroups && count($adminGroups) > 0)
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Group:</label>
-                                    <select
-                                        id="groupSelect"
-                                        class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium cursor-pointer"
-                                        onchange="switchGroup(this.value)"
-                                    >
-                                        @foreach($adminGroups as $availableGroup)
-                                            <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
-                                                {{ $availableGroup->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="border-l border-indigo-400 pl-4">
-                            <button id="ga-switcher-btn" class="flex items-center gap-2 hover:text-indigo-200 transition text-sm font-medium">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"></path>
-                                    <path d="M6.5 10.5h7M6.5 14h4"></path>
-                                </svg>
-                                Switch
-                                <svg id="ga-switcher-chevron" class="w-4 h-4 transition" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
+                <!-- Right: Actions & Profile -->
+                <div class="flex items-center space-x-3">
+                    <!-- Quick Actions Dropdown -->
+                    <div class="relative" x-data="{ open: false }">
+                        <button id="quickActionsBtn" class="flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg text-sm font-medium hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/25 transition">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                            Quick Add
+                            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                        </button>
+                        <div id="quickActionsMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+                            <a href="{{ route('group-admin.record-member-loan', $group) }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 transition">
+                                <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">💳</span>
+                                <span class="font-medium">Record Loan</span>
+                            </a>
+                            <a href="{{ route('group-admin.record-savings', $group) }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 transition">
+                                <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">💰</span>
+                                <span class="font-medium">Record Savings</span>
+                            </a>
+                            <a href="{{ route('group-admin.record-interest', $group) }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 transition">
+                                <span class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">📈</span>
+                                <span class="font-medium">Record Interest</span>
+                            </a>
+                            <div class="border-t border-gray-100 my-2"></div>
+                            <a href="{{ route('group-admin.members.create', $group) }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 transition">
+                                <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">👤</span>
+                                <span class="font-medium">Add Member</span>
+                            </a>
+                            <button onclick="showCreateSocialSupportModal()" class="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 transition">
+                                <span class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center mr-3">❤️</span>
+                                <span class="font-medium">Social Support</span>
                             </button>
+                        </div>
+                    </div>
 
-                            <div id="ga-switcher-menu" class="absolute right-4 mt-2 w-56 bg-white rounded-lg shadow-xl hidden z-50">
-                                <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
-                                    <p class="text-xs font-semibold text-gray-600 uppercase">Available Dashboards</p>
-                                </div>
-
-                                @if($canAccessSystemAdmin)
-                                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 border-b transition">
-                                        <div class="flex-1">
-                                            <div class="font-semibold text-blue-600">System Admin</div>
-                                            <p class="text-xs text-gray-500">Manage entire system</p>
-                                        </div>
-                                    </a>
-                                @endif
-
-                                <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-green-50 border-b transition">
-                                    <div class="flex-1">
-                                        <div class="font-semibold text-green-600">Group Admin</div>
-                                        <p class="text-xs text-gray-500">Currently active</p>
-                                    </div>
-                                    <span class="inline-block w-3 h-3 bg-green-600 rounded-full"></span>
-                                </a>
-
-                                @if($canAccessMember)
-                                    <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 transition">
-                                        <div class="flex-1">
-                                            <div class="font-semibold text-purple-600">Member</div>
-                                            <p class="text-xs text-gray-500">View your account</p>
-                                        </div>
-                                    </a>
-                                @endif
+                    <!-- Dashboard Switcher -->
+                    @php
+                        $canAccessSystemAdmin = auth()->user()->is_admin;
+                        $canAccessMember = auth()->user()->isMemberOfGroup();
+                    @endphp
+                    @if($canAccessSystemAdmin || $canAccessMember)
+                    <div class="relative">
+                        <button id="ga-switcher-btn" class="flex items-center px-3 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 transition">
+                            <svg class="w-5 h-5 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z"/></svg>
+                            Switch
+                        </button>
+                        <div id="ga-switcher-menu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                            <div class="px-4 py-3 bg-gradient-to-r from-gray-50 to-gray-100 border-b">
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Switch Dashboard</p>
                             </div>
+                            @if($canAccessSystemAdmin)
+                            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-blue-50 transition border-b">
+                                <span class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mr-3 text-blue-600">🔧</span>
+                                <div>
+                                    <div class="font-semibold text-gray-900">System Admin</div>
+                                    <p class="text-xs text-gray-500">Manage entire system</p>
+                                </div>
+                            </a>
+                            @endif
+                            <a href="{{ route('group-admin.dashboard') }}" class="flex items-center px-4 py-3 bg-indigo-50 border-b">
+                                <span class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mr-3 text-indigo-600">👥</span>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-indigo-600">Group Admin</div>
+                                    <p class="text-xs text-gray-500">Currently active</p>
+                                </div>
+                                <span class="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></span>
+                            </a>
+                            @if($canAccessMember)
+                            <a href="{{ route('member.dashboard') }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition">
+                                <span class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mr-3 text-purple-600">👤</span>
+                                <div>
+                                    <div class="font-semibold text-gray-900">Member</div>
+                                    <p class="text-xs text-gray-500">View your account</p>
+                                </div>
+                            </a>
+                            @endif
                         </div>
                     </div>
-                @elseif($adminGroups && count($adminGroups) > 0)
-                    <div class="ml-6">
-                        <div class="flex items-center gap-2">
-                            <label for="groupSelect" class="text-indigo-100 text-sm font-semibold">Itsinda:</label>
-                            <select
-                                id="groupSelect"
-                                class="px-3 py-2 bg-indigo-700 text-white border border-indigo-400 rounded-lg hover:bg-indigo-600 transition text-sm font-medium cursor-pointer"
-                                onchange="switchGroup(this.value)"
-                            >
-                                @foreach($adminGroups as $availableGroup)
-                                    <option value="{{ $availableGroup->id }}" {{ $availableGroup->id === $group->id ? 'selected' : '' }}>
-                                        {{ $availableGroup->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                    @endif
+
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-gray-200 bg-white">
+            <div class="px-4 py-3 space-y-1">
+                <a href="{{ route('group-admin.dashboard') }}" class="block px-4 py-2 rounded-lg text-indigo-600 bg-indigo-50 font-medium">Dashboard</a>
+                <a href="{{ route('group-admin.members', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Members</a>
+                <a href="{{ route('group-admin.loans', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Loans</a>
+                <a href="{{ route('group-admin.savings', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Savings</a>
+                <a href="{{ route('group-admin.social-supports', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Social Support</a>
+                <a href="{{ route('group-admin.transactions', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Transactions</a>
+                <a href="{{ route('group-admin.reports', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Reports</a>
+                <a href="{{ route('group-admin.penalties', $group) }}" class="block px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-50">Penalties</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700"></div>
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/20"></div>
+
+        <div class="relative max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <span class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-semibold text-white">
+                            {{ $group->status === 'active' ? '🟢 Active' : '⚪ ' . ucfirst($group->status) }}
+                        </span>
+                        <span class="text-indigo-200 text-sm">{{ $group->created_at->format('M Y') }}</span>
                     </div>
-                @endif
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ $group->name }}</h1>
+                    <p class="text-indigo-200 max-w-xl">Manage your group's finances, members, loans, and social support funds efficiently.</p>
+                </div>
+
+                <!-- Quick Stats Pills -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                        <div class="text-2xl font-bold text-white">{{ $stats['total_members'] }}</div>
+                        <div class="text-xs text-indigo-200">Members</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                        <div class="text-2xl font-bold text-white">{{ $stats['active_loans'] }}</div>
+                        <div class="text-xs text-indigo-200">Active Loans</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                        <div class="text-2xl font-bold text-white">{{ number_format($stats['support_fund_available']/1000, 0) }}K</div>
+                        <div class="text-xs text-indigo-200">Support Fund</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto py-12 px-4">
-        <!-- All Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
-            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-blue-500 flex flex-col justify-between h-32">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Members</p>
-                <p class="text-2xl font-bold text-blue-600">{{ $stats['total_members'] }}</p>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500 flex flex-col justify-between h-32">
-                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Active Loans</p>
-                <div>
-                    <p class="text-2xl font-bold text-green-600">{{ $stats['active_loans'] }}</p>
-                    <p class="text-xs text-gray-500">of {{ $stats['total_loans'] }} total</p>
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <!-- Alert Section -->
+        @if($overdue_loans->count() > 0)
+        <div class="mb-6 bg-gradient-to-r from-red-500 to-rose-500 rounded-2xl p-1">
+            <div class="bg-white rounded-xl p-4 flex items-center">
+                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-red-900">⚠️ {{ $overdue_loans->count() }} Overdue Loans Require Attention</h3>
+                    <p class="text-red-700 text-sm">These loans have passed their due date. Please take action immediately.</p>
+                </div>
+                <a href="{{ route('group-admin.loans', $group) }}?status=overdue" class="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition">View Now</a>
+            </div>
+        </div>
+        @endif
+
+        <!-- Main Statistics Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+                    </div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">{{ $stats['total_members'] }}</p>
+                <p class="text-xs text-gray-500 font-medium">Total Members</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-yellow-500 flex flex-col justify-between h-32">
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                    </div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">{{ $stats['active_loans'] }}</p>
+                <p class="text-xs text-gray-500 font-medium">Active Loans</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                    </div>
+                </div>
+                <p class="text-xl font-bold text-gray-900">{{ number_format($stats['total_loan_amount']/1000, 0) }}K</p>
+                <p class="text-xs text-gray-500 font-medium">Loans Disbursed</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg>
+                    </div>
+                </div>
+                <p class="text-xl font-bold text-gray-900">{{ number_format($stats['total_member_shares']/1000, 0) }}K</p>
+                <p class="text-xs text-gray-500 font-medium">Member Shares</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 text-cyan-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                    </div>
+                </div>
+                <p class="text-xl font-bold text-gray-900">{{ number_format($stats['monthly_savings']/1000, 0) }}K</p>
+                <p class="text-xs text-gray-500 font-medium">This Month</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1 {{ $stats['overdue_loans'] > 0 ? 'ring-2 ring-red-200' : '' }}">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 {{ $stats['overdue_loans'] > 0 ? 'bg-red-100' : 'bg-gray-100' }} rounded-xl flex items-center justify-center group-hover:scale-110 transition">
+                        <svg class="w-5 h-5 {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-600' }}" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                    </div>
+                </div>
+                <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-900' }}">{{ $stats['overdue_loans'] }}</p>
+                <p class="text-xs text-gray-500 font-medium">Overdue</p>
+            </div>
+        </div>
+
+        <!-- Secondary Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl p-5 text-white">
+                <p class="text-red-100 text-xs font-medium mb-1">Total Penalties</p>
+                <p class="text-2xl font-bold">{{ number_format($stats['total_penalties'], 0) }}</p>
+            </div>
+            <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl p-5 text-white">
+                <p class="text-orange-100 text-xs font-medium mb-1">Total Interest</p>
+                <p class="text-2xl font-bold">{{ number_format($stats['total_interests'], 0) }}</p>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl p-5 text-white">
+                <p class="text-emerald-100 text-xs font-medium mb-1">Support Fund</p>
+                <p class="text-2xl font-bold">{{ number_format($stats['support_fund_available'], 0) }}</p>
+            </div>
+            <div class="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-5 text-white">
+                <p class="text-pink-100 text-xs font-medium mb-1">Support Disbursed</p>
+                <p class="text-2xl font-bold">{{ number_format($stats['total_support_disbursed'], 0) }}</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Loans Disbursed</p>
                 <p class="text-xl font-bold text-yellow-600">{{ number_format($stats['total_loan_amount'], 2) }}</p>
             </div>
@@ -821,43 +999,74 @@
         document.body.removeChild(form);
     }
 
-    // Group Admin Dashboard Switcher
+    // Initialize all dropdowns and interactive elements
     document.addEventListener('DOMContentLoaded', function() {
+        // Quick Actions Dropdown
+        const quickActionsBtn = document.getElementById('quickActionsBtn');
+        const quickActionsMenu = document.getElementById('quickActionsMenu');
+
+        if (quickActionsBtn && quickActionsMenu) {
+            quickActionsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                quickActionsMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Group Admin Dashboard Switcher
         const gaSwitcherBtn = document.getElementById('ga-switcher-btn');
         const gaSwitcherMenu = document.getElementById('ga-switcher-menu');
-        const gaSwitcherChevron = document.getElementById('ga-switcher-chevron');
 
         if (gaSwitcherBtn && gaSwitcherMenu) {
             gaSwitcherBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 gaSwitcherMenu.classList.toggle('hidden');
-                gaSwitcherChevron.style.transform = gaSwitcherMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-            });
-
-            const gaSwitcherLinks = gaSwitcherMenu.querySelectorAll('a');
-            gaSwitcherLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gaSwitcherMenu.classList.add('hidden');
-                    gaSwitcherChevron.style.transform = 'rotate(0deg)';
-                });
-            });
-
-            document.addEventListener('click', function(event) {
-                const isClickInsideMenu = gaSwitcherMenu.contains(event.target);
-                const isClickInsideButton = gaSwitcherBtn.contains(event.target);
-                if (!isClickInsideMenu && !isClickInsideButton) {
-                    gaSwitcherMenu.classList.add('hidden');
-                    gaSwitcherChevron.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    gaSwitcherMenu.classList.add('hidden');
-                    gaSwitcherChevron.style.transform = 'rotate(0deg)';
-                }
             });
         }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            // Quick Actions
+            if (quickActionsMenu && !quickActionsMenu.contains(event.target) && !quickActionsBtn?.contains(event.target)) {
+                quickActionsMenu.classList.add('hidden');
+            }
+            // Switcher Menu
+            if (gaSwitcherMenu && !gaSwitcherMenu.contains(event.target) && !gaSwitcherBtn?.contains(event.target)) {
+                gaSwitcherMenu.classList.add('hidden');
+            }
+        });
+
+        // Close dropdowns on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                quickActionsMenu?.classList.add('hidden');
+                gaSwitcherMenu?.classList.add('hidden');
+                mobileMenu?.classList.add('hidden');
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     });
 </script>
 @endsection
