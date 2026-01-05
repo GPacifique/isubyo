@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Social Support Periods - ' . $group->name)
+@section('title', 'Ibihe by\'Ubufasha - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50 py-6">
@@ -9,22 +9,22 @@
         <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 mb-6 text-white">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold">Social Support Periods</h1>
-                    <p class="text-purple-100 mt-1 text-sm sm:text-base">{{ $group->name }} - Manage contribution periods</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold">Ibihe by'Ubufasha</h1>
+                    <p class="text-purple-100 mt-1 text-sm sm:text-base">{{ $group->name }} - Gucunga ibihe by'imisanzu</p>
                 </div>
                 <div class="flex flex-wrap gap-2 sm:gap-3">
                     <a href="{{ route('group-admin.dashboard', $group) }}" class="inline-flex items-center px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Back
+                        Subira
                     </a>
                     @if(!$activePeriod)
                     <a href="{{ route('group-admin.social-support-periods.create', $group) }}" class="inline-flex items-center px-4 py-2 bg-white text-purple-600 hover:bg-purple-50 rounded-lg text-sm font-medium transition">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                         </svg>
-                        New Period
+                        Igihe Gishya
                     </a>
                     @endif
                 </div>
@@ -47,27 +47,27 @@
         <!-- Stats Overview -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Total Periods</p>
+                <p class="text-xs sm:text-sm text-gray-500">Ibihe Byose</p>
                 <p class="text-xl sm:text-2xl font-bold text-gray-900">{{ $stats['total_periods'] }}</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Closed</p>
+                <p class="text-xs sm:text-sm text-gray-500">Byafunze</p>
                 <p class="text-xl sm:text-2xl font-bold text-gray-900">{{ $stats['closed_periods'] }}</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Total Collected</p>
+                <p class="text-xs sm:text-sm text-gray-500">Imisanzu Yose</p>
                 <p class="text-xl sm:text-2xl font-bold text-green-600">{{ number_format($stats['total_collected_all_time'], 0) }}</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Total Disbursed</p>
+                <p class="text-xs sm:text-sm text-gray-500">Ubufasha Bwatanzwe</p>
                 <p class="text-xl sm:text-2xl font-bold text-red-600">{{ number_format($stats['total_disbursed_all_time'], 0) }}</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Total Distributed</p>
+                <p class="text-xs sm:text-sm text-gray-500">Byagabanyijwe</p>
                 <p class="text-xl sm:text-2xl font-bold text-blue-600">{{ number_format($stats['total_distributed_all_time'], 0) }}</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                <p class="text-xs sm:text-sm text-gray-500">Fund Balance</p>
+                <p class="text-xs sm:text-sm text-gray-500">Ikigega Gisigaye</p>
                 <p class="text-xl sm:text-2xl font-bold text-purple-600">{{ number_format($stats['fund_balance'], 0) }}</p>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <div>
                     <div class="flex items-center gap-2 mb-2">
                         <span class="inline-flex items-center px-2 py-1 rounded-full bg-white/20 text-xs font-medium">
-                            🟢 Active Period
+                            🟢 Igihe Kirakora
                         </span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-bold">{{ $activePeriod->name }}</h2>
@@ -87,13 +87,13 @@
                         {{ $activePeriod->start_date->format('M d, Y') }} - {{ $activePeriod->end_date->format('M d, Y') }}
                     </p>
                     <div class="flex flex-wrap gap-4 mt-3 text-sm">
-                        <span>💰 Collected: {{ number_format($activePeriod->total_collected, 0) }}</span>
-                        <span>💸 Disbursed: {{ number_format($activePeriod->total_disbursed, 0) }}</span>
-                        <span>👥 {{ $activePeriod->actual_contributors }}/{{ $activePeriod->expected_contributors }} contributors</span>
+                        <span>💰 Imisanzu: {{ number_format($activePeriod->total_collected, 0) }}</span>
+                        <span>💸 Ubufasha: {{ number_format($activePeriod->total_disbursed, 0) }}</span>
+                        <span>👥 {{ $activePeriod->actual_contributors }}/{{ $activePeriod->expected_contributors }} batanze</span>
                     </div>
                 </div>
                 <a href="{{ route('group-admin.social-support-periods.show', [$group, $activePeriod]) }}" class="inline-flex items-center px-4 py-2 bg-white text-green-600 hover:bg-green-50 rounded-lg font-medium transition">
-                    Manage Period
+                    Gucunga Igihe
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -102,7 +102,7 @@
             <!-- Progress Bar -->
             <div class="mt-4">
                 <div class="flex justify-between text-sm text-green-100 mb-1">
-                    <span>Contribution Progress</span>
+                    <span>Imisanzu Yatanzwe</span>
                     <span>{{ $activePeriod->getContributionProgress() }}%</span>
                 </div>
                 <div class="w-full bg-white/20 rounded-full h-2">
@@ -115,13 +115,13 @@
             <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">No Active Period</h3>
-            <p class="text-gray-500 mb-4">Create a new contribution period to start collecting from members.</p>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Nta Gihe Kirakora</h3>
+            <p class="text-gray-500 mb-4">Shyiraho igihe gishya cy'imisanzu kugira ngo utangire kwakira ku banyamuryango.</p>
             <a href="{{ route('group-admin.social-support-periods.create', $group) }}" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white hover:bg-purple-700 rounded-lg font-medium transition">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Create New Period
+                Shyiraho Igihe Gishya
             </a>
         </div>
         @endif
@@ -129,7 +129,7 @@
         <!-- Periods List -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100">
-                <h2 class="text-lg font-semibold text-gray-900">All Periods</h2>
+                <h2 class="text-lg font-semibold text-gray-900">Ibihe Byose</h2>
             </div>
 
             @if($periods->count() > 0)
@@ -137,13 +137,13 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Dates</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Collected</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Disbursed</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Distributed</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Igihe</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Amatariki</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imisanzu</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Ubufasha</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Byagabanyijwe</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imiterere</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ibikorwa</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -176,7 +176,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right">
                                 <a href="{{ route('group-admin.social-support-periods.show', [$group, $period]) }}" class="text-purple-600 hover:text-purple-900 text-sm font-medium">
-                                    View →
+                                    Reba →
                                 </a>
                             </td>
                         </tr>
@@ -190,7 +190,7 @@
             </div>
             @else
             <div class="px-6 py-12 text-center text-gray-500">
-                No periods created yet.
+                Nta bihe byarashyizweho.
             </div>
             @endif
         </div>

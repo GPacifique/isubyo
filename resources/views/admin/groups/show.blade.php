@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
-@section('title', 'View Group - ' . $group->name)
+@section('title', 'Reba Itsinda - ' . $group->name)
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Group: {{ $group->name }}</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Itsinda: {{ $group->name }}</h1>
         <div class="space-x-4">
             <a href="{{ route('admin.groups.members.index', $group) }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                Manage Members
+                Gucunga Abanyamuryango
             </a>
             <a href="{{ route('admin.groups.edit', $group) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                Edit Group
+                Hindura Itsinda
             </a>
             <a href="{{ route('admin.groups.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Back to Groups
+                Subira ku Matsinda
             </a>
         </div>
     </div>
@@ -22,28 +22,28 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Group Info -->
         <div class="md:col-span-2 bg-white rounded-lg shadow p-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4">Group Information</h2>
+            <h2 class="text-lg font-bold text-gray-900 mb-4">Amakuru y'Itsinda</h2>
             <div class="space-y-3">
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Group ID</p>
+                    <p class="text-xs text-gray-500 uppercase">Nomero y'Itsinda</p>
                     <p class="text-lg font-semibold text-gray-900">#{{ $group->id }}</p>
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Name</p>
+                    <p class="text-xs text-gray-500 uppercase">Izina</p>
                     <p class="text-lg font-semibold text-gray-900">{{ $group->name }}</p>
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Description</p>
-                    <p class="text-sm text-gray-700">{{ $group->description ?? 'No description provided' }}</p>
+                    <p class="text-xs text-gray-500 uppercase">Ibisobanuro</p>
+                    <p class="text-sm text-gray-700">{{ $group->description ?? 'Nta bisobanuro byatanzwe' }}</p>
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Meeting Frequency</p>
+                    <p class="text-xs text-gray-500 uppercase">Igihe cyo Guhurira</p>
                     <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $group->meeting_frequency === 'weekly' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800' }}">
-                        📅 {{ ucfirst($group->meeting_frequency ?? 'monthly') }}
+                        📅 {{ ($group->meeting_frequency ?? 'monthly') === 'weekly' ? 'Buri Cyumweru' : 'Buri Kwezi' }}
                     </span>
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Administrators</p>
+                    <p class="text-xs text-gray-500 uppercase">Abayobozi</p>
                     @if($group->admins->count() > 0)
                         <div class="space-y-2 mt-2">
                             @foreach($group->admins as $admin)
@@ -54,17 +54,17 @@
                             @endforeach
                         </div>
                     @else
-                        <p class="text-sm text-gray-600 mt-1">No administrators assigned</p>
+                        <p class="text-sm text-gray-600 mt-1">Nta bayobozi bashyizweho</p>
                     @endif
                 </div>
                 <div class="py-2 border-b">
-                    <p class="text-xs text-gray-500 uppercase">Status</p>
+                    <p class="text-xs text-gray-500 uppercase">Imiterere</p>
                     <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $group->status === 'active' ? 'bg-green-100 text-green-800' : ($group->status === 'suspended' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800') }}">
                         {{ ucfirst($group->status) }}
                     </span>
                 </div>
                 <div class="py-2">
-                    <p class="text-xs text-gray-500 uppercase">Created</p>
+                    <p class="text-xs text-gray-500 uppercase">Ryashyizweho</p>
                     <p class="text-sm text-gray-700">{{ $group->created_at->format('M d, Y H:i A') }}</p>
                 </div>
             </div>
@@ -72,30 +72,30 @@
 
         <!-- Quick Stats -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Quick Stats</h3>
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Imibare y'Ibanze</h3>
             <div class="space-y-3">
                 <div class="text-center py-2 bg-blue-50 rounded-lg">
                     <p class="text-xl font-bold text-blue-600">{{ $totalMembers }}</p>
-                    <p class="text-xs text-gray-600">Total Members</p>
-                    <p class="text-xs text-blue-600 mt-1">{{ $activeMembers }} active</p>
+                    <p class="text-xs text-gray-600">Abanyamuryango Bose</p>
+                    <p class="text-xs text-blue-600 mt-1">{{ $activeMembers }} barakora</p>
                 </div>
                 <div class="text-center py-2 bg-green-50 rounded-lg">
                     <p class="text-xl font-bold text-green-600">{{ $totalLoans }}</p>
-                    <p class="text-xs text-gray-600">Total Loans</p>
-                    <p class="text-xs text-green-600 mt-1">{{ $activeLoans }} active</p>
+                    <p class="text-xs text-gray-600">Inguzanyo Zose</p>
+                    <p class="text-xs text-green-600 mt-1">{{ $activeLoans }} zirakora</p>
                 </div>
                 <div class="text-center py-2 bg-purple-50 rounded-lg">
                     <p class="text-lg font-bold text-purple-600">{{ number_format($totalLoanAmount, 0) }}</p>
-                    <p class="text-xs text-gray-600">Loan Amount</p>
+                    <p class="text-xs text-gray-600">Amafaranga y'Inguzanyo</p>
                 </div>
                 <div class="text-center py-2 bg-yellow-50 rounded-lg">
                     <p class="text-xl font-bold text-yellow-600">{{ $activeSavings }}</p>
-                    <p class="text-xs text-gray-600">Savings Accounts</p>
+                    <p class="text-xs text-gray-600">Konti z'Ubwizigame</p>
                     <p class="text-xs text-yellow-600 mt-1">{{ number_format($totalSavingsAmount, 0) }}</p>
                 </div>
                 <div class="text-center py-2 bg-red-50 rounded-lg">
                     <p class="text-lg font-bold text-red-600">{{ number_format($totalPenalties, 0) }}</p>
-                    <p class="text-xs text-gray-600">Pending Penalties</p>
+                    <p class="text-xs text-gray-600">Ibihano Bitegereje</p>
                 </div>
             </div>
         </div>

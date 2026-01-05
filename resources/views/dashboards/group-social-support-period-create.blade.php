@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Social Support Period - ' . $group->name)
+@section('title', 'Gushyiraho Igihe cy\'Ubufasha - ' . $group->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50 py-6">
@@ -11,9 +11,9 @@
                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
-                Back to Periods
+                Subira ku Bihe
             </a>
-            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Create New Period</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Gushyiraho Igihe Gishya</h1>
             <p class="text-gray-500 mt-1">{{ $group->name }}</p>
         </div>
 
@@ -31,15 +31,15 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <div class="text-sm text-blue-700">
-                    <p class="font-medium">How Social Support Periods Work:</p>
+                    <p class="font-medium">Uko Ibihe by'Ubufasha Bikora:</p>
                     <ol class="list-decimal ml-4 mt-2 space-y-1">
-                        <li><strong>Collection:</strong> Each member contributes the set amount to the fund</li>
-                        <li><strong>Support:</strong> Members in need (death, marriage, sickness) receive disbursements</li>
-                        <li><strong>Distribution:</strong> At period end, remaining funds are distributed back to contributors</li>
+                        <li><strong>Kwakira:</strong> Buri munyamuryango atanga umusanzu ugenwe</li>
+                        <li><strong>Ubufasha:</strong> Abanyamuryango bakeneye (urupfu, ubukwe, uburwayi) bahabwa ubufasha</li>
+                        <li><strong>Kugabana:</strong> Igihe kirangiye, amafaranga asigaye agabanwa ku batanze imisanzu</li>
                     </ol>
                     <p class="mt-2 text-blue-600 font-medium">
                         <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
-                        Group meets: <strong class="uppercase">{{ $group->meeting_frequency ?? 'monthly' }}</strong>
+                        Itsinda rihurira: <strong class="uppercase">{{ ($group->meeting_frequency ?? 'monthly') === 'weekly' ? 'BURI CYUMWERU' : 'BURI KWEZI' }}</strong>
                     </p>
                 </div>
             </div>
@@ -54,17 +54,17 @@
                     <!-- Period Name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-                            Period Name <span class="text-red-500">*</span>
+                            Izina ry'Igihe <span class="text-red-500">*</span>
                         </label>
                         @php
                             $isWeekly = ($group->meeting_frequency ?? 'monthly') === 'weekly';
-                            $defaultName = $isWeekly ? 'Week ' . now()->weekOfYear . ' - ' . now()->format('Y') : now()->format('F Y');
+                            $defaultName = $isWeekly ? 'Icyumweru cya ' . now()->weekOfYear . ' - ' . now()->format('Y') : now()->format('F Y');
                             $startDate = $isWeekly ? now()->startOfWeek()->format('Y-m-d') : now()->startOfMonth()->format('Y-m-d');
                             $endDate = $isWeekly ? now()->endOfWeek()->format('Y-m-d') : now()->endOfMonth()->format('Y-m-d');
                         @endphp
                         <input type="text" name="name" id="name" value="{{ old('name', $defaultName) }}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('name') border-red-500 @enderror"
-                            placeholder="{{ $isWeekly ? 'e.g., Week 1 - 2026' : 'e.g., January 2026' }}">
+                            placeholder="{{ $isWeekly ? 'urugero: Icyumweru cya 1 - 2026' : 'urugero: Mutarama 2026' }}">
                         @error('name')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -74,7 +74,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                Start Date <span class="text-red-500">*</span>
+                                Itariki y'Itangira <span class="text-red-500">*</span>
                             </label>
                             <input type="date" name="start_date" id="start_date" value="{{ old('start_date', $startDate) }}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('start_date') border-red-500 @enderror">
@@ -84,7 +84,7 @@
                         </div>
                         <div>
                             <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                End Date <span class="text-red-500">*</span>
+                                Itariki y'Iherezo <span class="text-red-500">*</span>
                             </label>
                             <input type="date" name="end_date" id="end_date" value="{{ old('end_date', $endDate) }}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('end_date') border-red-500 @enderror">
@@ -92,7 +92,7 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                             <p class="mt-1 text-sm text-gray-500">
-                                {{ $isWeekly ? '(7 days for weekly meetings)' : '(~30 days for monthly meetings)' }}
+                                {{ $isWeekly ? '(Iminsi 7 ku nama buri cyumweru)' : '(Iminsi ~30 ku nama buri kwezi)' }}
                             </p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                     <!-- Contribution Amount -->
                     <div>
                         <label for="contribution_amount" class="block text-sm font-medium text-gray-700 mb-1">
-                            Contribution Amount per Member <span class="text-red-500">*</span>
+                            Umusanzu ku Munyamuryango <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
                             <span class="absolute left-3 top-2 text-gray-500">{{ $group->currency ?? 'RWF' }}</span>
@@ -112,18 +112,18 @@
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                         <p class="mt-1 text-sm text-gray-500">
-                            Expected total: {{ number_format(old('contribution_amount', 1000) * $activeMembers, 0) }} ({{ $activeMembers }} active members × {{ old('contribution_amount', 1000) }})
+                            Igiteganijwe cyose: {{ number_format(old('contribution_amount', 1000) * $activeMembers, 0) }} ({{ $activeMembers }} abanyamuryango barakora × {{ old('contribution_amount', 1000) }})
                         </p>
                     </div>
 
                     <!-- Notes -->
                     <div>
                         <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">
-                            Notes (Optional)
+                            Ibisobanuro (Ntibisabwa)
                         </label>
                         <textarea name="notes" id="notes" rows="3"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('notes') border-red-500 @enderror"
-                            placeholder="Any additional notes about this period...">{{ old('notes') }}</textarea>
+                            placeholder="Ibisobanuro byinyongera kuri iki gihe...">{{ old('notes') }}</textarea>
                         @error('notes')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -131,14 +131,14 @@
 
                     <!-- Summary -->
                     <div class="bg-gray-50 rounded-lg p-4">
-                        <h3 class="text-sm font-medium text-gray-700 mb-2">Period Summary</h3>
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Incamake y'Igihe</h3>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <span class="text-gray-500">Active Members:</span>
+                                <span class="text-gray-500">Abanyamuryango Barakora:</span>
                                 <span class="font-medium text-gray-900 ml-2">{{ $activeMembers }}</span>
                             </div>
                             <div>
-                                <span class="text-gray-500">Contribution Each:</span>
+                                <span class="text-gray-500">Umusanzu ku Muntu:</span>
                                 <span class="font-medium text-gray-900 ml-2" id="summaryContribution">{{ number_format(old('contribution_amount', 1000), 0) }}</span>
                             </div>
                         </div>
@@ -151,10 +151,10 @@
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                         </svg>
-                        Create Period
+                        Shyiraho Igihe
                     </button>
                     <a href="{{ route('group-admin.social-support-periods.index', $group) }}" class="inline-flex items-center justify-center px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium transition order-2 sm:order-1">
-                        Cancel
+                        Hagarika
                     </a>
                 </div>
             </form>

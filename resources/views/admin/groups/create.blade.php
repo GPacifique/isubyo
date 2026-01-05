@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create New Group')
+@section('title', 'Gushyiraho Itsinda Rishya')
 
 @section('content')
 <div class="container mx-auto px-4 py-8 max-w-2xl">
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Create New Group</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Gushyiraho Itsinda Rishya</h1>
         <a href="{{ route('admin.groups.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-            Back to Groups
+            Subira ku Matsinda
         </a>
     </div>
 
@@ -17,14 +17,14 @@
 
             <!-- Group Name -->
             <div class="mb-6">
-                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Group Name</label>
+                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Izina ry'Itsinda</label>
                 <input
                     type="text"
                     id="name"
                     name="name"
                     value="{{ old('name') }}"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('name') border-red-500 @enderror"
-                    placeholder="Enter group name"
+                    placeholder="Andika izina ry'itsinda"
                     required
                 >
                 @error('name')
@@ -34,13 +34,13 @@
 
             <!-- Description -->
             <div class="mb-6">
-                <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Description</label>
+                <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Ibisobanuro</label>
                 <textarea
                     id="description"
                     name="description"
                     rows="4"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('description') border-red-500 @enderror"
-                    placeholder="Enter group description"
+                    placeholder="Andika ibisobanuro by'itsinda"
                 >{{ old('description') }}</textarea>
                 @error('description')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -49,31 +49,31 @@
 
             <!-- Meeting Frequency -->
             <div class="mb-6">
-                <label for="meeting_frequency" class="block text-sm font-bold text-gray-700 mb-2">Meeting Frequency</label>
+                <label for="meeting_frequency" class="block text-sm font-bold text-gray-700 mb-2">Igihe cyo Guhurira</label>
                 <select
                     id="meeting_frequency"
                     name="meeting_frequency"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('meeting_frequency') border-red-500 @enderror"
                     required
                 >
-                    <option value="weekly" {{ old('meeting_frequency') === 'weekly' ? 'selected' : '' }}>Weekly</option>
-                    <option value="monthly" {{ old('meeting_frequency', 'monthly') === 'monthly' ? 'selected' : '' }}>Monthly</option>
+                    <option value="weekly" {{ old('meeting_frequency') === 'weekly' ? 'selected' : '' }}>Buri Cyumweru</option>
+                    <option value="monthly" {{ old('meeting_frequency', 'monthly') === 'monthly' ? 'selected' : '' }}>Buri Kwezi</option>
                 </select>
                 @error('meeting_frequency')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-                <p class="text-gray-500 text-xs mt-2">How often the group meets to collect contributions and manage funds</p>
+                <p class="text-gray-500 text-xs mt-2">Inshuro itsinda rihurira kugira ngo ryakire imisanzu no gucunga amafaranga</p>
             </div>
 
             <!-- Group Administrator -->
             <div class="mb-6">
-                <label for="admin_id" class="block text-sm font-bold text-gray-700 mb-2">Group Administrator</label>
+                <label for="admin_id" class="block text-sm font-bold text-gray-700 mb-2">Umuyobozi w'Itsinda</label>
                 <select
                     id="admin_id"
                     name="admin_id"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('admin_id') border-red-500 @enderror"
                 >
-                    <option value="">Select Administrator (Optional)</option>
+                    <option value="">Hitamo Umuyobozi (Ntibisabwa)</option>
                     @foreach($admins as $admin)
                         <option value="{{ $admin->id }}" {{ old('admin_id') == $admin->id ? 'selected' : '' }}>
                             {{ $admin->name }} ({{ $admin->email }})
@@ -87,16 +87,16 @@
 
             <!-- Status -->
             <div class="mb-6">
-                <label for="status" class="block text-sm font-bold text-gray-700 mb-2">Status</label>
+                <label for="status" class="block text-sm font-bold text-gray-700 mb-2">Imiterere</label>
                 <select
                     id="status"
                     name="status"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('status') border-red-500 @enderror"
                     required
                 >
-                    <option value="active" {{ old('status', 'active') === 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
-                    <option value="suspended" {{ old('status') === 'suspended' ? 'selected' : '' }}>Suspended</option>
+                    <option value="active" {{ old('status', 'active') === 'active' ? 'selected' : '' }}>Rirakora</option>
+                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Ntirikora</option>
+                    <option value="suspended" {{ old('status') === 'suspended' ? 'selected' : '' }}>Rirahagaritswe</option>
                 </select>
                 @error('status')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -109,10 +109,10 @@
                     type="submit"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition"
                 >
-                    Create Group
+                    Shyiraho Itsinda
                 </button>
                 <a href="{{ route('admin.groups.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded transition text-center">
-                    Cancel
+                    Hagarika
                 </a>
             </div>
         </form>

@@ -178,30 +178,30 @@
                 <div class="mb-4 md:mb-0">
                     <div class="flex items-center space-x-3 mb-2">
                         <span class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-semibold text-white">
-                            {{ $group->status === 'active' ? '🟢 Active' : '⚪ ' . ucfirst($group->status) }}
+                            {{ $group->status === 'active' ? '🟢 Rirakora' : '⚪ ' . ucfirst($group->status) }}
                         </span>
                         <span class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-semibold text-white">
-                            📅 {{ ucfirst($group->meeting_frequency ?? 'monthly') }}
+                            📅 {{ ($group->meeting_frequency ?? 'monthly') === 'weekly' ? 'Buri Cyumweru' : 'Buri Kwezi' }}
                         </span>
                         <span class="text-indigo-200 text-sm">{{ $group->created_at->format('M Y') }}</span>
                     </div>
                     <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ $group->name }}</h1>
-                    <p class="text-indigo-200 max-w-xl">Manage your group's finances, members, loans, and social support funds efficiently.</p>
+                    <p class="text-indigo-200 max-w-xl">Gucunga amafaranga y'itsinda, abanyamuryango, inguzanyo, n'ubufasha bw'imibereho.</p>
                 </div>
 
                 <!-- Quick Stats Pills -->
                 <div class="flex flex-wrap gap-3">
                     <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
                         <div class="text-2xl font-bold text-white">{{ $stats['total_members'] }}</div>
-                        <div class="text-xs text-indigo-200">Members</div>
+                        <div class="text-xs text-indigo-200">Abanyamuryango</div>
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
                         <div class="text-2xl font-bold text-white">{{ $stats['active_loans'] }}</div>
-                        <div class="text-xs text-indigo-200">Active Loans</div>
+                        <div class="text-xs text-indigo-200">Inguzanyo Zibaraka</div>
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
                         <div class="text-2xl font-bold text-white">{{ number_format($stats['support_fund_available']/1000, 0) }}K</div>
-                        <div class="text-xs text-indigo-200">Support Fund</div>
+                        <div class="text-xs text-indigo-200">Ikigega cy'Ubufasha</div>
                     </div>
                 </div>
             </div>
@@ -217,10 +217,10 @@
                     <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-red-900">⚠️ {{ $overdue_loans->count() }} Overdue Loans Require Attention</h3>
-                    <p class="text-red-700 text-sm">These loans have passed their due date. Please take action immediately.</p>
+                    <h3 class="font-bold text-red-900">⚠️ Inguzanyo {{ $overdue_loans->count() }} Zirenze Igihe Zikeneye Ibikorwa</h3>
+                    <p class="text-red-700 text-sm">Izi nguzanyo zirenze itariki ntarengwa. Nyamuneka fata ingamba vuba.</p>
                 </div>
-                <a href="{{ route('group-admin.loans', $group) }}?status=overdue" class="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition">View Now</a>
+                <a href="{{ route('group-admin.loans', $group) }}?status=overdue" class="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition">Reba Nonaha</a>
             </div>
         </div>
         @endif
@@ -234,7 +234,7 @@
                     </div>
                 </div>
                 <p class="text-2xl font-bold text-gray-900">{{ $stats['total_members'] }}</p>
-                <p class="text-xs text-gray-500 font-medium">Total Members</p>
+                <p class="text-xs text-gray-500 font-medium">Abanyamuryango Bose</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
@@ -244,7 +244,7 @@
                     </div>
                 </div>
                 <p class="text-2xl font-bold text-gray-900">{{ $stats['active_loans'] }}</p>
-                <p class="text-xs text-gray-500 font-medium">Active Loans</p>
+                <p class="text-xs text-gray-500 font-medium">Inguzanyo Zibaraka</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
@@ -254,7 +254,7 @@
                     </div>
                 </div>
                 <p class="text-xl font-bold text-gray-900">{{ number_format($stats['total_loan_amount']/1000, 0) }}K</p>
-                <p class="text-xs text-gray-500 font-medium">Loans Disbursed</p>
+                <p class="text-xs text-gray-500 font-medium">Inguzanyo Zatanzwe</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
@@ -264,7 +264,7 @@
                     </div>
                 </div>
                 <p class="text-xl font-bold text-gray-900">{{ number_format($stats['total_member_shares']/1000, 0) }}K</p>
-                <p class="text-xs text-gray-500 font-medium">Member Shares</p>
+                <p class="text-xs text-gray-500 font-medium">Imigabane y'Abanyamuryango</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1">
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <p class="text-xl font-bold text-gray-900">{{ number_format(($periodStats['savings'] ?? $stats['monthly_savings'])/1000, 0) }}K</p>
-                <p class="text-xs text-gray-500 font-medium">{{ $periodStats['label'] ?? 'This Month' }}</p>
+                <p class="text-xs text-gray-500 font-medium">{{ ($periodStats['frequency'] ?? 'monthly') === 'weekly' ? 'Iki Cyumweru' : 'Uku Kwezi' }}</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1 {{ $stats['overdue_loans'] > 0 ? 'ring-2 ring-red-200' : '' }}">
@@ -284,26 +284,26 @@
                     </div>
                 </div>
                 <p class="text-2xl font-bold {{ $stats['overdue_loans'] > 0 ? 'text-red-600' : 'text-gray-900' }}">{{ $stats['overdue_loans'] }}</p>
-                <p class="text-xs text-gray-500 font-medium">Overdue</p>
+                <p class="text-xs text-gray-500 font-medium">Zirenze Igihe</p>
             </div>
         </div>
 
         <!-- Secondary Stats Row -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl p-5 text-white">
-                <p class="text-red-100 text-xs font-medium mb-1">Total Penalties</p>
+                <p class="text-red-100 text-xs font-medium mb-1">Ibihano Byose</p>
                 <p class="text-2xl font-bold">{{ number_format($stats['total_penalties'], 0) }}</p>
             </div>
             <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl p-5 text-white">
-                <p class="text-orange-100 text-xs font-medium mb-1">Total Interest</p>
+                <p class="text-orange-100 text-xs font-medium mb-1">Inyungu Zose</p>
                 <p class="text-2xl font-bold">{{ number_format($stats['total_interests'], 0) }}</p>
             </div>
             <div class="bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl p-5 text-white">
-                <p class="text-emerald-100 text-xs font-medium mb-1">Support Fund</p>
+                <p class="text-emerald-100 text-xs font-medium mb-1">Ikigega cy'Ubufasha</p>
                 <p class="text-2xl font-bold">{{ number_format($stats['support_fund_available'], 0) }}</p>
             </div>
             <div class="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-5 text-white">
-                <p class="text-pink-100 text-xs font-medium mb-1">Support Disbursed</p>
+                <p class="text-pink-100 text-xs font-medium mb-1">Ubufasha Bwatanzwe</p>
                 <p class="text-2xl font-bold">{{ number_format($stats['total_support_disbursed'], 0) }}</p>
             </div>
         </div>
@@ -315,29 +315,29 @@
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
-                        {{ $periodStats['label'] }} Summary
+                        Incamake ya {{ ($periodStats['frequency'] ?? 'monthly') === 'weekly' ? 'Iki Cyumweru' : 'Uku Kwezi' }}
                     </h3>
-                    <p class="text-sm text-gray-500">{{ $periodStats['start'] }} - {{ $periodStats['end'] }} ({{ ucfirst($periodStats['frequency']) }} meetings)</p>
+                    <p class="text-sm text-gray-500">{{ $periodStats['start'] }} - {{ $periodStats['end'] }} (Inama {{ ($periodStats['frequency'] ?? 'monthly') === 'weekly' ? 'buri cyumweru' : 'buri kwezi' }})</p>
                 </div>
                 <span class="mt-2 sm:mt-0 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">
-                    📅 {{ ucfirst($periodStats['frequency']) }}
+                    📅 {{ ($periodStats['frequency'] ?? 'monthly') === 'weekly' ? 'Buri Cyumweru' : 'Buri Kwezi' }}
                 </span>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <p class="text-xs text-gray-500 font-medium mb-1">Period Savings</p>
+                    <p class="text-xs text-gray-500 font-medium mb-1">Ubwizigame bw'Igihe</p>
                     <p class="text-xl font-bold text-indigo-600">{{ number_format($periodStats['savings'], 0) }}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <p class="text-xs text-gray-500 font-medium mb-1">Loans Issued</p>
+                    <p class="text-xs text-gray-500 font-medium mb-1">Inguzanyo Zatanzwe</p>
                     <p class="text-xl font-bold text-purple-600">{{ $periodStats['loans_issued'] }}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <p class="text-xs text-gray-500 font-medium mb-1">Contributions</p>
+                    <p class="text-xs text-gray-500 font-medium mb-1">Imisanzu</p>
                     <p class="text-xl font-bold text-green-600">{{ number_format($periodStats['contributions'], 0) }}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <p class="text-xs text-gray-500 font-medium mb-1">Disbursements</p>
+                    <p class="text-xs text-gray-500 font-medium mb-1">Ubufasha Bwatanzwe</p>
                     <p class="text-xl font-bold text-rose-600">{{ number_format($periodStats['disbursements'], 0) }}</p>
                 </div>
             </div>

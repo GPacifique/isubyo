@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Group - ' . $group->name)
+@section('title', 'Hindura Itsinda - ' . $group->name)
 
 @section('content')
 <div class="container mx-auto px-4 py-8 max-w-2xl">
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Edit Group: {{ $group->name }}</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Hindura Itsinda: {{ $group->name }}</h1>
         <a href="{{ route('admin.groups.show', $group) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-            Back to Group
+            Subira ku Itsinda
         </a>
     </div>
 
@@ -18,7 +18,7 @@
 
             <!-- Group Name -->
             <div class="mb-6">
-                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Group Name</label>
+                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Izina ry'Itsinda</label>
                 <input
                     type="text"
                     id="name"
@@ -34,7 +34,7 @@
 
             <!-- Description -->
             <div class="mb-6">
-                <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Description</label>
+                <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Ibisobanuro</label>
                 <textarea
                     id="description"
                     name="description"
@@ -48,25 +48,25 @@
 
             <!-- Meeting Frequency -->
             <div class="mb-6">
-                <label for="meeting_frequency" class="block text-sm font-bold text-gray-700 mb-2">Meeting Frequency</label>
+                <label for="meeting_frequency" class="block text-sm font-bold text-gray-700 mb-2">Igihe cyo Guhurira</label>
                 <select
                     id="meeting_frequency"
                     name="meeting_frequency"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('meeting_frequency') border-red-500 @enderror"
                     required
                 >
-                    <option value="weekly" {{ old('meeting_frequency', $group->meeting_frequency) === 'weekly' ? 'selected' : '' }}>Weekly</option>
-                    <option value="monthly" {{ old('meeting_frequency', $group->meeting_frequency) === 'monthly' ? 'selected' : '' }}>Monthly</option>
+                    <option value="weekly" {{ old('meeting_frequency', $group->meeting_frequency) === 'weekly' ? 'selected' : '' }}>Buri Cyumweru</option>
+                    <option value="monthly" {{ old('meeting_frequency', $group->meeting_frequency) === 'monthly' ? 'selected' : '' }}>Buri Kwezi</option>
                 </select>
                 @error('meeting_frequency')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-                <p class="text-gray-500 text-xs mt-2">How often the group meets to collect contributions and manage funds</p>
+                <p class="text-gray-500 text-xs mt-2">Inshuro itsinda rihurira kugira ngo ryakire imisanzu no gucunga amafaranga</p>
             </div>
 
             <!-- Group Administrator(s) -->
             <div class="mb-6">
-                <label for="admin_ids" class="block text-sm font-bold text-gray-700 mb-2">Group Administrators (Select one or more)</label>
+                <label for="admin_ids" class="block text-sm font-bold text-gray-700 mb-2">Abayobozi b'Itsinda (Hitamo umwe cyangwa benshi)</label>
                 <select
                     id="admin_ids"
                     name="admin_ids[]"
@@ -82,21 +82,21 @@
                 @error('admin_ids')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-                <p class="text-gray-500 text-xs mt-2">Hold Ctrl (Cmd on Mac) to select multiple administrators</p>
+                <p class="text-gray-500 text-xs mt-2">Fata Ctrl (Cmd kuri Mac) kugira ngo uhitemo abayobozi benshi</p>
             </div>
 
             <!-- Status -->
             <div class="mb-6">
-                <label for="status" class="block text-sm font-bold text-gray-700 mb-2">Status</label>
+                <label for="status" class="block text-sm font-bold text-gray-700 mb-2">Imiterere</label>
                 <select
                     id="status"
                     name="status"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('status') border-red-500 @enderror"
                     required
                 >
-                    <option value="active" {{ old('status', $group->status) === 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="inactive" {{ old('status', $group->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
-                    <option value="suspended" {{ old('status', $group->status) === 'suspended' ? 'selected' : '' }}>Suspended</option>
+                    <option value="active" {{ old('status', $group->status) === 'active' ? 'selected' : '' }}>Rirakora</option>
+                    <option value="inactive" {{ old('status', $group->status) === 'inactive' ? 'selected' : '' }}>Ntirikora</option>
+                    <option value="suspended" {{ old('status', $group->status) === 'suspended' ? 'selected' : '' }}>Rirahagaritswe</option>
                 </select>
                 @error('status')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -105,9 +105,9 @@
 
             <!-- Current Info -->
             <div class="mb-6 p-4 bg-gray-100 rounded-lg">
-                <p class="text-sm text-gray-600"><strong>Created:</strong> {{ $group->created_at->format('M d, Y H:i A') }}</p>
-                <p class="text-sm text-gray-600"><strong>Last Updated:</strong> {{ $group->updated_at->format('M d, Y H:i A') }}</p>
-                <p class="text-sm text-gray-600"><strong>Total Members:</strong> {{ $group->members_count ?? 0 }}</p>
+                <p class="text-sm text-gray-600"><strong>Ryashyizweho:</strong> {{ $group->created_at->format('M d, Y H:i A') }}</p>
+                <p class="text-sm text-gray-600"><strong>Ryahinduwe:</strong> {{ $group->updated_at->format('M d, Y H:i A') }}</p>
+                <p class="text-sm text-gray-600"><strong>Abanyamuryango Bose:</strong> {{ $group->members_count ?? 0 }}</p>
             </div>
 
             <!-- Action Buttons -->
@@ -116,13 +116,13 @@
                     type="submit"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition"
                 >
-                    Save Changes
+                    Bika Impinduka
                 </button>
                 <a
                     href="{{ route('admin.groups.show', $group) }}"
                     class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded transition"
                 >
-                    Cancel
+                    Hagarika
                 </a>
             </div>
         </form>

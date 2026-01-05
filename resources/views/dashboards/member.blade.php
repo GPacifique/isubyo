@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Dashboard - Member')
+@section('title', 'Ikibaho Cyanjye - Umunyamuryango')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
@@ -23,12 +23,12 @@
                                 </svg>
                             </div>
                             <div>
-                                <span class="inline-block bg-purple-400 text-purple-900 px-4 py-2 rounded-full text-sm font-bold">Member Dashboard</span>
+                                <span class="inline-block bg-purple-400 text-purple-900 px-4 py-2 rounded-full text-sm font-bold">Ikibaho cy'Umunyamuryango</span>
                             </div>
                         </div>
-                        <h1 class="text-5xl font-bold mb-3">Welcome Back, {{ auth()->user()->name }}</h1>
-                        <p class="text-purple-100 text-lg">Manage your loans, savings, and group activities</p>
-                        <p class="text-purple-200 text-sm mt-2">Last updated: {{ now()->format('M d, Y H:i') }}</p>
+                        <h1 class="text-5xl font-bold mb-3">Murakaza neza, {{ auth()->user()->name }}</h1>
+                        <p class="text-purple-100 text-lg">Gucunga inguzanyo, ubwizigame, n'ibikorwa by'itsinda</p>
+                        <p class="text-purple-200 text-sm mt-2">Byaheruka kuvugururwa: {{ now()->format('M d, Y H:i') }}</p>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
         <div class="mb-12">
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Your Overview</h2>
-                    <p class="text-gray-600 text-sm mt-1">Financial snapshot at a glance</p>
+                    <h2 class="text-3xl font-bold text-gray-900">Incamake Yawe</h2>
+                    <p class="text-gray-600 text-sm mt-1">Amakuru y'amafaranga mu maso hamwe</p>
                 </div>
             </div>
 
@@ -56,11 +56,11 @@
                                     <path d="M5 5a2 2 0 012-2h6a2 2 0 012 2v9h2a1 1 0 110 2h-2v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2H3a1 1 0 110-2h2V5zm8 1v7H7V6h6z"></path>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">{{ $account_stats['total_savings_accounts'] ?? 0 }} accounts</span>
+                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">{{ $account_stats['total_savings_accounts'] ?? 0 }} konti</span>
                         </div>
-                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Total Savings</h3>
+                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Ubwizigame Bwose</h3>
                         <p class="text-4xl font-bold text-gray-900">{{ number_format($savings_stats['total_balance'] ?? 0, 0) }}</p>
-                        <p class="text-gray-500 text-xs mt-2">+ {{ number_format($savings_stats['total_interest_earned'] ?? 0, 0) }} interest earned</p>
+                        <p class="text-gray-500 text-xs mt-2">+ {{ number_format($savings_stats['total_interest_earned'] ?? 0, 0) }} inyungu zinjiye</p>
                     </div>
                 </a>
 
@@ -73,11 +73,11 @@
                                     <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">{{ $loan_stats['active_count'] ?? 0 }} active</span>
+                            <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">{{ $loan_stats['active_count'] ?? 0 }} zibaraka</span>
                         </div>
-                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Outstanding Debt</h3>
+                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Ideni Risigaye</h3>
                         <p class="text-4xl font-bold text-gray-900">{{ number_format($loan_stats['outstanding'] ?? 0, 0) }}</p>
-                        <p class="text-gray-500 text-xs mt-2">Repaid: {{ number_format($loan_stats['total_paid'] ?? 0, 0) }}</p>
+                        <p class="text-gray-500 text-xs mt-2">Byishyuwe: {{ number_format($loan_stats['total_paid'] ?? 0, 0) }}</p>
                     </div>
                 </a>
 
@@ -90,11 +90,11 @@
                                     <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 2.522a6 6 0 018.367 8.368zM9 13a3 3 0 110-6 3 3 0 010 6zm7-6a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">{{ $penalties_stats['pending_count'] ?? 0 }} pending</span>
+                            <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">{{ $penalties_stats['pending_count'] ?? 0 }} bitegereje</span>
                         </div>
-                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Outstanding Penalties</h3>
+                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Ibihano Bisigaye</h3>
                         <p class="text-4xl font-bold text-gray-900">{{ number_format($penalties_stats['outstanding'] ?? 0, 0) }}</p>
-                        <p class="text-gray-500 text-xs mt-2">Total: {{ number_format($penalties_stats['total_amount'] ?? 0, 0) }}</p>
+                        <p class="text-gray-500 text-xs mt-2">Byose hamwe: {{ number_format($penalties_stats['total_amount'] ?? 0, 0) }}</p>
                     </div>
                 </a>
 
@@ -107,11 +107,11 @@
                                     <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h.01a1 1 0 110 2H12zm-2 2a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm2-4a1 1 0 100-2 1 1 0 000 2zm-6 6a1 1 0 110-2h.01a1 1 0 110 2H10zm0 2a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">Summary</span>
+                            <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">Incamake</span>
                         </div>
-                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Net Worth</h3>
+                        <h3 class="text-gray-600 text-sm font-semibold mb-1">Umutungo Mwiza</h3>
                         <p class="text-4xl font-bold text-gray-900">{{ number_format($account_stats['net_worth'] ?? 0, 0) }}</p>
-                        <p class="text-gray-500 text-xs mt-2">Savings - Debts</p>
+                        <p class="text-gray-500 text-xs mt-2">Ubwizigame - Amadeni</p>
                     </div>
                 </a>
             </div>
@@ -125,11 +125,11 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="border-b border-gray-200 px-6 py-4 flex items-center justify-between bg-gradient-to-r from-gray-50 to-white">
                         <div>
-                            <h3 class="text-lg font-bold text-gray-900">My Loans</h3>
-                            <p class="text-gray-500 text-xs mt-1">Track your active and completed loans</p>
+                            <h3 class="text-lg font-bold text-gray-900">Inguzanyo Zanjye</h3>
+                            <p class="text-gray-500 text-xs mt-1">Kurikirana inguzanyo zibaraka n'izarangiye</p>
                         </div>
                         <a href="{{ route('member.loan-requests') }}" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition text-sm font-semibold">
-                            + Request Loan
+                            + Saba Inguzanyo
                         </a>
                     </div>
 
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="px-3 py-1 rounded-full text-xs font-bold {{ $loan->status === 'active' ? 'bg-green-100 text-green-800' : ($loan->status === 'completed' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800') }}">
-                                            {{ $loan->status === 'active' ? 'Active' : ($loan->status === 'completed' ? 'Completed' : ucfirst($loan->status)) }}
+                                            {{ $loan->status === 'active' ? 'Irakora' : ($loan->status === 'completed' ? 'Yarangiye' : ucfirst($loan->status)) }}
                                         </span>
                                         <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -163,7 +163,7 @@
 
                         @if($loans->count() > 6)
                             <div class="px-6 py-4 bg-gray-50 border-t">
-                                <a href="{{ route('member.loans') }}" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">View All Loans →</a>
+                                <a href="{{ route('member.loans') }}" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Reba Inguzanyo Zose →</a>
                             </div>
                         @endif
                     @else
@@ -171,8 +171,8 @@
                             <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
-                            <p class="text-gray-500 mb-4">You have no loans</p>
-                            <a href="{{ route('member.loan-requests') }}" class="text-blue-600 hover:text-blue-800 font-semibold">Request your first loan →</a>
+                            <p class="text-gray-500 mb-4">Nta nguzanyo ufite</p>
+                            <a href="{{ route('member.loan-requests') }}" class="text-blue-600 hover:text-blue-800 font-semibold">Saba inguzanyo yawe ya mbere →</a>
                         </div>
                     @endif
                 </div>
@@ -181,10 +181,10 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="border-b border-gray-200 px-6 py-4 flex items-center justify-between bg-gradient-to-r from-gray-50 to-white">
                         <div>
-                            <h3 class="text-lg font-bold text-gray-900">My Savings</h3>
-                            <p class="text-gray-500 text-xs mt-1">Active savings accounts in your groups</p>
+                            <h3 class="text-lg font-bold text-gray-900">Ubwizigame Bwanjye</h3>
+                            <p class="text-gray-500 text-xs mt-1">Konti z'ubwizigame zibaraka mu matsinda yawe</p>
                         </div>
-                        <a href="{{ route('member.savings') }}" class="text-green-600 hover:text-green-800 font-semibold text-sm">View All</a>
+                        <a href="{{ route('member.savings') }}" class="text-green-600 hover:text-green-800 font-semibold text-sm">Reba Byose</a>
                     </div>
 
                     @if($savings->count() > 0)
@@ -198,13 +198,13 @@
                                             </div>
                                             <div>
                                                 <p class="font-semibold text-gray-900 group-hover:text-green-600">{{ $saving->group->name }}</p>
-                                                <p class="text-sm text-gray-600">Current Balance: {{ number_format($saving->balance, 0) }}</p>
-                                                <p class="text-xs text-gray-500">Deposits: {{ number_format($saving->total_deposits ?? 0, 0) }}</p>
+                                                <p class="text-sm text-gray-600">Amafaranga Ariho: {{ number_format($saving->balance, 0) }}</p>
+                                                <p class="text-xs text-gray-500">Byashyizwe: {{ number_format($saving->total_deposits ?? 0, 0) }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Active</span>
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Kirakora</span>
                                         <svg class="w-5 h-5 text-gray-400 group-hover:text-green-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                         </svg>
@@ -215,7 +215,7 @@
 
                         @if($savings->count() > 6)
                             <div class="px-6 py-4 bg-gray-50 border-t">
-                                <a href="{{ route('member.savings') }}" class="text-green-600 hover:text-green-800 text-sm font-semibold">View All Savings →</a>
+                                <a href="{{ route('member.savings') }}" class="text-green-600 hover:text-green-800 text-sm font-semibold">Reba Ubwizigame Bwose →</a>
                             </div>
                         @endif
                     @else
@@ -223,8 +223,8 @@
                             <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h6a2 2 0 012 2v9h2a1 1 0 110 2h-2v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2H3a1 1 0 110-2h2V5z"></path>
                             </svg>
-                            <p class="text-gray-500 mb-4">No savings accounts yet</p>
-                            <a href="{{ route('member.groups') }}" class="text-green-600 hover:text-green-800 font-semibold">Join a group to save →</a>
+                            <p class="text-gray-500 mb-4">Nta konti y'ubwizigame ufite</p>
+                            <a href="{{ route('member.groups') }}" class="text-green-600 hover:text-green-800 font-semibold">Injira mu itsinda kugira ngo wize →</a>
                         </div>
                     @endif
                 </div>
@@ -233,10 +233,10 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="border-b border-gray-200 px-6 py-4 flex items-center justify-between bg-gradient-to-r from-gray-50 to-white">
                         <div>
-                            <h3 class="text-lg font-bold text-gray-900">Recent Transactions</h3>
-                            <p class="text-gray-500 text-xs mt-1">Your latest activity</p>
+                            <h3 class="text-lg font-bold text-gray-900">Ibyakozwe Vuba</h3>
+                            <p class="text-gray-500 text-xs mt-1">Ibikorwa byawe bya vuba</p>
                         </div>
-                        <a href="{{ route('member.transactions') }}" class="text-purple-600 hover:text-purple-800 font-semibold text-sm">View All</a>
+                        <a href="{{ route('member.transactions') }}" class="text-purple-600 hover:text-purple-800 font-semibold text-sm">Reba Byose</a>
                     </div>
 
                     @if($transactions->count() > 0)
@@ -244,10 +244,10 @@
                             <table class="w-full text-sm">
                                 <thead class="bg-gray-50 border-b">
                                     <tr>
-                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Date</th>
-                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Type</th>
-                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Group</th>
-                                        <th class="px-6 py-3 text-right font-semibold text-gray-700">Amount</th>
+                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Itariki</th>
+                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Ubwoko</th>
+                                        <th class="px-6 py-3 text-left font-semibold text-gray-700">Itsinda</th>
+                                        <th class="px-6 py-3 text-right font-semibold text-gray-700">Amafaranga</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y">
@@ -258,11 +258,11 @@
                                                 <span class="px-2 py-1 rounded text-xs font-bold {{ $transaction->type === 'loan_payment' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }}">
                                                     @php
                                                         $typeTranslations = [
-                                                            'loan_payment' => 'Loan Payment',
-                                                            'savings_deposit' => 'Savings Deposit',
-                                                            'savings_withdrawal' => 'Withdrawal',
-                                                            'penalty_payment' => 'Penalty Payment',
-                                                            'interest_earned' => 'Interest',
+                                                            'loan_payment' => 'Kwishyura Inguzanyo',
+                                                            'savings_deposit' => 'Kubika Ubwizigame',
+                                                            'savings_withdrawal' => 'Gukura',
+                                                            'penalty_payment' => 'Kwishyura Igihano',
+                                                            'interest_earned' => 'Inyungu',
                                                         ];
                                                     @endphp
                                                     {{ $typeTranslations[$transaction->type] ?? ucfirst(str_replace('_', ' ', $transaction->type)) }}
@@ -277,7 +277,7 @@
                         </div>
                     @else
                         <div class="px-6 py-12 text-center text-gray-500">
-                            No transactions yet
+                            Nta byakozwe bihari
                         </div>
                     @endif
                 </div>
@@ -287,7 +287,7 @@
             <div class="space-y-8">
                 <!-- My Groups -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">My Groups</h3>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Amatsinda Yanjye</h3>
 
                     @if($groups->count() > 0)
                         <div class="space-y-3">
@@ -301,12 +301,12 @@
                         </div>
 
                         @if($groups->count() > 5)
-                            <a href="{{ route('member.groups') }}" class="block mt-4 pt-4 border-t text-blue-600 hover:text-blue-800 font-semibold text-sm">View All Groups →</a>
+                            <a href="{{ route('member.groups') }}" class="block mt-4 pt-4 border-t text-blue-600 hover:text-blue-800 font-semibold text-sm">Reba Amatsinda Yose →</a>
                         @endif
                     @else
                         <div class="text-center py-6">
-                            <p class="text-gray-500 mb-4">No groups yet</p>
-                            <a href="{{ route('member.groups') }}" class="text-blue-600 hover:text-blue-800 font-semibold">Explore Groups →</a>
+                            <p class="text-gray-500 mb-4">Nta matsinda ufite</p>
+                            <a href="{{ route('member.groups') }}" class="text-blue-600 hover:text-blue-800 font-semibold">Shakira Amatsinda →</a>
                         </div>
                     @endif
                 </div>
@@ -315,16 +315,16 @@
                 @if($penalties->count() > 0 || $socialSupport->count() > 0)
                     @if($penalties->count() > 0)
                         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6" id="penalties">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4">Pending Penalties</h3>
+                            <h3 class="text-lg font-bold text-gray-900 mb-4">Ibihano Bitegereje</h3>
 
                             <div class="space-y-3">
                                 @foreach($penalties->take(4) as $penalty)
                                     <a href="#" class="block p-3 border border-orange-200 rounded-xl hover:bg-orange-50 transition group">
                                         <div class="flex items-center justify-between mb-1">
                                             <p class="font-semibold text-gray-900 group-hover:text-orange-600">{{ $penalty->group->name }}</p>
-                                            <span class="px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-800">Pending</span>
+                                            <span class="px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-800">Bitegereje</span>
                                         </div>
-                                        <p class="text-xs text-gray-600">Amount: {{ number_format($penalty->amount ?? 0, 0) }}</p>
+                                        <p class="text-xs text-gray-600">Amafaranga: {{ number_format($penalty->amount ?? 0, 0) }}</p>
                                     </a>
                                 @endforeach
                             </div>
@@ -333,7 +333,7 @@
 
                     @if($socialSupport->count() > 0)
                         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4">Social Support</h3>
+                            <h3 class="text-lg font-bold text-gray-900 mb-4">Ubufasha bw'Imibereho</h3>
 
                             <div class="space-y-3">
                                 @foreach($socialSupport->take(4) as $support)
@@ -344,7 +344,7 @@
                                                 {{ ucfirst($support->status) }}
                                             </span>
                                         </div>
-                                        <p class="text-xs text-gray-600">Requested: {{ number_format($support->requested_amount ?? 0, 0) }}</p>
+                                        <p class="text-xs text-gray-600">Byasabwe: {{ number_format($support->requested_amount ?? 0, 0) }}</p>
                                     </a>
                                 @endforeach
                             </div>
@@ -354,40 +354,40 @@
 
                 <!-- Quick Actions -->
                 <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl shadow-sm p-6 text-white">
-                    <h3 class="text-lg font-bold mb-4">Quick Actions</h3>
+                    <h3 class="text-lg font-bold mb-4">Ibikorwa Byihuse</h3>
                     <div class="space-y-3">
                         <a href="{{ route('member.loans') }}" class="block px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition font-semibold text-center text-sm">
-                            💰 My Loans
+                            💰 Inguzanyo Zanjye
                         </a>
                         <a href="{{ route('member.savings') }}" class="block px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition font-semibold text-center text-sm">
-                            🏦 My Savings
+                            🏦 Ubwizigame Bwanjye
                         </a>
                         <a href="{{ route('member.groups') }}" class="block px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition font-semibold text-center text-sm">
-                            👥 My Groups
+                            👥 Amatsinda Yanjye
                         </a>
                         <a href="{{ route('member.transactions') }}" class="block px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition font-semibold text-center text-sm">
-                            📊 Transactions
+                            📊 Ibyakozwe
                         </a>
                         <a href="{{ route('profile.edit') }}" class="block px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition font-semibold text-center text-sm">
-                            ⚙️ Profile Settings
+                            ⚙️ Igenamiterere
                         </a>
                     </div>
                 </div>
 
                 <!-- Profile Info -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Profile</h3>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Umwirondoro</h3>
                     <div class="space-y-3">
                         <div>
-                            <p class="text-xs text-gray-500 uppercase">Name</p>
+                            <p class="text-xs text-gray-500 uppercase">Izina</p>
                             <p class="text-sm font-semibold text-gray-900">{{ Auth::user()->name }}</p>
                         </div>
                         <div>
-                            <p class="text-xs text-gray-500 uppercase">Email</p>
+                            <p class="text-xs text-gray-500 uppercase">Imeyili</p>
                             <p class="text-sm text-gray-600 break-all">{{ Auth::user()->email }}</p>
                         </div>
                         <div>
-                            <p class="text-xs text-gray-500 uppercase">Member Since</p>
+                            <p class="text-xs text-gray-500 uppercase">Umunyamuryango Kuva</p>
                             <p class="text-sm text-gray-600">{{ Auth::user()->created_at->format('M d, Y') }}</p>
                         </div>
                     </div>
@@ -420,12 +420,12 @@
 <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
     <a href="{{ route('chat.show') }}"
        class="group flex items-center justify-center w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-       title="Chat Support">
+       title="Ubufasha bwo Kuganira">
         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
         </svg>
         <span class="absolute right-16 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-            💬 Chat Support
+            💬 Ubufasha bwo Kuganira
         </span>
     </a>
 </div>
