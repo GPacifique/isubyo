@@ -171,11 +171,11 @@ class SocialSupportPeriodController extends Controller
         $validated = $request->validate([
             'member_ids' => 'required|array|min:1',
             'member_ids.*' => 'exists:group_members,id',
-            'amount' => 'nullable|numeric|min:0.01', // If null, use period's contribution_amount
             'notes' => 'nullable|string|max:500',
         ]);
 
-        $amount = $validated['amount'] ?? $period->contribution_amount;
+        // Always use the period's fixed contribution amount
+        $amount = $period->contribution_amount;
         $memberIds = $validated['member_ids'];
 
         // Verify all members belong to this group
@@ -245,9 +245,11 @@ class SocialSupportPeriodController extends Controller
 
         $validated = $request->validate([
             'member_id' => 'required|exists:group_members,id',
-            'amount' => 'required|numeric|min:0.01',
             'notes' => 'nullable|string|max:500',
         ]);
+
+        // Always use the period's fixed contribution amount
+        $amount = $period->contribution_amount;
 
         // Verify member belongs to group
         $member = $group->members()->find($validated['member_id']);
@@ -261,24 +263,24 @@ class SocialSupportPeriodController extends Controller
             return back()->with('error', 'This member has already contributed to this period.');
         }
 
-        DB::transaction(function () use ($group, $period, $validated) {
+        DB::transaction(function () use ($group, $period, $validated, $amount) {
             $period->contributions()->create([
                 'group_id' => $group->id,
                 'member_id' => $validated['member_id'],
-                'amount' => $validated['amount'],
+                'amount' => $amount,
                 'notes' => $validated['notes'] ?? null,
                 'recorded_by' => Auth::id(),
             ]);
 
             // Update period stats
-            $period->increment('total_collected', $validated['amount']);
+            $period->increment('total_collected', $amount);
             $period->increment('actual_contributors', 1);
 
             // Update group fund balance
-            $group->increment('social_support_fund', $validated['amount']);
+            $group->increment('social_support_fund', $amount);
         });
 
-        return back()->with('success', 'Contribution recorded successfully.');
+        return back()->with('success', 'Contribution recorded successfully (' . number_format($amount, 0) . ').');
     }
 
     /**

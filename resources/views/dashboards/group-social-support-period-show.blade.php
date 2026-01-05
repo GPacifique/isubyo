@@ -353,10 +353,12 @@
                         <button type="button" onclick="toggleAllCheckboxes()" class="mt-2 text-sm text-purple-600 hover:text-purple-800">Toggle All</button>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Amount per Member</label>
-                        <input type="number" name="amount" value="{{ $period->contribution_amount }}" step="0.01" min="0.01"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
-                        <p class="text-xs text-gray-500 mt-1">Default: {{ number_format($period->contribution_amount, 0) }}</p>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Fixed Amount per Member</label>
+                        <div class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 font-semibold">
+                            {{ number_format($period->contribution_amount, 0) }} {{ $group->currency ?? 'RWF' }}
+                        </div>
+                        <input type="hidden" name="amount" value="{{ $period->contribution_amount }}">
+                        <p class="text-xs text-gray-500 mt-1">All members contribute the same fixed amount</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
@@ -395,9 +397,11 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
-                        <input type="number" name="amount" value="{{ $period->contribution_amount }}" step="0.01" min="0.01" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Fixed Contribution Amount</label>
+                        <div class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 font-semibold">
+                            {{ number_format($period->contribution_amount, 0) }} {{ $group->currency ?? 'RWF' }}
+                        </div>
+                        <input type="hidden" name="amount" value="{{ $period->contribution_amount }}">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
