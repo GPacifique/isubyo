@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberDashboardController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\SocialSupportController;
+use App\Http\Controllers\SocialSupportPeriodController;
 use App\Http\Controllers\LoanRequestController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/groups/{group}/social-supports/{support}', [SocialSupportController::class, 'destroy'])->name('social-supports.destroy');
         Route::post('/groups/{group}/social-support-contributions', [SocialSupportController::class, 'storeContribution'])->name('social-support-contributions.store');
         Route::get('/groups/{group}/social-support-contributions', [SocialSupportController::class, 'contributions'])->name('social-support-contributions');
+
+        // Social Support Periods (new period-based system)
+        Route::get('/groups/{group}/social-support-periods', [SocialSupportPeriodController::class, 'index'])->name('social-support-periods.index');
+        Route::get('/groups/{group}/social-support-periods/create', [SocialSupportPeriodController::class, 'create'])->name('social-support-periods.create');
+        Route::post('/groups/{group}/social-support-periods', [SocialSupportPeriodController::class, 'store'])->name('social-support-periods.store');
+        Route::get('/groups/{group}/social-support-periods/{period}', [SocialSupportPeriodController::class, 'show'])->name('social-support-periods.show');
+        Route::post('/groups/{group}/social-support-periods/{period}/bulk-contribute', [SocialSupportPeriodController::class, 'bulkContribute'])->name('social-support-periods.bulk-contribute');
+        Route::post('/groups/{group}/social-support-periods/{period}/contribute', [SocialSupportPeriodController::class, 'singleContribute'])->name('social-support-periods.contribute');
+        Route::post('/groups/{group}/social-support-periods/{period}/support', [SocialSupportPeriodController::class, 'createSupport'])->name('social-support-periods.support');
+        Route::post('/groups/{group}/social-support-periods/{period}/support/{support}/disburse', [SocialSupportPeriodController::class, 'disburseSupport'])->name('social-support-periods.disburse');
+        Route::post('/groups/{group}/social-support-periods/{period}/support/{support}/reject', [SocialSupportPeriodController::class, 'rejectSupport'])->name('social-support-periods.reject');
+        Route::post('/groups/{group}/social-support-periods/{period}/distribute', [SocialSupportPeriodController::class, 'distribute'])->name('social-support-periods.distribute');
+        Route::post('/groups/{group}/social-support-periods/{period}/close', [SocialSupportPeriodController::class, 'close'])->name('social-support-periods.close');
+
         Route::get('/groups/{group}/reports', [GroupAdminDashboardController::class, 'reports'])->name('reports');
         Route::get('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'recordSavings'])->name('record-savings');
         Route::post('/groups/{group}/record-savings', [GroupAdminDashboardController::class, 'storeSavings'])->name('store-savings');

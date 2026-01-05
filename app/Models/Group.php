@@ -93,6 +93,21 @@ class Group extends Model
         return $this->hasMany(SocialSupportContribution::class);
     }
 
+    public function socialSupportPeriods(): HasMany
+    {
+        return $this->hasMany(SocialSupportPeriod::class);
+    }
+
+    public function socialSupportDistributions(): HasMany
+    {
+        return $this->hasMany(SocialSupportDistribution::class);
+    }
+
+    public function activeSocialSupportPeriod()
+    {
+        return $this->socialSupportPeriods()->whereIn('status', ['active', 'collecting', 'disbursing'])->first();
+    }
+
     public function activeLoanCount(): int
     {
         return $this->loans()->whereIn('status', ['active', 'pending', 'approved'])->count();

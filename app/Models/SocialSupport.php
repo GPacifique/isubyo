@@ -9,6 +9,7 @@ class SocialSupport extends Model
 {
     protected $fillable = [
         'group_id',
+        'period_id',
         'member_id',
         'type',
         'amount',
@@ -30,6 +31,11 @@ class SocialSupport extends Model
     public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function period(): BelongsTo
+    {
+        return $this->belongsTo(SocialSupportPeriod::class, 'period_id');
     }
 
     public function member(): BelongsTo

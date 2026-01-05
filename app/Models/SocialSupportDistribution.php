@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class SocialSupportContribution extends Model
+class SocialSupportDistribution extends Model
 {
     protected $fillable = [
         'group_id',
@@ -13,7 +13,7 @@ class SocialSupportContribution extends Model
         'member_id',
         'amount',
         'notes',
-        'recorded_by',
+        'distributed_by',
     ];
 
     protected $casts = [
@@ -36,9 +36,9 @@ class SocialSupportContribution extends Model
         return $this->belongsTo(GroupMember::class, 'member_id');
     }
 
-    public function recordedBy(): BelongsTo
+    public function distributedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'recorded_by');
+        return $this->belongsTo(User::class, 'distributed_by');
     }
 
     // Scopes
@@ -47,19 +47,13 @@ class SocialSupportContribution extends Model
         return $query->where('group_id', $groupId);
     }
 
+    public function scopeByPeriod($query, int $periodId)
+    {
+        return $query->where('period_id', $periodId);
+    }
+
     public function scopeByMember($query, int $memberId)
     {
         return $query->where('member_id', $memberId);
-    }
-
-    public function scopeThisMonth($query)
-    {
-        return $query->whereMonth('created_at', now()->month)
-                     ->whereYear('created_at', now()->year);
-    }
-
-    public function scopeThisYear($query)
-    {
-        return $query->whereYear('created_at', now()->year);
     }
 }
