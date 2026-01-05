@@ -362,7 +362,6 @@ return [
     'go_to_dashboard' => 'Aller au Tableau de Bord',
     'email_verification_tip' => 'Gardez votre adresse e-mail à jour dans les paramètres de votre profil pour vous assurer que vous recevez les notifications importantes du compte.',
     'tip' => 'Conseil',
-];
     'notes' => 'Notes',
     'balance' => 'Solde',
     'total' => 'Total',
