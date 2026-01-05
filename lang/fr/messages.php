@@ -147,6 +147,7 @@ return [
     'join_group' => 'Rejoindre le groupe',
     'leave_group' => 'Quitter le groupe',
     'member_since' => 'Membre depuis',
+    'members' => 'Membres',
 
     // Loan Related
     'loan' => 'Prêt',
