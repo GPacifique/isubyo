@@ -362,7 +362,7 @@ return [
     'go_to_dashboard' => 'Nenda kwa Dashboard',
     'email_verification_tip' => 'Andika anwani yako ya barua pepe sawa na mipango ya profayili yako ili kuhakikisha kuwa unapokea arifa muhimu za akaunti.',
     'tip' => 'Kidogo',
-];
+
     'submit' => 'Wasilisha',
     'close' => 'Funga',
     'view' => 'Angalia',
