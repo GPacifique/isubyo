@@ -37,6 +37,10 @@
                         <li><strong>Support:</strong> Members in need (death, marriage, sickness) receive disbursements</li>
                         <li><strong>Distribution:</strong> At period end, remaining funds are distributed back to contributors</li>
                     </ol>
+                    <p class="mt-2 text-blue-600 font-medium">
+                        <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+                        Group meets: <strong class="uppercase">{{ $group->meeting_frequency ?? 'monthly' }}</strong>
+                    </p>
                 </div>
             </div>
         </div>
@@ -52,9 +56,15 @@
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
                             Period Name <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="name" id="name" value="{{ old('name', now()->format('F Y')) }}"
+                        @php
+                            $isWeekly = ($group->meeting_frequency ?? 'monthly') === 'weekly';
+                            $defaultName = $isWeekly ? 'Week ' . now()->weekOfYear . ' - ' . now()->format('Y') : now()->format('F Y');
+                            $startDate = $isWeekly ? now()->startOfWeek()->format('Y-m-d') : now()->startOfMonth()->format('Y-m-d');
+                            $endDate = $isWeekly ? now()->endOfWeek()->format('Y-m-d') : now()->endOfMonth()->format('Y-m-d');
+                        @endphp
+                        <input type="text" name="name" id="name" value="{{ old('name', $defaultName) }}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('name') border-red-500 @enderror"
-                            placeholder="e.g., January 2026">
+                            placeholder="{{ $isWeekly ? 'e.g., Week 1 - 2026' : 'e.g., January 2026' }}">
                         @error('name')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -66,7 +76,7 @@
                             <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">
                                 Start Date <span class="text-red-500">*</span>
                             </label>
-                            <input type="date" name="start_date" id="start_date" value="{{ old('start_date', now()->startOfMonth()->format('Y-m-d')) }}"
+                            <input type="date" name="start_date" id="start_date" value="{{ old('start_date', $startDate) }}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('start_date') border-red-500 @enderror">
                             @error('start_date')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -76,11 +86,14 @@
                             <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">
                                 End Date <span class="text-red-500">*</span>
                             </label>
-                            <input type="date" name="end_date" id="end_date" value="{{ old('end_date', now()->endOfMonth()->format('Y-m-d')) }}"
+                            <input type="date" name="end_date" id="end_date" value="{{ old('end_date', $endDate) }}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent @error('end_date') border-red-500 @enderror">
                             @error('end_date')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                            <p class="mt-1 text-sm text-gray-500">
+                                {{ $isWeekly ? '(7 days for weekly meetings)' : '(~30 days for monthly meetings)' }}
+                            </p>
                         </div>
                     </div>
 

@@ -180,6 +180,9 @@
                         <span class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-semibold text-white">
                             {{ $group->status === 'active' ? '🟢 Active' : '⚪ ' . ucfirst($group->status) }}
                         </span>
+                        <span class="px-3 py-1 bg-white/20 backdrop-blur rounded-full text-xs font-semibold text-white">
+                            📅 {{ ucfirst($group->meeting_frequency ?? 'monthly') }}
+                        </span>
                         <span class="text-indigo-200 text-sm">{{ $group->created_at->format('M Y') }}</span>
                     </div>
                     <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ $group->name }}</h1>
@@ -270,8 +273,8 @@
                         <svg class="w-5 h-5 text-cyan-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
                     </div>
                 </div>
-                <p class="text-xl font-bold text-gray-900">{{ number_format($stats['monthly_savings']/1000, 0) }}K</p>
-                <p class="text-xs text-gray-500 font-medium">This Month</p>
+                <p class="text-xl font-bold text-gray-900">{{ number_format(($periodStats['savings'] ?? $stats['monthly_savings'])/1000, 0) }}K</p>
+                <p class="text-xs text-gray-500 font-medium">{{ $periodStats['label'] ?? 'This Month' }}</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group hover:-translate-y-1 {{ $stats['overdue_loans'] > 0 ? 'ring-2 ring-red-200' : '' }}">
@@ -304,6 +307,42 @@
                 <p class="text-2xl font-bold">{{ number_format($stats['total_support_disbursed'], 0) }}</p>
             </div>
         </div>
+
+        <!-- Period-Based Stats -->
+        @if(isset($periodStats))
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 mb-8 border border-indigo-100">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                        {{ $periodStats['label'] }} Summary
+                    </h3>
+                    <p class="text-sm text-gray-500">{{ $periodStats['start'] }} - {{ $periodStats['end'] }} ({{ ucfirst($periodStats['frequency']) }} meetings)</p>
+                </div>
+                <span class="mt-2 sm:mt-0 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">
+                    📅 {{ ucfirst($periodStats['frequency']) }}
+                </span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <p class="text-xs text-gray-500 font-medium mb-1">Period Savings</p>
+                    <p class="text-xl font-bold text-indigo-600">{{ number_format($periodStats['savings'], 0) }}</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <p class="text-xs text-gray-500 font-medium mb-1">Loans Issued</p>
+                    <p class="text-xl font-bold text-purple-600">{{ $periodStats['loans_issued'] }}</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <p class="text-xs text-gray-500 font-medium mb-1">Contributions</p>
+                    <p class="text-xl font-bold text-green-600">{{ number_format($periodStats['contributions'], 0) }}</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <p class="text-xs text-gray-500 font-medium mb-1">Disbursements</p>
+                    <p class="text-xl font-bold text-rose-600">{{ number_format($periodStats['disbursements'], 0) }}</p>
+                </div>
+            </div>
+        </div>
+        @endif
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Total Loans Disbursed</p>

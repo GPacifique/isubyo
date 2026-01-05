@@ -47,6 +47,24 @@
                 @enderror
             </div>
 
+            <!-- Meeting Frequency -->
+            <div class="mb-6">
+                <label for="meeting_frequency" class="block text-sm font-bold text-gray-700 mb-2">Meeting Frequency</label>
+                <select
+                    id="meeting_frequency"
+                    name="meeting_frequency"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 @error('meeting_frequency') border-red-500 @enderror"
+                    required
+                >
+                    <option value="weekly" {{ old('meeting_frequency') === 'weekly' ? 'selected' : '' }}>Weekly</option>
+                    <option value="monthly" {{ old('meeting_frequency', 'monthly') === 'monthly' ? 'selected' : '' }}>Monthly</option>
+                </select>
+                @error('meeting_frequency')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                <p class="text-gray-500 text-xs mt-2">How often the group meets to collect contributions and manage funds</p>
+            </div>
+
             <!-- Group Administrator -->
             <div class="mb-6">
                 <label for="admin_id" class="block text-sm font-bold text-gray-700 mb-2">Group Administrator</label>

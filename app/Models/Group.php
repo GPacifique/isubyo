@@ -17,6 +17,7 @@ class Group extends Model
         'type',
         'member_numbers',
         'description',
+        'meeting_frequency',
         'created_by',
         'status',
         'approval_status',

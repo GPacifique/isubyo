@@ -37,6 +37,12 @@
                     <p class="text-sm text-gray-700">{{ $group->description ?? 'No description provided' }}</p>
                 </div>
                 <div class="py-2 border-b">
+                    <p class="text-xs text-gray-500 uppercase">Meeting Frequency</p>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $group->meeting_frequency === 'weekly' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800' }}">
+                        📅 {{ ucfirst($group->meeting_frequency ?? 'monthly') }}
+                    </span>
+                </div>
+                <div class="py-2 border-b">
                     <p class="text-xs text-gray-500 uppercase">Administrators</p>
                     @if($group->admins->count() > 0)
                         <div class="space-y-2 mt-2">

@@ -65,7 +65,19 @@ class GroupAdminDashboardController extends Controller
         $socialSupportContributions = $group->socialSupportContributions()->sum('amount');
         $socialSupportFundBalance = $group->social_support_fund ?? 0;
 
-        // Daily and Monthly Savings
+        // Meeting Frequency and Period-based calculations
+        $meetingFrequency = $group->meeting_frequency ?? 'monthly';
+        if ($meetingFrequency === 'weekly') {
+            $periodStart = now()->startOfWeek();
+            $periodEnd = now()->endOfWeek();
+            $periodLabel = 'This Week';
+        } else {
+            $periodStart = now()->startOfMonth();
+            $periodEnd = now()->endOfMonth();
+            $periodLabel = 'This Month';
+        }
+
+        // Daily and Period-based Savings
         $todaySavings = Transaction::where('group_id', $group->id)
             ->where('type', 'deposit')
             ->whereDate('transaction_date', today())
@@ -76,6 +88,36 @@ class GroupAdminDashboardController extends Controller
             ->whereYear('transaction_date', now()->year)
             ->whereMonth('transaction_date', now()->month)
             ->sum('amount');
+
+        // Period stats (based on meeting frequency)
+        $periodSavings = Transaction::where('group_id', $group->id)
+            ->where('type', 'deposit')
+            ->whereBetween('transaction_date', [$periodStart, $periodEnd])
+            ->sum('amount');
+
+        $periodLoansIssued = $group->loans()
+            ->whereBetween('created_at', [$periodStart, $periodEnd])
+            ->count();
+
+        $periodContributions = $group->socialSupportContributions()
+            ->whereBetween('created_at', [$periodStart, $periodEnd])
+            ->sum('amount');
+
+        $periodDisbursements = $group->socialSupports()
+            ->where('status', 'disbursed')
+            ->whereBetween('disbursed_at', [$periodStart, $periodEnd])
+            ->sum('amount');
+
+        $periodStats = [
+            'label' => $periodLabel,
+            'frequency' => $meetingFrequency,
+            'start' => $periodStart->format('M d'),
+            'end' => $periodEnd->format('M d, Y'),
+            'savings' => $periodSavings,
+            'loans_issued' => $periodLoansIssued,
+            'contributions' => $periodContributions,
+            'disbursements' => $periodDisbursements,
+        ];
 
         // Social Support Statistics
         $socialSupportStats = [
@@ -220,6 +262,7 @@ class GroupAdminDashboardController extends Controller
         return view('dashboards.group-admin', compact(
             'group',
             'stats',
+            'periodStats',
             'socialSupportStats',
             'members',
             'member_details',

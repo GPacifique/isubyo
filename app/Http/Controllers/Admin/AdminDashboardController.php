@@ -219,6 +219,7 @@ class AdminDashboardController extends Controller
         $validated = request()->validate([
             'name' => 'required|string|max:255|unique:groups',
             'description' => 'nullable|string',
+            'meeting_frequency' => 'required|in:weekly,monthly',
             'status' => 'required|in:active,inactive,suspended',
         ]);
 
@@ -298,6 +299,7 @@ class AdminDashboardController extends Controller
         $validated = request()->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'meeting_frequency' => 'required|in:weekly,monthly',
             'status' => 'required|in:active,inactive,suspended',
             'admin_ids' => 'nullable|array',
             'admin_ids.*' => 'exists:users,id',
@@ -309,6 +311,9 @@ class AdminDashboardController extends Controller
         }
         if ($group->status !== $validated['status']) {
             $changes['status'] = ['old' => $group->status, 'new' => $validated['status']];
+        }
+        if ($group->meeting_frequency !== $validated['meeting_frequency']) {
+            $changes['meeting_frequency'] = ['old' => $group->meeting_frequency, 'new' => $validated['meeting_frequency']];
         }
 
         $group->update($validated);
